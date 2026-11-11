@@ -1,0 +1,13 @@
+{
+  "pack": {
+    "description": "Sofron Pack Fabric alpha 1.0 \u2014 v0.9.3 terrain preserved",
+    "min_format": [
+      121,
+      0
+    ],
+    "max_format": [
+      121,
+      0
+    ]
+  }
+}
