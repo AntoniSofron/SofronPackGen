@@ -1,9 +1,0 @@
-{
-  "fallback": "minecraft:empty",
-  "elements": [
-    {"weight":1,"element":{"element_type":"minecraft:single_pool_element","location":"sofron_pack:plains_ruins/small","processors":"minecraft:empty","projection":"rigid"}},
-    {"weight":1,"element":{"element_type":"minecraft:single_pool_element","location":"sofron_pack:plains_ruins/medium","processors":"minecraft:empty","projection":"rigid"}},
-    {"weight":1,"element":{"element_type":"minecraft:single_pool_element","location":"sofron_pack:plains_ruins/large","processors":"minecraft:empty","projection":"rigid"}},
-    {"weight":1,"element":{"element_type":"minecraft:single_pool_element","location":"sofron_pack:plains_ruins/dolmens","processors":"minecraft:empty","projection":"rigid"}}
-  ]
-}
