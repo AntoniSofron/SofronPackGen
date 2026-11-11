@@ -7,7 +7,7 @@
       "left": {
         "type": "minecraft:max",
         "left": "sofron_pack:overworld/base_sloped_cheese",
-        "right": "sofron_pack:overworld/karst_towers"
+        "right": "sofron_pack:overworld/hybrid_karst"
       },
       "right": "sofron_pack:overworld/river_valley"
     },
