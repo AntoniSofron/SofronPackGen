@@ -19,7 +19,7 @@ Umieść go w folderze `mods` instalacji Fabric 26.3. **Utwórz nowy świat**; m
 ## Zrealizowane zmiany
 - Bazę Cascades zachowano z dotychczasowych splajnów `offset` i `factor` (nie kopiowano starego formatu 1.20).
 - `continentalness.xz_scale`: 0.18 -> 0.15, aby zwiększyć przestrzenną skalę układu kontynentów o ~20% (w sensie długości fali, nie powierzchni).
-- `sea_level`: 63 -> 80.
+- `sea_level`: 63 -> 64.
 - Źródło biomów w wymiarze: `minecraft:multi_noise` z presetem `minecraft:overworld`. Pozostałe pliki własnych biomów są zachowane jako nieaktywne zasoby.
 - Selektor rzek: ridge [-0.1,0.1) -> [-0.16,0.16); profil funkcji `river_valley` poszerzono na osi ridge 1.6x; odpowiednie gradienty wysokości przesunięto +17.
 - `jaggedness`: skalowanie 0.7 (nowy mnożnik całej funkcji).
@@ -34,7 +34,7 @@ Umieść go w folderze `mods` instalacji Fabric 26.3. **Utwórz nowy świat**; m
 3. Nie zweryfikowano pełnej zgodności istniejących struktur, features, materiałów, custom biome i material_rule z runtime 26.3.
 4. Nie wprowadzono proceduralnego modelu meandrów ani osobnego hydrologicznego solvera. `riverWidth=0.16` mapuje się na próg ridge, a nie na szerokość rzeki w blokach.
 5. Wysokość gór 200, rozkład Alpha Islands, częstotliwość jezior 0.75 i gęstość krasu 0.7 nie są niezależnymi parametrami Minecrafta; **nie zostały uznane za w pełni zrealizowane**. Implementacja wymaga osobnego modelu i testów generacji.
-6. Aquifery nie gwarantują ciągłości rzek ani połączeń powierzchniowych. Poziom morza Y=80 może wpływać na biome i generację struktur; wymagane testy.
+6. Aquifery nie gwarantują ciągłości rzek ani połączeń powierzchniowych. Poziom morza Y=64 może wpływać na biome i generację struktur; wymagane testy.
 7. Projekt zawiera oryginalne zasoby i struktury z dostarczonego archiwum. Nie dołączono kodu źródłowego innych modów.
 
 ## Testy zalecane po kompilacji
@@ -46,3 +46,8 @@ Umieść go w folderze `mods` instalacji Fabric 26.3. **Utwórz nowy świat**; m
 - Zweryfikować zgodność custom structures/biomes z Fabric i wersją 26.3.
 
 Plik `design/approved-settings.json` zachowuje pełną zatwierdzoną konfigurację; `design/implementation-status.json` wskazuje zakres faktycznie wdrożony.
+
+## Zmiana konfiguracji: 11.11.2026
+- Poziom morza: Y=64.
+- Usunięto własne definicje biomów `sofron_pack` i własne struktury wraz z szablonami.
+- Pozostają biomy Vanilla, funkcje terenu i krasu oraz struktury Minecraft.

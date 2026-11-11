@@ -29,7 +29,7 @@
   "riverDepth": 0.7,
   "riverWidth": 0.16,
   "rugged": 0.7,
-  "sea": 80,
+  "sea": 64,
   "transitions": 0.6,
   "undergroundRivers": 0.5,
   "valley": "mixed",
