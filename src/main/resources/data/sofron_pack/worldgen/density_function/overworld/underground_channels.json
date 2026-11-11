@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:range_choice",
+  "input": {
+    "type": "minecraft:gradient",
+    "axis": "y",
+    "from_coordinate": -48,
+    "to_coordinate": 48,
+    "from_value": -48,
+    "to_value": 48
+  },
+  "min_inclusive": -22,
+  "max_exclusive": 12,
+  "when_in_range": {
+    "type": "minecraft:range_choice",
+    "input": {
+      "type": "minecraft:noise",
+      "noise": "minecraft:cave_entrance",
+      "xz_scale": 0.5,
+      "y_scale": 0.28
+    },
+    "min_inclusive": -0.065,
+    "max_exclusive": 0.065,
+    "when_in_range": -0.42,
+    "when_out_of_range": 1.0
+  },
+  "when_out_of_range": 1.0
+}

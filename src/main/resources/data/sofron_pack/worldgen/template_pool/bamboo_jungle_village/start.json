@@ -1,0 +1,14 @@
+{
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "sofron_pack:bamboo_jungle_village/village",
+        "processors": "sofron_pack:bamboo_jungle_village/lower_2",
+        "projection": "rigid"
+      }
+    }
+  ]
+}

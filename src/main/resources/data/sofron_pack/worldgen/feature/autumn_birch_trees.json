@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:weighted_random_selector",
+  "features": [
+    {
+      "data": "minecraft:fallen_birch_tree",
+      "weight": 1800
+    },
+    {
+      "data": "sofron_pack:autumn_birch_with_shelf",
+      "weight": 7790
+    },
+    {
+      "data": "minecraft:red_poplar_leaf_litter",
+      "weight": 155
+    },
+    {
+      "data": "minecraft:orange_poplar_leaf_litter",
+      "weight": 186
+    },
+    {
+      "data": "minecraft:yellow_poplar_leaf_litter",
+      "weight": 69
+    }
+  ]
+}

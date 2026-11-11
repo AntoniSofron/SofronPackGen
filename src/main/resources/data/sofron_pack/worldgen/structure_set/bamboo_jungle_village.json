@@ -1,0 +1,11 @@
+{
+  "structures": [
+    {"structure": "sofron_pack:bamboo_jungle_village", "weight": 1}
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 741963205,
+    "spacing": 80,
+    "separation": 40
+  }
+}

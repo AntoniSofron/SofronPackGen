@@ -1,0 +1,14 @@
+{
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 74193621,
+    "separation": 45,
+    "spacing": 90
+  },
+  "structures": [
+    {
+      "structure": "sofron_pack:birch_forest_ruins",
+      "weight": 1
+    }
+  ]
+}
