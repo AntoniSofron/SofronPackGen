@@ -2939,11 +2939,56 @@
     "right": "sofron_pack:overworld/coastal_transition"
   },
   "right": {
-    "type": "minecraft:range_choice",
-    "input": "minecraft:overworld/continents",
-    "min_inclusive": -0.11,
-    "max_exclusive": 1.1,
-    "when_in_range": {
+    "type": "minecraft:mul",
+    "left": {
+      "type": "minecraft:spline",
+      "spline": {
+        "coordinate": "minecraft:overworld/continents",
+        "points": [
+          {
+            "location": -1.1,
+            "value": 0,
+            "derivative": 0
+          },
+          {
+            "location": -0.25,
+            "value": 0,
+            "derivative": 0
+          },
+          {
+            "location": -0.15,
+            "value": 0,
+            "derivative": 0
+          },
+          {
+            "location": -0.11,
+            "value": 0,
+            "derivative": 0
+          },
+          {
+            "location": -0.02,
+            "value": 0.35,
+            "derivative": 0
+          },
+          {
+            "location": 0.12,
+            "value": 1,
+            "derivative": 0
+          },
+          {
+            "location": 0.85,
+            "value": 1,
+            "derivative": 0
+          },
+          {
+            "location": 1,
+            "value": 1,
+            "derivative": 0
+          }
+        ]
+      }
+    },
+    "right": {
       "type": "minecraft:add",
       "left": {
         "type": "minecraft:add",
@@ -2991,7 +3036,6 @@
           }
         }
       }
-    },
-    "when_out_of_range": 0
+    }
   }
 }
