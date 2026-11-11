@@ -10,12 +10,11 @@
     "river_valley_spline_width",
     "river_valley_height_shift",
     "jaggedness_multiplier",
-    "karst_spires_height_gradient",
-    "spline_order_repair"
+    "spline_order_repair",
+    "hybrid_karst_density_terralith_wythers_bop_inspired"
   ],
   "preserved": [
     "existing_cascades_like_factor_and_offset",
-    "karst_towers",
     "cave_density_functions",
     "aquifer_router",
     "original_assets"
@@ -34,5 +33,15 @@
     "spline_order": "repaired",
     "java25_compile": "not_run",
     "minecraft_runtime": "not_run"
+  },
+  "karst": {
+    "legacy_sofron_removed": true,
+    "styles": [
+      "tall thin pillar clusters",
+      "layered Huangshan-like spires",
+      "tapered eroded pillars"
+    ],
+    "implementation": "one regional density function, no direct copying of other mods",
+    "sources": "vanilla pillar/pillar_thickness/pillar_rareness/surface noise"
   }
 }
