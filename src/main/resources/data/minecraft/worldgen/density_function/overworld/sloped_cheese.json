@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:min",
+  "left": {
+    "type": "minecraft:min",
+    "left": {
+      "type": "minecraft:min",
+      "left": {
+        "type": "minecraft:max",
+        "left": "sofron_pack:overworld/base_sloped_cheese",
+        "right": "sofron_pack:overworld/karst_towers"
+      },
+      "right": "sofron_pack:overworld/river_valley"
+    },
+    "right": "sofron_pack:overworld/underground_caverns"
+  },
+  "right": "sofron_pack:overworld/underground_channels"
+}
