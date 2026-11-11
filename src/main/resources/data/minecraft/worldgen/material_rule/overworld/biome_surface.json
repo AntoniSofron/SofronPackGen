@@ -158,14 +158,6 @@
       },
       "then_run": "minecraft:overworld/biome_surface/dappled_forest"
     },
-    {
-      "type": "minecraft:condition",
-      "if_true": {
-        "type": "minecraft:biome",
-        "biome_is": "sofron_pack:autumn_bamboo_forest"
-      },
-      "then_run": "sofron_pack:overworld/biome_surface/autumn_bamboo_forest"
-    },
     "minecraft:overworld/biome_surface/default"
   ]
 }
