@@ -23,8 +23,8 @@ Umieść go w folderze `mods` instalacji Fabric 26.3. **Utwórz nowy świat**; m
 - Źródło biomów w wymiarze: `minecraft:multi_noise` z presetem `minecraft:overworld`. Pozostałe pliki własnych biomów są zachowane jako nieaktywne zasoby.
 - Selektor rzek: ridge [-0.1,0.1) -> [-0.16,0.16); profil funkcji `river_valley` poszerzono na osi ridge 1.6x; odpowiednie gradienty wysokości przesunięto +17.
 - `jaggedness`: skalowanie 0.7 (nowy mnożnik całej funkcji).
-- `karst_sharp_spires`: górny zakres pionowego gradientu 180 -> 200.
-- Zachowano połączenia `sloped_cheese` z `karst_towers`, `river_valley`, `underground_caverns`, `underground_channels`.
+- Własne `karst_towers` i `karst_sharp_spires` zastąpiono nową funkcją `hybrid_karst` inspirowaną Terralith, Wythers i Biomes O’ Plenty.
+- Zachowano połączenia `sloped_cheese` z `hybrid_karst`, `river_valley`, `underground_caverns`, `underground_channels`.
 - Zachowano konfigurację `aquifers` i `exclusion` z pierwotnego projektu.
 - Naprawiono 26 niesortowanych lub zduplikowanych list punktów splajnów (22 w offset, 4 w sofron_factor): punkty sortowano rosnąco, a dla powtarzającej się lokalizacji zachowano ostatni. **Zmienia to semantykę źródłowych splajnów i wymaga testów w grze.**
 
@@ -51,3 +51,10 @@ Plik `design/approved-settings.json` zachowuje pełną zatwierdzoną konfiguracj
 - Poziom morza: Y=64.
 - Usunięto własne definicje biomów `sofron_pack` i własne struktury wraz z szablonami.
 - Pozostają biomy Vanilla, funkcje terenu i krasu oraz struktury Minecraft.
+
+## Hybrydowy kras (11.11.2026)
+- Nowa funkcja `sofron_pack:overworld/hybrid_karst` jest połączona z `minecraft:overworld/sloped_cheese` przez `max`.
+- Trzy regionalne profile: wysokie, smukłe filary (Terralith), nieregularne skały Huangshan (Wythers), zwężające się ostańce (Biomes O' Plenty). To oryginalna implementacja inspirowana charakterem tych modów, nie skopiowany kod.
+- Regiony ograniczają `continents`, `erosion`, `ridges`, `temperature`, `vegetation` i wysokość Y=65..191; profil bazuje na wbudowanych szumach `minecraft:pillar`, `pillar_thickness`, `pillar_rareness` i `surface`.
+- Usunięto stare funkcje `karst_towers`, `karst_sharp_spires` i trzy niezgodne formatem szumy `karst_*`.
+- Zmienna liczba kolumn oraz jakość sylwetek wymagają testów w grze; profile są zależne od amplitud rzeczywistych szumów. Nie implementowano features Java BOP ani struktur NBT Wythers.
