@@ -118,7 +118,7 @@ def main():
                     print("  " + line.strip(), flush=True)
             packs = rcon("datapack list enabled")
             print("Enabled data packs:", packs, flush=True)
-            if not re.search(r"\\bsofron_pack\\b", packs, re.IGNORECASE):
+            if "sofron_pack" not in packs.lower():
                 raise AssertionError("Sofron Pack Gen data pack is not enabled: the server is testing Vanilla, not our worldgen.")
 
             # Locate a real VANILLA deep-ocean biome, not a generated height-map.
