@@ -1,0 +1,84 @@
+{
+  "type": "minecraft:mul",
+  "left": {
+    "type": "minecraft:spline",
+    "spline": {
+      "coordinate": "minecraft:overworld/erosion",
+      "points": [
+        {
+          "location": -1,
+          "value": 1,
+          "derivative": 0
+        },
+        {
+          "location": -0.75,
+          "value": 1,
+          "derivative": 0
+        },
+        {
+          "location": -0.5,
+          "value": 0.7,
+          "derivative": 0
+        },
+        {
+          "location": -0.3,
+          "value": 0.25,
+          "derivative": 0
+        },
+        {
+          "location": -0.1,
+          "value": 0,
+          "derivative": 0
+        },
+        {
+          "location": 1,
+          "value": 0,
+          "derivative": 0
+        }
+      ]
+    }
+  },
+  "right": {
+    "type": "minecraft:spline",
+    "spline": {
+      "coordinate": "minecraft:overworld/ridges",
+      "points": [
+        {
+          "location": -1,
+          "value": 0.25,
+          "derivative": 0
+        },
+        {
+          "location": -0.65,
+          "value": 0.65,
+          "derivative": 0
+        },
+        {
+          "location": -0.3,
+          "value": 1,
+          "derivative": 0
+        },
+        {
+          "location": 0,
+          "value": 1,
+          "derivative": 0
+        },
+        {
+          "location": 0.3,
+          "value": 1,
+          "derivative": 0
+        },
+        {
+          "location": 0.65,
+          "value": 0.65,
+          "derivative": 0
+        },
+        {
+          "location": 1,
+          "value": 0.25,
+          "derivative": 0
+        }
+      ]
+    }
+  }
+}

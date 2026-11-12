@@ -6,7 +6,23 @@
       "xz_scale": 1,
       "y_scale": 0.5
     },
-    "exclusion": 0,
+    "exclusion": {
+      "type": "minecraft:min",
+      "left": {
+        "type": "minecraft:sub",
+        "left": -0.225,
+        "right": "minecraft:overworld/erosion"
+      },
+      "right": {
+        "type": "minecraft:max",
+        "left": {
+          "type": "minecraft:sub",
+          "left": "minecraft:overworld/depth",
+          "right": 0.9
+        },
+        "right": 0
+      }
+    },
     "fluid_level_floodedness": {
       "type": "minecraft:noise",
       "noise": "minecraft:aquifer_fluid_level_floodedness",
@@ -25,7 +41,7 @@
       "xz_scale": 1,
       "y_scale": 1
     },
-    "surface_level": "sofron_pack:terrain/chunk_surface_level"
+    "surface_level": "minecraft:overworld/chunk_surface_level"
   },
   "default_block": "minecraft:stone",
   "default_fluid": "minecraft:water",
@@ -37,28 +53,50 @@
     "height": 384
   },
   "noise_router": {
-    "chunk_surface_level": "sofron_pack:terrain/chunk_surface_level",
-    "continents": "sofron_pack:climate/continents",
-    "depth": 0,
-    "erosion": "sofron_pack:climate/erosion",
-    "final_density": "sofron_pack:terrain/final_density",
-    "ridges": "sofron_pack:climate/ridges",
+    "chunk_surface_level": "minecraft:overworld/chunk_surface_level",
+    "continents": "minecraft:overworld/continents",
+    "depth": "minecraft:overworld/depth",
+    "erosion": "minecraft:overworld/erosion",
+    "final_density": "sofron_pack:terrain/stable_final_density",
+    "ridges": "minecraft:overworld/ridges",
     "temperature": "minecraft:overworld/temperature",
     "vegetation": "minecraft:overworld/vegetation"
   },
   "sea_level": 64,
   "spawn_target": [
     {
-      "sofron_pack:climate/continents": [
-        -0.2,
-        1.2
+      "minecraft:overworld/continents": [
+        -0.11,
+        1
       ],
-      "sofron_pack:climate/erosion": [
+      "minecraft:overworld/erosion": [
         -1,
         1
       ],
-      "sofron_pack:climate/ridges": [
+      "minecraft:overworld/ridges": [
         -1,
+        -0.16
+      ],
+      "minecraft:overworld/temperature": [
+        -1,
+        1
+      ],
+      "minecraft:overworld/vegetation": [
+        -1,
+        1
+      ]
+    },
+    {
+      "minecraft:overworld/continents": [
+        -0.11,
+        1
+      ],
+      "minecraft:overworld/erosion": [
+        -1,
+        1
+      ],
+      "minecraft:overworld/ridges": [
+        0.16,
         1
       ],
       "minecraft:overworld/temperature": [
@@ -74,23 +112,27 @@
   "debug_functions": [
     {
       "label": "C",
-      "function": "sofron_pack:climate/continents"
+      "function": "minecraft:overworld/continents"
     },
     {
       "label": "E",
-      "function": "sofron_pack:climate/erosion"
+      "function": "minecraft:overworld/erosion"
     },
     {
       "label": "R",
-      "function": "sofron_pack:climate/ridges"
+      "function": "minecraft:overworld/ridges"
     },
     {
-      "label": "T",
-      "function": "sofron_pack:terrain/base"
+      "label": "D",
+      "function": "minecraft:overworld/depth"
+    },
+    {
+      "label": "S",
+      "function": "minecraft:overworld/chunk_surface_level"
     },
     {
       "label": "F",
-      "function": "sofron_pack:terrain/final_density"
+      "function": "sofron_pack:terrain/stable_final_density"
     }
   ]
 }

@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:mul",
+  "left": "sofron_pack:terrain/stable_land_mask",
+  "right": {
+    "type": "minecraft:mul",
+    "left": "sofron_pack:terrain/stable_vertical_envelope",
+    "right": {
+      "type": "minecraft:add",
+      "left": {
+        "type": "minecraft:mul",
+        "left": 0.12,
+        "right": {
+          "type": "minecraft:noise",
+          "noise": "sofron_pack:macrorelief",
+          "xz_scale": 0.13,
+          "y_scale": 0
+        }
+      },
+      "right": {
+        "type": "minecraft:mul",
+        "left": 0.32,
+        "right": "sofron_pack:terrain/stable_mountain_profile"
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:mul",
+  "left": {
+    "type": "minecraft:gradient",
+    "axis": "y",
+    "tiling": "clamp_to_edge",
+    "from_coordinate": 56,
+    "to_coordinate": 88,
+    "from_value": 0,
+    "to_value": 1
+  },
+  "right": {
+    "type": "minecraft:gradient",
+    "axis": "y",
+    "tiling": "clamp_to_edge",
+    "from_coordinate": 224,
+    "to_coordinate": 304,
+    "from_value": 1,
+    "to_value": 0
+  }
+}
