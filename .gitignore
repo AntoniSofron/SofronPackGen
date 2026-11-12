@@ -1,0 +1,21 @@
+# Local Gradle bootstrap (hundreds of MB; never commit distributions)
+.build-tools/
+.gradle/
+# Gradle outputs
+build/
+out/
+# Local IDE
+.idea/
+.vscode/
+*.iml
+# Local Java crash reports and logs
+hs_err_pid*
+replay_pid*
+*.log
+# OS
+Thumbs.db
+.DS_Store
+# Minecraft saves and runtime
+run/
+worlds/
+saves/
