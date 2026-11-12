@@ -1,0 +1,84 @@
+{
+  "type": "minecraft:mul",
+  "left": {
+    "type": "minecraft:spline",
+    "spline": {
+      "coordinate": "sofron_pack:climate/continents",
+      "points": [
+        {
+          "location": -1.2,
+          "value": 0,
+          "derivative": 0
+        },
+        {
+          "location": -0.3,
+          "value": 0,
+          "derivative": 0
+        },
+        {
+          "location": -0.1,
+          "value": 0.05,
+          "derivative": 0
+        },
+        {
+          "location": 0.12,
+          "value": 0.45,
+          "derivative": 0
+        },
+        {
+          "location": 0.35,
+          "value": 1,
+          "derivative": 0
+        },
+        {
+          "location": 0.8,
+          "value": 1,
+          "derivative": 0
+        },
+        {
+          "location": 1.2,
+          "value": 0.7,
+          "derivative": 0
+        }
+      ]
+    }
+  },
+  "right": {
+    "type": "minecraft:spline",
+    "spline": {
+      "coordinate": "sofron_pack:climate/erosion",
+      "points": [
+        {
+          "location": -1,
+          "value": 1,
+          "derivative": 0
+        },
+        {
+          "location": -0.6,
+          "value": 0.85,
+          "derivative": 0
+        },
+        {
+          "location": -0.25,
+          "value": 0.65,
+          "derivative": 0
+        },
+        {
+          "location": 0.1,
+          "value": 0.35,
+          "derivative": 0
+        },
+        {
+          "location": 0.5,
+          "value": 0.12,
+          "derivative": 0
+        },
+        {
+          "location": 1,
+          "value": 0,
+          "derivative": 0
+        }
+      ]
+    }
+  }
+}

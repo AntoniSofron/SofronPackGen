@@ -1,2 +1,2 @@
-pluginManagement { repositories { maven { url = "https://maven.fabricmc.net/" }; gradlePluginPortal(); mavenCentral() } }
-rootProject.name = "sofron-pack"
+pluginManagement { repositories { maven { url = 'https://maven.fabricmc.net/' }; gradlePluginPortal(); mavenCentral() } }
+rootProject.name = 'sofron-pack-gen-2'

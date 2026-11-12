@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:weighted",
-  "entries": [
-    {
-      "data": "minecraft:allium",
-      "weight": 1
-    }
-  ]
-}

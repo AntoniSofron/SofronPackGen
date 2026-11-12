@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:add",
+  "left": 80,
+  "right": {
+    "type": "minecraft:mul",
+    "left": 24,
+    "right": "sofron_pack:terrain/offset"
+  }
+}

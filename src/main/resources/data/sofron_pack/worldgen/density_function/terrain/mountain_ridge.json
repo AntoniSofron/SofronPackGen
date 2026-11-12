@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:mul",
+  "left": "sofron_pack:terrain/mountain_mask",
+  "right": {
+    "type": "minecraft:mul",
+    "left": 6.2,
+    "right": {
+      "type": "minecraft:sub",
+      "left": 1,
+      "right": {
+        "type": "minecraft:abs",
+        "input": "sofron_pack:climate/ridges"
+      }
+    }
+  }
+}

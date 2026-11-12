@@ -1,0 +1,5 @@
+{
+  "type": "minecraft:min",
+  "left": "sofron_pack:terrain/base",
+  "right": "sofron_pack:caves/combined"
+}
