@@ -15,7 +15,7 @@ jobs:
         with:
           gradle-version: '9.5.0'
       - name: Check worldgen JSON
-        run: python3 scripts/validate_worldgen.py && python3 scripts/check_density_invariants.py && python3 scripts/check_hydrology_density.py && python3 scripts/check_surface_safety.py && python3 scripts/check_biome_depth.py
+        run: python3 scripts/validate_worldgen.py && python3 scripts/check_stable_worldgen.py
       - name: Compile
         run: gradle build --stacktrace
       - name: Verify compiled Fabric mod JAR
