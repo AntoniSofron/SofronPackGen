@@ -15,10 +15,19 @@ $shaFile = "$zip.sha256"
 
 try {
     Write-Host "[1/4] Java 25 check" -ForegroundColor Cyan
-    & java -version
-    if ($LASTEXITCODE -ne 0) { throw "Java missing. Install Java JDK 25." }
-    $major = (& java -XshowSettings:properties -version 2>&1 | Out-String)
-    if ($major -notmatch '(?m)^\s*java\.version\s*=\s*25[.\s]') {
+    $java = (Get-Command java.exe -ErrorAction Stop).Source
+    $start = New-Object System.Diagnostics.ProcessStartInfo
+    $start.FileName = $java
+    $start.Arguments = "-version"
+    $start.UseShellExecute = $false
+    $start.RedirectStandardError = $true
+    $start.RedirectStandardOutput = $true
+    $process = [System.Diagnostics.Process]::Start($start)
+    $javaText = $process.StandardError.ReadToEnd() + $process.StandardOutput.ReadToEnd()
+    $process.WaitForExit()
+    Write-Host $javaText
+    if ($process.ExitCode -ne 0) { throw "Java failed to start." }
+    if ($javaText -notmatch 'version\s+"25(?:\.|")') {
         throw "Java JDK 25 is required. Set JAVA_HOME and PATH before building."
     }
 
