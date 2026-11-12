@@ -1,0 +1,62 @@
+name: Publish Sofron Terra Lab for mobile Safari
+on:
+  push:
+    branches:
+      - design/sofron-terra-lab-cleanroom-26-3
+    paths:
+      - 'design/**'
+      - 'docs/ANALIZA_MODOW.md'
+      - '.github/workflows/publish-configurator.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Prepare mobile website
+        run: |
+          mkdir -p public
+          cp design/Sofron_Terra_Lab_Konfigurator.html public/index.html
+          cp design/catalog.json public/catalog.json
+          cp design/PYTANIA_I_USTAWIENIA.csv public/
+          cp design/ATLAS_MODOW.csv public/
+          cp docs/ANALIZA_MODOW.md public/
+          python3 - <<'PY'
+          import csv, html, pathlib
+          out = pathlib.Path('public')
+          style = 'body{background:#10202c;color:#f2f5f7;font:16px/1.6 system-ui;margin:auto;max-width:980px;padding:15px}a{color:#8bd6ff}h1{font-size:clamp(23px,5vw,36px)}table{border-collapse:collapse;display:block;overflow:auto;font-size:13px}td,th{border:1px solid #4c6979;padding:7px;vertical-align:top}th{background:#234054}pre{white-space:pre-wrap;overflow-wrap:anywhere}nav{display:flex;gap:20px;flex-wrap:wrap}'
+          nav = '<nav><a href="./">Konfigurator</a><a href="analiza.html">Analiza modów</a><a href="arkusz.html">Arkusz pytań</a><a href="PYTANIA_I_USTAWIENIA.csv">Pobierz CSV</a></nav>'
+          def page(title,body):
+            return '<!doctype html><html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+html.escape(title)+'</title><style>'+style+'</style></head><body>'+nav+body+'</body></html>'
+          report=pathlib.Path('docs/ANALIZA_MODOW.md').read_text(encoding='utf8')
+          (out/'analiza.html').write_text(page('Analiza modów — Sofron Terra Lab','<h1>Analiza 11 modów</h1><p>Tekst badawczy. Wersja z formatowaniem: <a href="https://github.com/AntoniSofron/SofronPackGen/blob/design/sofron-terra-lab-cleanroom-26-3/docs/ANALIZA_MODOW.md">otwórz na GitHubie</a>.</p><pre>'+html.escape(report)+'</pre>'),encoding='utf8')
+          with pathlib.Path('design/PYTANIA_I_USTAWIENIA.csv').open(encoding='utf-8-sig',newline='') as f:
+            rows=list(csv.reader(f,delimiter=';'))
+          body='<h1>84 ustawienia</h1><p>Wybieraj wartości w <a href="./">interaktywnym konfiguratorze</a>. Tu znajduje się pełny arkusz referencyjny.</p><table><thead><tr>'+''.join('<th>'+html.escape(x)+'</th>' for x in rows[0])+'</tr></thead><tbody>'+''.join('<tr>'+''.join('<td>'+html.escape(x)+'</td>' for x in row)+'</tr>' for row in rows[1:])+'</tbody></table>'
+          (out/'arkusz.html').write_text(page('Arkusz 84 pytań',body),encoding='utf8')
+          assert len(rows)==85
+          assert (out/'index.html').stat().st_size > 50000
+          print('Published files:',[p.name for p in out.iterdir()])
+          PY
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: public
+      - name: Deploy Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
