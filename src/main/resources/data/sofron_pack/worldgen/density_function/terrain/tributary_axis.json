@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:add",
+  "left": {
+    "type": "minecraft:noise",
+    "noise": "sofron_pack:tributary_axis",
+    "xz_scale": 0.34,
+    "y_scale": 0
+  },
+  "right": {
+    "type": "minecraft:mul",
+    "left": 0.19,
+    "right": {
+      "type": "minecraft:noise",
+      "noise": "sofron_pack:tributary_meander",
+      "xz_scale": 0.72,
+      "y_scale": 0
+    }
+  }
+}

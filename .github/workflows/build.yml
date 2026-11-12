@@ -15,6 +15,6 @@ jobs:
         with:
           gradle-version: '9.5.0'
       - name: Check worldgen JSON
-        run: python3 scripts/validate_worldgen.py && python3 scripts/check_density_invariants.py
+        run: python3 scripts/validate_worldgen.py && python3 scripts/check_density_invariants.py && python3 scripts/check_hydrology_density.py
       - name: Compile
         run: gradle build --stacktrace
