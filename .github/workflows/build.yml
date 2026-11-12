@@ -13,7 +13,7 @@ jobs:
           java-version: '25'
       - uses: gradle/actions/setup-gradle@v4
         with:
-          gradle-version: '9.2.1'
+          gradle-version: '9.5.0'
       - name: Check worldgen JSON
         run: python3 scripts/validate_worldgen.py
       - name: Compile
