@@ -15,6 +15,6 @@ jobs:
         with:
           gradle-version: '9.2.1'
       - name: Check worldgen JSON
-        run: python3 -c "import json,pathlib; a=list(pathlib.Path('src/main/resources').rglob('*.json')); [json.loads(p.read_text()) for p in a]; print(len(a),'valid JSON files')"
+        run: python3 scripts/validate_worldgen.py
       - name: Compile
         run: gradle build --stacktrace
