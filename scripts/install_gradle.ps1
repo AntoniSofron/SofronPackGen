@@ -15,26 +15,31 @@ if (Test-Path $exe) {
 }
 New-Item -ItemType Directory -Force -Path $Destination | Out-Null
 $zip = Join-Path $Destination $zipName
+$checksumFile = Join-Path $Destination "$zipName.sha256"
 try {
     Write-Host "Downloading $url"
-    Invoke-WebRequest -Uri $url -OutFile $zip -MaximumRedirection 10
-    $expected = (Invoke-WebRequest -Uri $hashUrl -MaximumRedirection 10).Content.Trim().Split(' ')[0].ToLowerInvariant()
+    Invoke-WebRequest -UseBasicParsing -Uri $url -OutFile $zip -MaximumRedirection 10
+    Write-Host "Downloading SHA-256 checksum..."
+    Invoke-WebRequest -UseBasicParsing -Uri $hashUrl -OutFile $checksumFile -MaximumRedirection 10
+    $checksumText = [System.IO.File]::ReadAllText($checksumFile, [System.Text.Encoding]::UTF8).Trim()
+    $expected = ($checksumText -split '\s+')[0].ToLowerInvariant()
     if ($expected -notmatch '^[a-f0-9]{64}$') {
-        throw 'Invalid SHA-256 checksum received from Gradle distribution service.'
+        throw "Invalid SHA-256 checksum received from Gradle distribution service."
     }
     $actual = (Get-FileHash -Algorithm SHA256 -Path $zip).Hash.ToLowerInvariant()
     if ($actual -ne $expected) {
         throw "SHA-256 mismatch: expected $expected; got $actual"
     }
-    Write-Host 'SHA-256 verified. Extracting Gradle...'
+    Write-Host "SHA-256 verified. Extracting Gradle..."
     Expand-Archive -Path $zip -DestinationPath $Destination -Force
     if (-not (Test-Path $exe)) {
         throw "Gradle executable missing after extraction: $exe"
     }
     Write-Host "Gradle $Version ready."
 } catch {
-    Write-Error $_
+    Write-Host ("ERROR: " + $_.Exception.Message) -ForegroundColor Red
     exit 1
 } finally {
     Remove-Item -Path $zip -Force -ErrorAction SilentlyContinue
+    Remove-Item -Path $checksumFile -Force -ErrorAction SilentlyContinue
 }
