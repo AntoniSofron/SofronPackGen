@@ -10,6 +10,7 @@ if not "%~1"=="" set "MODS_DIR=%~1"
 set "GRADLE_VERSION=9.5.0"
 set "GRADLE_HOME=%CD%\.build-tools\gradle-%GRADLE_VERSION%"
 set "GRADLE_EXE=%GRADLE_HOME%\bin\gradle.bat"
+set "GRADLE_LAUNCHER=%GRADLE_HOME%\lib\gradle-launcher-%GRADLE_VERSION%.jar"
 set "JAR_NAME=Sofron-Pack-Gen-2-2.0.0-alpha.1.jar"
 set "JAR_PATH=%CD%\build\libs\%JAR_NAME%"
 echo Target: "%MODS_DIR%"
@@ -40,7 +41,16 @@ if not exist "%GRADLE_EXE%" (
   goto :fail
 )
 echo Building with Gradle %GRADLE_VERSION%...
-call "%GRADLE_EXE%" --no-daemon clean build
+echo Gradle path: "%GRADLE_EXE%"
+echo Java path:
+where java
+echo Checking access to Gradle batch file...
+if not exist "%GRADLE_LAUNCHER%" (
+  echo ERROR: Missing Gradle launcher JAR: "%GRADLE_LAUNCHER%"
+  goto :fail
+)
+echo Running Gradle launcher directly through Java to avoid blocked nested .bat execution...
+java -Dorg.gradle.appname=gradle -classpath "%GRADLE_LAUNCHER%" org.gradle.launcher.GradleMain --no-daemon --stacktrace clean build
 if errorlevel 1 goto :build_fail
 goto :verify
 
