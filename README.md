@@ -8,8 +8,8 @@ This repository branch starts from a **new Git tree, not from existing SofronPac
 
 W aplikacji ChatGPT podgląd plików `.html`, `.md` i `.xlsx` może nie działać. Korzystaj z linków internetowych:
 
-- [Konfigurator interaktywny — przez podgląd HTML](https://raw.githack.com/AntoniSofron/SofronPackGen/design/sofron-terra-lab-cleanroom-26-3/design/Sofron_Terra_Lab_Konfigurator.html) (publiczny serwis zewnętrzny; może wymagać potwierdzenia strony).
-- [Arkusz 84 pytań — wersja mobilna](https://raw.githack.com/AntoniSofron/SofronPackGen/design/sofron-terra-lab-cleanroom-26-3/design/Arkusz_84_Pytania.html).
+- [Konfigurator interaktywny — przez podgląd HTML](https://rawcdn.githack.com/AntoniSofron/SofronPackGen/d0b5642495e9d7ca47594648b88bc6b8ad7943c7/design/Sofron_Terra_Lab_Konfigurator.html) (publiczny serwis zewnętrzny; może wymagać potwierdzenia strony).
+- [Arkusz 84 pytań — wersja mobilna](https://rawcdn.githack.com/AntoniSofron/SofronPackGen/d0b5642495e9d7ca47594648b88bc6b8ad7943c7/design/Arkusz_84_Pytania.html).
 - [Analiza 11 modów — czytaj jako GitHub Markdown](docs/ANALIZA_MODOW.md).
 - [Arkusz CSV dla Excela](design/PYTANIA_I_USTAWIENIA.csv).
 
