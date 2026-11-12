@@ -25,7 +25,7 @@
       "xz_scale": 1,
       "y_scale": 1
     },
-    "surface_level": 64
+    "surface_level": "sofron_pack:terrain/chunk_surface_level"
   },
   "default_block": "minecraft:stone",
   "default_fluid": "minecraft:water",
