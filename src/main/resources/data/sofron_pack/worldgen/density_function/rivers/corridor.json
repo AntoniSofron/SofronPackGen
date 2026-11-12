@@ -1,0 +1,38 @@
+{
+  "type": "minecraft:spline",
+  "spline": {
+    "coordinate": "sofron_pack:rivers/axis",
+    "points": [
+      {
+        "location": 0,
+        "value": 1,
+        "derivative": 0
+      },
+      {
+        "location": 0.045,
+        "value": 1,
+        "derivative": 0
+      },
+      {
+        "location": 0.11,
+        "value": 0.6,
+        "derivative": 0
+      },
+      {
+        "location": 0.19,
+        "value": 0,
+        "derivative": 0
+      },
+      {
+        "location": 0.6,
+        "value": 0,
+        "derivative": 0
+      },
+      {
+        "location": 2,
+        "value": 0,
+        "derivative": 0
+      }
+    ]
+  }
+}

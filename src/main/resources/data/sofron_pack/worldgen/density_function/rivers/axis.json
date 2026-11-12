@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:abs",
+  "input": {
+    "type": "minecraft:add",
+    "left": {
+      "type": "minecraft:noise",
+      "noise": "sofron_pack:river_axis",
+      "xz_scale": 0.48,
+      "y_scale": 0
+    },
+    "right": {
+      "type": "minecraft:mul",
+      "left": 0.25,
+      "right": {
+        "type": "minecraft:noise",
+        "noise": "sofron_pack:river_detail",
+        "xz_scale": 0.9,
+        "y_scale": 0
+      }
+    }
+  }
+}

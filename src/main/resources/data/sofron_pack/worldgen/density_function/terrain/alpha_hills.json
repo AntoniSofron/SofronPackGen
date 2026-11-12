@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:mul",
+  "left": "sofron_pack:regions/alpha",
+  "right": {
+    "type": "minecraft:mul",
+    "left": 0.85,
+    "right": {
+      "type": "minecraft:noise",
+      "noise": "sofron_pack:alpha_region",
+      "xz_scale": 0.75,
+      "y_scale": 0
+    }
+  }
+}
