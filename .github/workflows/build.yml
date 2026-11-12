@@ -18,3 +18,23 @@ jobs:
         run: python3 scripts/validate_worldgen.py && python3 scripts/check_density_invariants.py && python3 scripts/check_hydrology_density.py
       - name: Compile
         run: gradle build --stacktrace
+      - name: Verify compiled Fabric mod JAR
+        run: |
+          python3 - <<'PY'
+          import json, pathlib, zipfile
+          jars = [p for p in pathlib.Path("build/libs").glob("*.jar") if not p.name.endswith(("-sources.jar", "-dev.jar"))]
+          assert len(jars) == 1, f"Expected exactly one distributable JAR, found: {jars}"
+          with zipfile.ZipFile(jars[0]) as z:
+              meta = json.loads(z.read("fabric.mod.json"))
+              assert meta["id"] == "sofron_pack", meta.get("id")
+              assert "pl/sofron/pack/SofronPack.class" in z.namelist()
+              assert "data/minecraft/worldgen/noise_settings/overworld.json" in z.namelist()
+          print(f"Verified Fabric mod JAR: {jars[0]}")
+          PY
+      - name: Upload compiled mod JAR
+        uses: actions/upload-artifact@v4
+        with:
+          name: Sofron-Pack-Gen-2
+          path: build/libs/*.jar
+          if-no-files-found: error
+          retention-days: 14
