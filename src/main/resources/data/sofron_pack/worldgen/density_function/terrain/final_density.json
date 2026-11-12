@@ -1,0 +1,5 @@
+{
+  "type": "minecraft:min",
+  "left": "sofron_pack:terrain/feature_density",
+  "right": "sofron_pack:caves/combined"
+}
