@@ -5,6 +5,7 @@ Run `BUILD_AND_INSTALL.bat` by double-clicking it from the extracted repository 
 ## Requirements
 
 - **Java JDK 25** available on PATH.
+- **Fabric API 0.166.2+26.3** installed in the target Minecraft profile (alongside Fabric Loader 0.20.1 or newer). The installer builds Sofron Pack Gen but does not install Fabric API.
 - Internet connection for the first build (Gradle distribution, Fabric and Minecraft dependencies).
 - No manual Gradle installation is necessary.
 

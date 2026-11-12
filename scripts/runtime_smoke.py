@@ -112,6 +112,15 @@ def main():
         try:
             wait_ready(proc, lines)
             print("Fabric server started; testing actual water blocks...", flush=True)
+            print("Mod load lines:", flush=True)
+            for line in lines:
+                if "Sofron Pack" in line or "Loading " in line and " mods:" in line or "Loading Minecraft" in line:
+                    print("  " + line.strip(), flush=True)
+            packs = rcon("datapack list enabled")
+            print("Enabled data packs:", packs, flush=True)
+            if "sofron_pack" not in packs.lower():
+                raise AssertionError("Sofron Pack Gen data pack is not enabled: the server is testing Vanilla, not our worldgen.")
+
             # Locate a real VANILLA deep-ocean biome, not a generated height-map.
             located = rcon("locate biome minecraft:deep_ocean")
             print("Locate deep ocean:", located, flush=True)
@@ -121,17 +130,30 @@ def main():
             x, z = map(int, match.groups())
             rcon(f"forceload add {x} {z}")
             time.sleep(7)
-            success = False
-            results = []
+            def passes(command):
+                answer = rcon(command)
+                return ("Test passed" in answer or "count: 1" in answer), answer
+            ocean_samples = []
             for dx, dz in ((0,0),(8,8),(-8,-8),(16,0),(0,16)):
-                for y in (63, 54):
-                    reply = rcon(f"execute if block {x+dx} {y} {z+dz} minecraft:water")
-                    results.append(f"({x+dx}, {y}, {z+dz}): {reply}")
-                    if "Test passed" in reply or "count: 1" in reply:
-                        success = True
-            print("\n".join(results), flush=True)
-            if not success:
-                raise AssertionError("No water at Y=63 or Y=54 in sampled deep-ocean biome. Check aquifers, sea level and terrain.")
+                px, pz = x+dx, z+dz
+                biome63, biome_msg = passes(f"execute if biome {px} 63 {pz} minecraft:deep_ocean")
+                water54, msg54 = passes(f"execute if block {px} 54 {pz} minecraft:water")
+                water63, msg63 = passes(f"execute if block {px} 63 {pz} minecraft:water")
+                print(f"sample ({px},{pz}) biome at Y63={biome63}: {biome_msg}; water Y54={water54} ({msg54}); Y63={water63} ({msg63})", flush=True)
+                if biome63:
+                    ocean_samples.append((px, pz, water54, water63))
+            print("First deep-ocean water/solid column:", flush=True)
+            for y in range(49, 67):
+                found = []
+                for block in ("water", "air", "stone", "grass_block", "dirt", "ice", "snow_block"):
+                    yes, _ = passes(f"execute if block {x} {y} {z} minecraft:{block}")
+                    if yes: found.append(block)
+                print(f"  Y={y}: {','.join(found) if found else 'other material'}", flush=True)
+            if len(ocean_samples) < 2:
+                raise AssertionError(f"Fewer than two verified deep-ocean samples: {ocean_samples}")
+            missing = [(px, pz, w54, w63) for px, pz, w54, w63 in ocean_samples if not (w54 and w63)]
+            if missing:
+                raise AssertionError(f"Unfilled deep ocean: {missing}; expected water at BOTH Y54 and Y63.")
             print("PASS: server world loads and a natural deep ocean contains water blocks.", flush=True)
         finally:
             try:
