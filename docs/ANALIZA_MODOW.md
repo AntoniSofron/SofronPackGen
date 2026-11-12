@@ -119,3 +119,79 @@ Otwórz `Sofron_Terra_Lab_Konfigurator.html` w przeglądarce (działa offline), 
 - Biomes O’ Plenty: https://github.com/Glitchfiend/BiomesOPlenty
 - Moderner Beta: https://github.com/BlueStaggo/Moderner-Beta
 - TerraBlender: https://github.com/Glitchfiend/TerraBlender
+
+
+---
+
+## Aneks techniczny — ścieżki algorytmów z pliku ZIP
+
+Poniższa część nie powtarza kodu żadnego autora. Opisuje **rzeczywiste zależności** odczytane z zasobów załączonej paczki, żeby specyfikacja nie sprowadzała się do nazw modów i luźnej inspiracji.
+
+### A. Cascades: obszar rzeki to osobna maska 3D
+
+`Hybrid-Beta-master/Cascades/data/hybrid_beta/worldgen/density_function/overworld/river_carver/noise_selector.json` pokazuje warstwową selekcję obszarów na podstawie wysokości Y, ridges, continentalness i erosion. Analizowany plik ogranicza część działania do przedziału wysokości **48–128**, a w masce grzbietów wykorzystuje niewielki zakres wokół zera. Inny plik, `rivers_extra_density.json`, wylicza maskę dodatkowej gęstości rzeki z pola Y i bezwzględnej wartości ridges. `fluid_level_floodedness.json` zmienia bazowe pole zalania aquifera. **Wniosek:** nawet widowiskowy generator klifów może integrować rzeki z rzeźbą i aquiferami; nie wystarcza rysować krzywej rzeki na gotowym terenie.
+
+### B. Tectonic: kilka poziomów wyboru regionu
+
+`tectonic:continent_selector` w `src/common/main/resources/resourcepacks/tectonic/data/tectonic/worldgen/density_function/continent_selector.json` stanowi uzupełnienie `island_selector` z cache 2D. `terrain_spline/offset/depth_additive.json` używa zagnieżdżonych splajnów zależnych od kontynentalności, erozji, regionu i klimatu. W obrębie `underground_river/total.json` łączone są m.in. filtry podziemnych słupów i osobne splajny wysokości, ridges, kontynentów i erozji, a przełącznik zależy od konfigurowalnej stałej. **Wniosek:** rzeka podziemna musi być umiejscowiona regionalnie i pionowo, a nie wynikać z jednolitego tunelu losowego szumu. Analizowane JSON-y są starego formatu i nie można ich przenosić bezpośrednio do 26.3.
+
+### C. Terralith 26.3: wyspa to układ biomy–gęstość–cechy
+
+W `data/terralith/worldgen/biome/alpha_islands.json` opisane są środowiskowe atrybuty biomu, m.in. kolory nieba i mgły oraz spawny. To nie jest kompletny algorytm topograficzny. Odmiennie `data/terralith/worldgen/placed_feature/skylands/floating_islands.json` zawiera **12 prób** funkcji `terralith:skylands/island` przy zadanym zakresie wysokości **230–232** (nie oznacza to 12 skutecznych wysp na każdy chunk — placement ma też warunek biomu). Co więcej `worldgen/density_function/overworld/link/aquifer_manipulator.json` korzysta ze splajnów pól gęstości, by oddzielnie sterować aquiferami. **Wniosek:** „Alpha Islands” jako estetyka, „floating islands” jako osobna cecha i pełne oceany to trzy niezależne decyzje do uwzględnienia w nowym generatorze. Żaden terralithowy biom ani asset nie zostanie skopiowany.
+
+### D. Biomes O’ Plenty: kolumny to osobny feature po zakończeniu makroterenu
+
+`ErodedPillarFeature.java` wyraźnie odróżnia promień podstawy, wysokość, promień zależny od wysokości, zakłócenia brzegu i wygładzanie. Implementacja tworzy kolumnę lokalnie, a nie deformuje całej mapy kontynentalności. `jade_cliffs_eroded_pillars.json` określa placement: `rarity_filter`, rozproszenie w chunku, wysokość przez `OCEAN_FLOOR_WG` i ograniczenie biome. **Wniosek dla nas:** własna prowincja geologiczna + kontrolowana liczba ostańców per region, po czym oryginalny postprocess nie może naruszać koryt rzek ani struktur Vanilla. Parametry 84-pytaniowego arkusza oddzielnie kontrolują częstość, wysokość, szerokość, smukłość, odległość, grouping i zieleń.
+
+### E. Continents: transformacja continentalness bez zmieniania pozostałych biomów
+
+`data/continents/worldgen/density_function/adjusted_continents.json` w 1.20 używa splajnu na bazowym polu `overworld/base_continents`, a na koniec łączy wynik z maską wyspy startowej. W pakiecie obecne są dodatkowe centroids i pierścienie oraz wariant „large”. **Wniosek:** nowa skala kontynentów nie może być tylko mnożnikiem wysokości gór. Mapowanie naturalnych mas lądowych powinno pozostać zgodne ze współrzędną klimatu dla oceanicznych biomów Minecrafta.
+
+### F. Wythers i Navigable Rivers: geometryczne wycinanie ≠ woda
+
+W obu przesłanych paczkach występuje `data/wythers/worldgen/placed_feature/terrain/carver/river.json`, który w starym schemacie używa cechy typu `minecraft:disk` ze stanem **air** oraz kontroli tagów bloków i otoczenia. Drugi plik `river_water.json` korzysta z cechy `minecraft:disk` ze stanem **water**, testując m.in. sąsiednie bloki płynów i warunki materiałowe. **To ważne dla poprzednich błędów SofronPackGen:** samo wycięcie suchej doliny nigdy nie spowoduje automatycznie powstania rzeki. Jednak kopiowanie disk/carver z 1.20/1.21 do 26.3 bez migracji, licencji i rozwiązywania kolejności chunków byłoby błędem.
+
+### G. Moderner Beta: odtworzenie klimatu starej generacji przez warstwy, nie tylko kolory
+
+Obecne są warianty `Classic14a08Biome`, presety Classic 0.0.14a_08 i Classic 0.30, a także `level/biome/provider/fractal/layers/InitRiverLayer.java`, `ComputeRiverLayer.java`, `MixRiverLayer.java`. System oldschool może więc łączyć fraktalne rozmieszczenie biomów i rzek z osobnym generatorem chunków. **Nowy Sofron Terra Lab nie będzie uruchamiał starej mapy biomów**: przenosimy tylko estetykę geomorfologiczną (ścianki, zwisy, wyjątkowe formacje), zachowując biomy oraz struktury Vanilla 26.3.
+
+### H. TerraBlender: zgodność regionalna to funkcja API, nie zadanie rzeźby terenu
+
+Analizowany kod TerraBlender udostępnia interfejsy dla regionów i biome providers. W świetle wymogu „tylko biomy Vanilla” wprowadzenie wymaganej zależności TerraBlender nie przyniosłoby korzyści proporcjonalnej do złożoności. Nie jest potrzebne, by generować własne góry czy kras.
+
+## Architektura hydrologiczna, którą należy zbudować po wyborach
+
+Poniższy pipeline jest **proponowanym nowym algorytmem**, a nie skopiowanym rozwiązaniem żadnego autora:
+
+```text
+Kontynenty + geologia + erozja
+            ↓
+Globalna mapa wysokości / szelfy / brzegi
+            ↓
+Wyrównanie małych zamkniętych zagłębień (priority flood)
+            ↓
+Wybór kierunku odpływu i akumulacja zlewni
+            ↓
+Źródła górskie → dopływy → ujście/ocean
+            ↓
+Profil powierzchni wody (spadek; progi wodospadów)
+            ↓
+Wycięcie odpowiedniej głębokości i szerokości koryt
+            ↓
+Wypełnienie prawdziwymi blokami wody; aquifery pod ziemią
+            ↓
+Plaże rzeczne, żwir, piasek, test żeglowności
+            ↓
+Testy seamów między chunkami, rzeczywistych bloków i F3
+```
+
+Na makroskali dorzecza muszą być deterministyczne i niezależne od kolejności powstawania chunków. Najpierw ustala się spadki, ujścia i wysokości płynów, **dopiero potem** pozwala Minecraftowi umieścić bloki w odpowiednich etapach. Struktury Vanilla i wejścia do jaskiń są ograniczeniami terenowymi. Osobne `sea_level` i `aquifers.surface_level` mogą być poprawne tylko wtedy, gdy oba korzystają z *tej samej, spójnej klasyfikacji oceanu i preliminarnej wysokości*. Zmiana liczby bez naprawy klasyfikacji nie przywróci poprawnego oceanu.
+
+## Co trzeba zweryfikować po uruchomieniu moda
+
+1. **Wybór jakościowy:** zrzuty kilku seedów do oceny klifów Beta, kolumn i pasm względem autorskich schematów (nie wymaga identycznych pikseli).
+2. **Wybór ilościowy:** skan pokrycia lądem np. próba siatki 10 000 punktów w promieniu 8–20 km; udział lądu porównać do ustawienia użytkownika.
+3. **Góry:** profile wysokości oraz spójne długości łańcuchów dla co najmniej 4 seedów; ograniczenia Y i brak twardych granic makroregionów.
+4. **Rzeki:** unikalne ID dorzeczy, poprawność ujścia, brak „suchych rzek”, monotoniczny spadek wody poza naturalnymi progami.
+5. **Vanilla:** kontrola *rzeczywistego* biome ID F3, rozkładu struktur, wysokości materiałów powierzchniowych i podziemnych jaskiń.
+6. **Fabric 26.3:** test realnego serwera z włączonym modowym datapackiem (w tym mod API), nie tylko wynik kompilacji Gradle.
