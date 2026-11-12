@@ -1,6 +1,6 @@
 # Sofron Pack Gen 2.0 — Minecraft 26.3 / Fabric
 
-Experimental world-generation rewrite. **This branch replaces the active terrain, climate, cave and water pipeline after field tests showed dry ocean floors, stone deserts and cave biomes on the surface.** It is not yet the complete 2.0 feature set.
+**Requires Fabric API 0.166.2+26.3 and Fabric Loader 0.20.1 or newer.**\n\nExperimental world-generation rewrite. **This branch replaces the active terrain, climate, cave and water pipeline after field tests showed dry ocean floors, stone deserts and cave biomes on the surface.** It is not yet the complete 2.0 feature set.
 
 ## Active generation architecture
 
@@ -20,7 +20,7 @@ After installing, create **a new world**, not an existing save with previously g
 
 ## Test status
 
-CI checks the JSON graph, Fabric JAR content and active router invariants. **No passing Minecraft world-load/ocean-block test has yet been established for this branch.** Green CI alone does not prove terrain correctness. See `docs/CORE_REWRITE_26_3.md` for observed bugs, migration rationale, and concrete world-level validation.
+CI checks the JSON graph, Fabric JAR content and active router invariants **and starts a real Minecraft 26.3 Fabric server** with the mod data pack enabled. A server smoke test passed on seed `3880636525852909587`: a deep-ocean column contained actual `minecraft:water` at Y54, Y62 and Y63, and air at Y64. See `docs/CORE_REWRITE_26_3.md` and `docs/RUNTIME_TEST_RESULTS.md`. This is evidence for the tested area, **not a guarantee for all seeds, rivers or custom biomes**.
 
 ## Remaining requested features
 
