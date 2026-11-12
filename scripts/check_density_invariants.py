@@ -8,8 +8,8 @@ def load(name):
     return json.loads((root / (name + ".json")).read_text())
 
 final = load("terrain/final_density")
-assert final["type"] == "minecraft:min"
-solid = final["left"]
+assert final["type"] == "minecraft:add", "Stable-surface baseline must not include cave carving"
+solid = final
 assert solid["type"] == "minecraft:add", "Karst must modify terrain rather than max-fill empty sky"
 assert solid["right"] == "sofron_pack:karst/height_limited"
 karst = load("karst/height_limited")
@@ -18,7 +18,7 @@ assert karst["right"]["type"] == "minecraft:mul"
 assert karst["right"]["right"]["type"] == "minecraft:gradient"
 assert karst["right"]["right"]["axis"] == "y"
 assert karst["right"]["right"]["to_value"] == 0
-assert final["right"]["right"] == "sofron_pack:caves/gated_underground_channel"
+assert "right" in final and final["right"] == "sofron_pack:karst/height_limited"
 channel = load("caves/gated_underground_channel")
 assert channel["type"] == "minecraft:max", "Gate underground channels away from the surface"
 assert channel["right"] == "sofron_pack:caves/depth_gate"
