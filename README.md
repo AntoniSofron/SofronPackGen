@@ -4,6 +4,19 @@
 
 This repository branch starts from a **new Git tree, not from existing SofronPackGen source code**. It includes an original visual decision sheet and buildable mod scaffold. No old SofronPackGen terrain, karst, biomes, structures, or assets are imported.
 
+## Otwórz na iPhonie bez pobierania plików
+
+W aplikacji ChatGPT podgląd plików `.html`, `.md` i `.xlsx` może nie działać. Korzystaj z linków internetowych:
+
+- [Konfigurator interaktywny — przez podgląd HTML](https://raw.githack.com/AntoniSofron/SofronPackGen/design/sofron-terra-lab-cleanroom-26-3/design/Sofron_Terra_Lab_Konfigurator.html) (publiczny serwis zewnętrzny; może wymagać potwierdzenia strony).
+- [Arkusz 84 pytań — wersja mobilna](https://raw.githack.com/AntoniSofron/SofronPackGen/design/sofron-terra-lab-cleanroom-26-3/design/Arkusz_84_Pytania.html).
+- [Analiza 11 modów — czytaj jako GitHub Markdown](docs/ANALIZA_MODOW.md).
+- [Arkusz CSV dla Excela](design/PYTANIA_I_USTAWIENIA.csv).
+
+Dodałem workflow `.github/workflows/publish-configurator.yml` do publikacji na **GitHub Pages**. Właściciel repozytorium może jednorazowo włączyć **Settings → Pages → Source: GitHub Actions**. Gdy publikacja zakończy się pomyślnie, oficjalny adres strony będzie `https://antonisofron.github.io/SofronPackGen/`. Nie udostępniaj tego adresu jako działającego, dopóki nie potwierdzisz wyniku deployu.
+
+Konfigurator zapamiętuje ustawienia lokalnie w przeglądarce i umożliwia skopiowanie całego JSON (przycisk **Kopiuj JSON**) nawet bez pobrania pliku.
+
 ## Start with the owner’s design
 
 1. Open [the offline interactive configurator](design/Sofron_Terra_Lab_Konfigurator.html).
