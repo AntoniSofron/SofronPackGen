@@ -15,6 +15,8 @@ assert solid["right"] == "sofron_pack:karst/height_limited"
 karst = load("karst/height_limited")
 assert karst["type"] == "minecraft:mul"
 assert karst["right"]["type"] == "minecraft:mul"
+assert karst["right"]["right"]["type"] == "minecraft:gradient"
+assert karst["right"]["right"]["axis"] == "y"
 assert karst["right"]["right"]["to_value"] == 0
 assert final["right"]["right"] == "sofron_pack:caves/gated_underground_channel"
 channel = load("caves/gated_underground_channel")

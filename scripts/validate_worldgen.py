@@ -31,6 +31,15 @@ def noise_path(identifier):
 
 for path, obj in parsed.items():
     for item in walk(obj):
+        if item.get("type") == "minecraft:y_clamped_gradient":
+            errors.append(f"{path}: unsupported density type minecraft:y_clamped_gradient in Minecraft 26.3; use minecraft:gradient")
+        if item.get("type") == "minecraft:gradient":
+            if item.get("axis") not in ("x", "y", "z") or item.get("tiling") not in ("clamp_to_edge", "repeat", "mirrored_repeat"):
+                errors.append(f"{path}: invalid 26.3 gradient axis/tiling")
+            if not all(isinstance(item.get(k), int) for k in ("from_coordinate", "to_coordinate")) or item.get("from_coordinate") == item.get("to_coordinate"):
+                errors.append(f"{path}: invalid 26.3 gradient coordinates")
+            if not all(isinstance(item.get(k), (int, float)) for k in ("from_value", "to_value")):
+                errors.append(f"{path}: invalid 26.3 gradient values")
         if item.get("type") == "minecraft:noise":
             ident = item.get("noise")
             if isinstance(ident, str) and ident.startswith("sofron_pack:") and noise_path(ident) not in parsed:
