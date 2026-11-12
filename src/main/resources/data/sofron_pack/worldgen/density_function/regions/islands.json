@@ -1,48 +1,89 @@
 {
-  "type": "minecraft:spline",
-  "spline": {
-    "coordinate": {
-      "type": "minecraft:noise",
-      "noise": "sofron_pack:island_region",
-      "xz_scale": 0.24,
-      "y_scale": 0
-    },
-    "points": [
-      {
-        "location": -2,
-        "value": 0,
-        "derivative": 0
+  "type": "minecraft:mul",
+  "left": {
+    "type": "minecraft:spline",
+    "spline": {
+      "coordinate": {
+        "type": "minecraft:noise",
+        "noise": "sofron_pack:islands",
+        "xz_scale": 0.3,
+        "y_scale": 0
       },
-      {
-        "location": -0.25,
-        "value": 0,
-        "derivative": 0
-      },
-      {
-        "location": -0.1,
-        "value": 0.3,
-        "derivative": 0
-      },
-      {
-        "location": 0.11,
-        "value": 1,
-        "derivative": 0
-      },
-      {
-        "location": 0.32,
-        "value": 0.3,
-        "derivative": 0
-      },
-      {
-        "location": 0.47,
-        "value": 0,
-        "derivative": 0
-      },
-      {
-        "location": 2,
-        "value": 0,
-        "derivative": 0
-      }
-    ]
+      "points": [
+        {
+          "location": -1,
+          "value": 0,
+          "derivative": 0
+        },
+        {
+          "location": -0.6,
+          "value": 0,
+          "derivative": 0
+        },
+        {
+          "location": -0.4,
+          "value": 0.3,
+          "derivative": 0
+        },
+        {
+          "location": -0.1,
+          "value": 1,
+          "derivative": 0
+        },
+        {
+          "location": 0.2,
+          "value": 0.8,
+          "derivative": 0
+        },
+        {
+          "location": 0.5,
+          "value": 0,
+          "derivative": 0
+        },
+        {
+          "location": 1,
+          "value": 0,
+          "derivative": 0
+        }
+      ]
+    }
+  },
+  "right": {
+    "type": "minecraft:spline",
+    "spline": {
+      "coordinate": "sofron_pack:climate/continents",
+      "points": [
+        {
+          "location": -1,
+          "value": 0,
+          "derivative": 0
+        },
+        {
+          "location": -0.65,
+          "value": 0,
+          "derivative": 0
+        },
+        {
+          "location": -0.45,
+          "value": 1,
+          "derivative": 0
+        },
+        {
+          "location": -0.2,
+          "value": 0.6,
+          "derivative": 0
+        },
+        {
+          "location": 0,
+          "value": 0,
+          "derivative": 0
+        },
+        {
+          "location": 1,
+          "value": 0,
+          "derivative": 0
+        }
+      ]
+    }
   }
 }

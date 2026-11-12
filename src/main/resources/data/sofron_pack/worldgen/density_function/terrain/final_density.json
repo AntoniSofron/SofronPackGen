@@ -1,5 +1,13 @@
 {
   "type": "minecraft:min",
-  "left": "sofron_pack:terrain/feature_density",
-  "right": "sofron_pack:caves/combined"
+  "left": {
+    "type": "minecraft:max",
+    "left": "sofron_pack:terrain/extended_base",
+    "right": "sofron_pack:karst/spires"
+  },
+  "right": {
+    "type": "minecraft:min",
+    "left": "sofron_pack:caves/combined",
+    "right": "sofron_pack:caves/underground_channel"
+  }
 }

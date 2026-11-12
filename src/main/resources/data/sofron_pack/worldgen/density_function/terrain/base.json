@@ -1,0 +1,5 @@
+{
+  "type": "minecraft:add",
+  "left": "sofron_pack:terrain/vertical_gradient",
+  "right": "sofron_pack:terrain/offset"
+}

@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "sofron_pack",
+  "version": "${version}",
+  "name": "Sofron Pack Gen 2",
+  "description": "Clean-room terrain rewrite for Minecraft 26.3 (experimental)",
+  "authors": [
+    "Sofron Pack contributors"
+  ],
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "pl.sofron.pack.SofronPack"
+    ]
+  },
+  "license": "All Rights Reserved",
+  "depends": {
+    "fabricloader": ">=0.19.5",
+    "minecraft": "=26.3",
+    "java": ">=25"
+  }
+}

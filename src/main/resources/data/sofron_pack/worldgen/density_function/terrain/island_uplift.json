@@ -1,14 +1,5 @@
 {
   "type": "minecraft:mul",
   "left": "sofron_pack:regions/islands",
-  "right": {
-    "type": "minecraft:mul",
-    "left": 0.65,
-    "right": {
-      "type": "minecraft:noise",
-      "noise": "sofron_pack:island_region",
-      "xz_scale": 0.45,
-      "y_scale": 0
-    }
-  }
+  "right": 2.6
 }

@@ -1,10 +1,10 @@
 {
   "type": "minecraft:mul",
-  "left": 0.22,
+  "left": 0.35,
   "right": {
     "type": "minecraft:noise",
-    "noise": "sofron_pack:biome_terrain",
-    "xz_scale": 0.42,
+    "noise": "sofron_pack:biome_weight",
+    "xz_scale": 0.38,
     "y_scale": 0
   }
 }
