@@ -112,6 +112,12 @@ def main():
         try:
             wait_ready(proc, lines)
             print("Fabric server started; testing actual water blocks...", flush=True)
+            print("Mod load lines:", flush=True)
+            for line in lines:
+                if "Sofron Pack" in line or "Loading " in line and " mods:" in line or "Loading Minecraft" in line:
+                    print("  " + line.strip(), flush=True)
+            print("Enabled data packs:", rcon("datapack list enabled"), flush=True)
+
             # Locate a real VANILLA deep-ocean biome, not a generated height-map.
             located = rcon("locate biome minecraft:deep_ocean")
             print("Locate deep ocean:", located, flush=True)
