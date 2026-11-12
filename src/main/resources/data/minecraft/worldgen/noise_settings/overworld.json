@@ -39,7 +39,7 @@
   "noise_router": {
     "chunk_surface_level": 64,
     "continents": "sofron_pack:climate/continents",
-    "depth": "sofron_pack:terrain/base",
+    "depth": 0,
     "erosion": "sofron_pack:climate/erosion",
     "final_density": "sofron_pack:terrain/final_density",
     "ridges": "sofron_pack:climate/ridges",
