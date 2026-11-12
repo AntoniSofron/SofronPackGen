@@ -121,17 +121,30 @@ def main():
             x, z = map(int, match.groups())
             rcon(f"forceload add {x} {z}")
             time.sleep(7)
-            success = False
-            results = []
+            def passes(command):
+                answer = rcon(command)
+                return ("Test passed" in answer or "count: 1" in answer), answer
+            top_water = []
+            lower_water = []
             for dx, dz in ((0,0),(8,8),(-8,-8),(16,0),(0,16)):
-                for y in (63, 54):
-                    reply = rcon(f"execute if block {x+dx} {y} {z+dz} minecraft:water")
-                    results.append(f"({x+dx}, {y}, {z+dz}): {reply}")
-                    if "Test passed" in reply or "count: 1" in reply:
-                        success = True
-            print("\n".join(results), flush=True)
-            if not success:
-                raise AssertionError("No water at Y=63 or Y=54 in sampled deep-ocean biome. Check aquifers, sea level and terrain.")
+                px, pz = x+dx, z+dz
+                biome63, biome_msg = passes(f"execute if biome {px} 63 {pz} minecraft:deep_ocean")
+                water54, msg54 = passes(f"execute if block {px} 54 {pz} minecraft:water")
+                water63, msg63 = passes(f"execute if block {px} 63 {pz} minecraft:water")
+                print(f"sample ({px},{pz}) biome at Y63={biome63}: {biome_msg}; water Y54={water54} ({msg54}); Y63={water63} ({msg63})", flush=True)
+                lower_water.append(water54)
+                top_water.append(water63)
+            print("First deep-ocean water/solid column:", flush=True)
+            for y in range(49, 67):
+                found = []
+                for block in ("water", "air", "stone", "grass_block", "dirt", "ice", "snow_block"):
+                    yes, _ = passes(f"execute if block {x} {y} {z} minecraft:{block}")
+                    if yes: found.append(block)
+                print(f"  Y={y}: {','.join(found) if found else 'other material'}", flush=True)
+            if not any(lower_water):
+                raise AssertionError("Deep ocean at sampled coordinates has no water at Y54.")
+            if not any(top_water):
+                raise AssertionError("Deep ocean has water at Y54 but no water at Y63: sea surface is incomplete; aquatic generation cannot be accepted.")
             print("PASS: server world loads and a natural deep ocean contains water blocks.", flush=True)
         finally:
             try:
