@@ -11,6 +11,7 @@ assert settings["sea_level"] == 64
 assert settings["default_fluid"] == "minecraft:water"
 assert settings["aquifers"]["exclusion"] == 0
 assert settings["aquifers"]["surface_level"] == 64
+assert settings["noise_router"]["chunk_surface_level"] == "sofron_pack:terrain/chunk_surface_level"
 assert gate["type"] == "minecraft:gradient" and gate["axis"] == "y"
 assert gate["to_coordinate"] <= 64 and gate["to_value"] >= 2
 print("Surface and aquifer safety checks: PASS (static only)")
