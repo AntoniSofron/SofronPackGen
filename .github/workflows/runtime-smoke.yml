@@ -1,0 +1,42 @@
+name: Minecraft 26.3 worldgen runtime smoke
+on:
+  pull_request:
+    paths:
+      - 'src/main/resources/data/**'
+      - 'src/main/java/**'
+      - 'scripts/runtime_smoke.py'
+      - '.github/workflows/runtime-smoke.yml'
+  workflow_dispatch:
+jobs:
+  minecraft-world:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '25'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '9.5.0'
+      - name: Build Fabric mod
+        run: gradle --no-daemon build
+      - name: Start actual Minecraft 26.3 server and verify deep-ocean water
+        timeout-minutes: 8
+        run: python3 scripts/runtime_smoke.py
+      - name: Print server log excerpt on failure
+        if: failure()
+        run: |
+          if [ -f runtime-smoke.log ]; then tail -n 160 runtime-smoke.log; fi
+          if [ -f run/logs/latest.log ]; then tail -n 160 run/logs/latest.log; fi
+      - name: Upload diagnostic logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: minecraft-worldgen-runtime-logs
+          path: |
+            runtime-smoke.log
+            run/logs/latest.log
+          if-no-files-found: ignore
+          retention-days: 7
