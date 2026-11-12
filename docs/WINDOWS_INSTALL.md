@@ -1,15 +1,23 @@
 # Windows BUILD_AND_INSTALL
 
-Run `BUILD_AND_INSTALL.bat` from the repository root after installing **Java JDK 25** and **Gradle 9.5.0**. The repository currently does not include Gradle wrapper scripts, so a local Gradle installation is required.
+Run `BUILD_AND_INSTALL.bat` by double-clicking it from the extracted repository directory.
+
+## Requirements
+
+- **Java JDK 25** available on PATH.
+- Internet connection for the first build (Gradle distribution, Fabric and Minecraft dependencies).
+- No manual Gradle installation is necessary.
+
+If a Gradle wrapper is present, the script uses it. Otherwise it downloads **Gradle 9.5.0** from the official Gradle distribution service into `.build-tools`, checks its published SHA-256 digest, and reuses it on subsequent runs.
 
 Default installation target: `%APPDATA%\\.minecraft\\mods`.
 
-To install into another Minecraft profile, pass its mods directory as the first argument:
+To choose a different instance:
 
 ```bat
-BUILD_AND_INSTALL.bat "E:\\.minecraft\\mods"
+BUILD_AND_INSTALL.bat "E:\\Minecraft\\MyInstance\\mods"
 ```
 
-The script runs `gradle --no-daemon clean build`, verifies the expected JAR and `fabric.mod.json` mod ID, backs up old Sofron Pack JARs into `sofron_pack_previous_jars` and copies the new JAR. If build or JAR verification fails, installed mods are not touched. If backup or copy fails, the script stops with an error.
+The script runs a clean build, verifies the expected JAR and its `fabric.mod.json` ID, backs up matching old Sofron Pack JARs in `sofron_pack_previous_jars`, then copies the new JAR.
 
-**Caution:** This is a convenience installer, not a worldgen runtime test. Always back up worlds before running a changed generator. Keep Minecraft closed during installation. The default JAR name is `Sofron-Pack-Gen-2-2.0.0-alpha.1.jar`; update the script when the project version changes.
+**Important:** Keep Minecraft closed, back up existing worlds, and use Minecraft 26.3 with Fabric Loader. This installer has not yet been run on a Windows test machine. A successful build does not establish that all worldgen features work at runtime.
