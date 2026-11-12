@@ -1,0 +1,84 @@
+{
+  "type": "minecraft:mul",
+  "left": {
+    "type": "minecraft:spline",
+    "spline": {
+      "coordinate": {
+        "type": "minecraft:noise",
+        "noise": "sofron_pack:karst_region",
+        "xz_scale": 0.25,
+        "y_scale": 0
+      },
+      "points": [
+        {
+          "location": -1,
+          "value": 0,
+          "derivative": 0
+        },
+        {
+          "location": -0.5,
+          "value": 0,
+          "derivative": 0
+        },
+        {
+          "location": -0.25,
+          "value": 0.3,
+          "derivative": 0
+        },
+        {
+          "location": 0,
+          "value": 1,
+          "derivative": 0
+        },
+        {
+          "location": 0.25,
+          "value": 0.5,
+          "derivative": 0
+        },
+        {
+          "location": 0.5,
+          "value": 0,
+          "derivative": 0
+        },
+        {
+          "location": 1,
+          "value": 0,
+          "derivative": 0
+        }
+      ]
+    }
+  },
+  "right": {
+    "type": "minecraft:spline",
+    "spline": {
+      "coordinate": "sofron_pack:climate/erosion",
+      "points": [
+        {
+          "location": -1,
+          "value": 0,
+          "derivative": 0
+        },
+        {
+          "location": -0.3,
+          "value": 0.5,
+          "derivative": 0
+        },
+        {
+          "location": 0.1,
+          "value": 1,
+          "derivative": 0
+        },
+        {
+          "location": 0.55,
+          "value": 0.5,
+          "derivative": 0
+        },
+        {
+          "location": 1,
+          "value": 0,
+          "derivative": 0
+        }
+      ]
+    }
+  }
+}

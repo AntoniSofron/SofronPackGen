@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:max",
+  "left": {
+    "type": "minecraft:min",
+    "left": "sofron_pack:caves/worms",
+    "right": "sofron_pack:caves/chambers"
+  },
+  "right": "sofron_pack:caves/depth_gate"
+}

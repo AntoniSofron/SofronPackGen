@@ -1,0 +1,82 @@
+{
+  "type": "minecraft:mul",
+  "left": {
+    "type": "minecraft:spline",
+    "spline": {
+      "coordinate": {
+        "type": "minecraft:abs",
+        "input": "sofron_pack:terrain/river_axis"
+      },
+      "points": [
+        {
+          "location": 0,
+          "value": -1.5,
+          "derivative": 0
+        },
+        {
+          "location": 0.035,
+          "value": -1.4,
+          "derivative": 0
+        },
+        {
+          "location": 0.075,
+          "value": -0.9,
+          "derivative": 0
+        },
+        {
+          "location": 0.13,
+          "value": -0.3,
+          "derivative": 0
+        },
+        {
+          "location": 0.2,
+          "value": 0,
+          "derivative": 0
+        },
+        {
+          "location": 1,
+          "value": 0,
+          "derivative": 0
+        }
+      ]
+    }
+  },
+  "right": {
+    "type": "minecraft:spline",
+    "spline": {
+      "coordinate": "sofron_pack:climate/continents",
+      "points": [
+        {
+          "location": -1,
+          "value": 0,
+          "derivative": 0
+        },
+        {
+          "location": -0.4,
+          "value": 0,
+          "derivative": 0
+        },
+        {
+          "location": -0.2,
+          "value": 0.6,
+          "derivative": 0
+        },
+        {
+          "location": 0,
+          "value": 1,
+          "derivative": 0
+        },
+        {
+          "location": 0.8,
+          "value": 1,
+          "derivative": 0
+        },
+        {
+          "location": 1,
+          "value": 1,
+          "derivative": 0
+        }
+      ]
+    }
+  }
+}

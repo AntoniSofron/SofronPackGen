@@ -1,0 +1,79 @@
+{
+  "type": "minecraft:mul",
+  "left": {
+    "type": "minecraft:spline",
+    "spline": {
+      "coordinate": {
+        "type": "minecraft:noise",
+        "noise": "sofron_pack:volcano",
+        "xz_scale": 0.15,
+        "y_scale": 0
+      },
+      "points": [
+        {
+          "location": -1,
+          "value": 0,
+          "derivative": 0
+        },
+        {
+          "location": 0.2,
+          "value": 0,
+          "derivative": 0
+        },
+        {
+          "location": 0.5,
+          "value": 0.1,
+          "derivative": 0
+        },
+        {
+          "location": 0.75,
+          "value": 0.55,
+          "derivative": 0
+        },
+        {
+          "location": 0.9,
+          "value": 1,
+          "derivative": 0
+        },
+        {
+          "location": 1,
+          "value": 1,
+          "derivative": 0
+        }
+      ]
+    }
+  },
+  "right": {
+    "type": "minecraft:spline",
+    "spline": {
+      "coordinate": "sofron_pack:climate/continents",
+      "points": [
+        {
+          "location": -1,
+          "value": 0,
+          "derivative": 0
+        },
+        {
+          "location": -0.2,
+          "value": 0,
+          "derivative": 0
+        },
+        {
+          "location": 0.15,
+          "value": 0.5,
+          "derivative": 0
+        },
+        {
+          "location": 0.5,
+          "value": 1,
+          "derivative": 0
+        },
+        {
+          "location": 1,
+          "value": 0.6,
+          "derivative": 0
+        }
+      ]
+    }
+  }
+}

@@ -1,48 +1,89 @@
 {
-  "type": "minecraft:spline",
-  "spline": {
-    "coordinate": {
-      "type": "minecraft:noise",
-      "noise": "sofron_pack:alpha_region",
-      "xz_scale": 0.24,
-      "y_scale": 0
-    },
-    "points": [
-      {
-        "location": -2,
-        "value": 0,
-        "derivative": 0
+  "type": "minecraft:mul",
+  "left": {
+    "type": "minecraft:spline",
+    "spline": {
+      "coordinate": {
+        "type": "minecraft:noise",
+        "noise": "sofron_pack:alpha",
+        "xz_scale": 0.24,
+        "y_scale": 0
       },
-      {
-        "location": -0.3,
-        "value": 0,
-        "derivative": 0
-      },
-      {
-        "location": -0.15,
-        "value": 0.3,
-        "derivative": 0
-      },
-      {
-        "location": 0.06500000000000002,
-        "value": 1,
-        "derivative": 0
-      },
-      {
-        "location": 0.28,
-        "value": 0.3,
-        "derivative": 0
-      },
-      {
-        "location": 0.43000000000000005,
-        "value": 0,
-        "derivative": 0
-      },
-      {
-        "location": 2,
-        "value": 0,
-        "derivative": 0
-      }
-    ]
+      "points": [
+        {
+          "location": -1,
+          "value": 0,
+          "derivative": 0
+        },
+        {
+          "location": -0.55,
+          "value": 0,
+          "derivative": 0
+        },
+        {
+          "location": -0.38,
+          "value": 0.65,
+          "derivative": 0
+        },
+        {
+          "location": -0.1,
+          "value": 1,
+          "derivative": 0
+        },
+        {
+          "location": 0.1,
+          "value": 1,
+          "derivative": 0
+        },
+        {
+          "location": 0.36,
+          "value": 0.6,
+          "derivative": 0
+        },
+        {
+          "location": 0.55,
+          "value": 0,
+          "derivative": 0
+        },
+        {
+          "location": 1,
+          "value": 0,
+          "derivative": 0
+        }
+      ]
+    }
+  },
+  "right": {
+    "type": "minecraft:spline",
+    "spline": {
+      "coordinate": "sofron_pack:climate/continents",
+      "points": [
+        {
+          "location": -1,
+          "value": 0,
+          "derivative": 0
+        },
+        {
+          "location": -0.35,
+          "value": 0.4,
+          "derivative": 0
+        },
+        {
+          "location": 0,
+          "value": 1,
+          "derivative": 0
+        },
+        {
+          "location": 0.5,
+          "value": 0.75,
+          "derivative": 0
+        },
+        {
+          "location": 1,
+          "value": 0,
+          "derivative": 0
+        }
+      ]
+    }
   }
 }

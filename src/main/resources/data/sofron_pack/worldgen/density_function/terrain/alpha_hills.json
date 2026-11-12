@@ -3,11 +3,11 @@
   "left": "sofron_pack:regions/alpha",
   "right": {
     "type": "minecraft:mul",
-    "left": 0.85,
+    "left": 1.5,
     "right": {
       "type": "minecraft:noise",
-      "noise": "sofron_pack:alpha_region",
-      "xz_scale": 0.75,
+      "noise": "sofron_pack:alpha",
+      "xz_scale": 0.9,
       "y_scale": 0
     }
   }
