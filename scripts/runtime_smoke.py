@@ -116,7 +116,10 @@ def main():
             for line in lines:
                 if "Sofron Pack" in line or "Loading " in line and " mods:" in line or "Loading Minecraft" in line:
                     print("  " + line.strip(), flush=True)
-            print("Enabled data packs:", rcon("datapack list enabled"), flush=True)
+            packs = rcon("datapack list enabled")
+            print("Enabled data packs:", packs, flush=True)
+            if not re.search(r"\\bfabric\\b", packs, re.IGNORECASE):
+                raise AssertionError("Fabric Mods data pack is not enabled: the server is testing Vanilla, not Sofron Pack Gen worldgen.")
 
             # Locate a real VANILLA deep-ocean biome, not a generated height-map.
             located = rcon("locate biome minecraft:deep_ocean")
