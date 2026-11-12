@@ -1,13 +1,5 @@
 {
-  "type": "minecraft:min",
-  "left": {
-    "type": "minecraft:add",
-    "left": "sofron_pack:terrain/extended_base",
-    "right": "sofron_pack:karst/height_limited"
-  },
-  "right": {
-    "type": "minecraft:min",
-    "left": "sofron_pack:caves/combined",
-    "right": "sofron_pack:caves/gated_underground_channel"
-  }
+  "type": "minecraft:add",
+  "left": "sofron_pack:terrain/extended_base",
+  "right": "sofron_pack:karst/height_limited"
 }
