@@ -30,6 +30,7 @@ jobs:
         run: |
           mkdir -p public
           cp design/Sofron_Terra_Lab_Konfigurator.html public/index.html
+          cp design/Sofron_Terra_Lab_Konfigurator.html public/Sofron_Terra_Lab_Konfigurator.html
           cp design/catalog.json public/catalog.json
           cp design/PYTANIA_I_USTAWIENIA.csv public/
           cp design/ATLAS_MODOW.csv public/
@@ -51,6 +52,7 @@ jobs:
           assert (out/'index.html').stat().st_size > 50000
           print('Published files:',[p.name for p in out.iterdir()])
           PY
+          cp design/Arkusz_84_Pytania.html public/arkusz.html
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
       - name: Upload Pages artifact
