@@ -1,33 +1,29 @@
-# Sofron Pack Gen 2.0 — Minecraft 26.3 / Fabric
+# Sofron Terra Lab — clean-room worldgen project
 
-**Requires Fabric API 0.166.2+26.3 and Fabric Loader 0.20.1 or newer.**\n\nExperimental world-generation rewrite. **This branch replaces the active terrain, climate, cave and water pipeline after field tests showed dry ocean floors, stone deserts and cave biomes on the surface.** It is not yet the complete 2.0 feature set.
+**Minecraft Java 26.3 · Fabric · Java 25**
 
-## Active generation architecture
+This repository branch starts from a **new Git tree, not from existing SofronPackGen source code**. It includes an original visual decision sheet and buildable mod scaffold. No old SofronPackGen terrain, karst, biomes, structures, or assets are imported.
 
-- **Vanilla 26.3 climate router:** continentalness, erosion, ridges, temperature, vegetation **and depth all use the same vanilla inputs**. This restores consistency between surface biomes, cave biomes, coastline and material rules.
-- **Vanilla 26.3 caves and natural aquifers:** the final density begins with `minecraft:overworld/final_density`, restoring vanilla cave handling; aquifer surface uses `minecraft:overworld/chunk_surface_level` with the same exclusion conditions as Vanilla 26.3.
-- **Sea level Y=64:** ocean water selection is kept separate from terrain sculpting.
-- **Original land-only relief:** on continental interiors, an erosion/ridge-weighted mountain profile and gentle 2D hills are added to the vanilla final density. The uplift mask is exactly zero over oceans/coasts and tapers to zero above and below the normal terrain range. Custom noise does not replace the biome inputs.
-- **Vanilla surface materials and Vanilla biomes**; no copied Tectonic/Terralith code or assets.
+## Start with the owner’s design
 
-The former experimental density-function files are retained for reference but are **not referenced by the active Overworld router**. These include previous cave, karst, alpha/classic, river/lake and volcano approximations; do not treat their presence as implementation.
+1. Open [the offline interactive configurator](design/Sofron_Terra_Lab_Konfigurator.html).
+2. Choose among **84 settings in 11 areas**, with live **illustrative** previews of continents, mountains, karst and rivers and source-mod comparison diagrams.
+3. Export `sofron-worldgen-spec.json` and approve it. Only then implement the actual terrain generator.
+4. Research audit: [11 packs studied](docs/ANALIZA_MODOW.md); implementation contract: [NEXT_IMPLEMENTATION.md](docs/NEXT_IMPLEMENTATION.md).
 
-## Build and install on Windows
+**Current JAR is a design-stage scaffold. It does not yet change world generation!** The vanilla biome and structure requirements are intentionally preserved. The HTML previews are *concept illustrations*, not actual rendered Minecraft chunks.
 
-Double-click `BUILD_AND_INSTALL.bat`. Requires Java 25 and internet access for initial Gradle/dependency downloads. The script installs into `%APPDATA%\\.minecraft\\mods` or the mods folder supplied as its first argument.
+## One-click Windows build
 
-After installing, create **a new world**, not an existing save with previously generated terrain. For a controlled test, disable Distant Horizons and other world-generation mods, leaving Fabric Loader/API and Sofron Pack Gen.
+- `BUILD.bat` — downloads verified Gradle 9.5.0 if required, compiles the scaffold and produces JAR.
+- `BUILD_AND_INSTALL.bat` — also copies the JAR to `%APPDATA%\.minecraft\mods` (or a mods folder passed as first argument).
+- Requirements: Java JDK 25 on PATH, internet for first Gradle + Minecraft dependencies.
+- Minecraft runtime requires Fabric Loader 0.20.1+ and Fabric API 0.166.2+26.3.
 
-## Test status
+## Licensing
 
-CI checks the JSON graph, Fabric JAR content and active router invariants **and starts a real Minecraft 26.3 Fabric server** with the mod data pack enabled. A server smoke test passed on seed `3880636525852909587`: a deep-ocean column contained actual `minecraft:water` at Y54, Y62 and Y63, and air at Y64. See `docs/CORE_REWRITE_26_3.md` and `docs/RUNTIME_TEST_RESULTS.md`. This is evidence for the tested area, **not a guarantee for all seeds, rivers or custom biomes**.
+Third-party code/assets were **not** copied. Biomes O' Plenty is ARR, Stardust Labs content has redistribution restrictions, and Cascades' current license is CC BY-NC-ND. Reference patterns are described at a high level in our original research notes.
 
-## Remaining requested features
+## CI
 
-The approved plan lives in `docs/approved-settings.json`. Real connected river networks, water-filled inland lakes above sea level, waterfalls, true under-river routes, dramatic BOP-style karst spires, Alpha/Classic regions, volcanoes, structure changes, targeted land ratio and exact mountain maxima remain future work. They must be built on the stable core and verified in-game before advertised.
-
-## Research background
-
-- Minecraft Java Edition 26.3 notes: https://www.minecraft.net/en-us/article/minecraft-java-edition-26-3
-- Tectonic (approach to ocean depth / terrain-scale separation): https://github-wiki-see.page/m/Apollounknowndev/tectonic/wiki/Config
-- Terralith historical public worldgen reference (not reused as code): https://github.com/Stardust-Labs-MC/Terralith/blob/1.20/data/minecraft/worldgen/noise_settings/overworld.json
+Github Actions validates the interactive specification catalog and compiles the fresh mod; a full integrated worldgen test will be required once actual generation is implemented.

@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
-  "id": "sofron_pack",
+  "id": "sofron_terra_lab",
   "version": "${version}",
-  "name": "Sofron Pack Gen 2",
-  "description": "Clean-room terrain rewrite for Minecraft 26.3 (experimental)",
+  "name": "Sofron Terra Lab — design scaffold",
+  "description": "Clean-room Minecraft 26.3 Fabric mod scaffold; terrain modules pending owner-approved choices.",
   "authors": [
-    "Sofron Pack contributors"
+    "SofronPackGen contributors"
   ],
   "environment": "*",
   "entrypoints": {
     "main": [
-      "pl.sofron.pack.SofronPack"
+      "pl.sofron.terralab.TerraLabMod"
     ]
   },
   "license": "All Rights Reserved",

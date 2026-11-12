@@ -1,9 +1,9 @@
-name: Validate worldgen rewrite
+name: Clean-room design scaffold build
 on:
   push:
   pull_request:
 jobs:
-  validate:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -14,27 +14,24 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '9.5.0'
-      - name: Check worldgen JSON
-        run: python3 scripts/validate_worldgen.py && python3 scripts/check_stable_worldgen.py
-      - name: Compile
-        run: gradle build --stacktrace
-      - name: Verify compiled Fabric mod JAR
+      - name: Validate question catalog and clean-room scope
+        run: python3 scripts/validate_design.py
+      - name: Compile fresh Fabric mod scaffold
+        run: gradle --no-daemon build --stacktrace
+      - name: Check distributable JAR metadata
         run: |
           python3 - <<'PY'
           import json, pathlib, zipfile
-          jars = [p for p in pathlib.Path("build/libs").glob("*.jar") if not p.name.endswith(("-sources.jar", "-dev.jar"))]
-          assert len(jars) == 1, f"Expected exactly one distributable JAR, found: {jars}"
+          jars=[x for x in pathlib.Path('build/libs').glob('*.jar') if not x.name.endswith(('-sources.jar','-dev.jar'))]
+          assert len(jars)==1,jars
           with zipfile.ZipFile(jars[0]) as z:
-              meta = json.loads(z.read("fabric.mod.json"))
-              assert meta["id"] == "sofron_pack", meta.get("id")
-              assert "pl/sofron/pack/SofronPack.class" in z.namelist()
-              assert "data/minecraft/worldgen/noise_settings/overworld.json" in z.namelist()
-          print(f"Verified Fabric mod JAR: {jars[0]}")
+              m=json.loads(z.read('fabric.mod.json'))
+              assert m['id']=='sofron_terra_lab'
+              assert 'pl/sofron/terralab/TerraLabMod.class' in z.namelist()
+          print('PASS:',jars[0])
           PY
-      - name: Upload compiled mod JAR
-        uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v4
         with:
-          name: Sofron-Pack-Gen-2
+          name: Sofron-Terra-Lab-DESIGN-ONLY
           path: build/libs/*.jar
           if-no-files-found: error
-          retention-days: 14
