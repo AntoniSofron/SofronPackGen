@@ -133,16 +133,15 @@ def main():
             def passes(command):
                 answer = rcon(command)
                 return ("Test passed" in answer or "count: 1" in answer), answer
-            top_water = []
-            lower_water = []
+            ocean_samples = []
             for dx, dz in ((0,0),(8,8),(-8,-8),(16,0),(0,16)):
                 px, pz = x+dx, z+dz
                 biome63, biome_msg = passes(f"execute if biome {px} 63 {pz} minecraft:deep_ocean")
                 water54, msg54 = passes(f"execute if block {px} 54 {pz} minecraft:water")
                 water63, msg63 = passes(f"execute if block {px} 63 {pz} minecraft:water")
                 print(f"sample ({px},{pz}) biome at Y63={biome63}: {biome_msg}; water Y54={water54} ({msg54}); Y63={water63} ({msg63})", flush=True)
-                lower_water.append(water54)
-                top_water.append(water63)
+                if biome63:
+                    ocean_samples.append((px, pz, water54, water63))
             print("First deep-ocean water/solid column:", flush=True)
             for y in range(49, 67):
                 found = []
@@ -150,10 +149,11 @@ def main():
                     yes, _ = passes(f"execute if block {x} {y} {z} minecraft:{block}")
                     if yes: found.append(block)
                 print(f"  Y={y}: {','.join(found) if found else 'other material'}", flush=True)
-            if not any(lower_water):
-                raise AssertionError("Deep ocean at sampled coordinates has no water at Y54.")
-            if not any(top_water):
-                raise AssertionError("Deep ocean has water at Y54 but no water at Y63: sea surface is incomplete; aquatic generation cannot be accepted.")
+            if len(ocean_samples) < 2:
+                raise AssertionError(f"Fewer than two verified deep-ocean samples: {ocean_samples}")
+            missing = [(px, pz, w54, w63) for px, pz, w54, w63 in ocean_samples if not (w54 and w63)]
+            if missing:
+                raise AssertionError(f"Unfilled deep ocean: {missing}; expected water at BOTH Y54 and Y63.")
             print("PASS: server world loads and a natural deep ocean contains water blocks.", flush=True)
         finally:
             try:
