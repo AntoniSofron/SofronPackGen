@@ -67,13 +67,13 @@ tasks.register("syncApprovedTerrain") {
         }
         modify("karst_pillar_footprint") { o ->
             double ratio = p.karstWidth / 50.0
-            o.left.spline.points[2].location = limit(0.14 * ratio, 0.04, 0.22)
-            o.left.spline.points[3].location = limit(0.24 * ratio, 0.08, 0.48)
-            o.left.spline.points[4].location = limit(0.32 * ratio, 0.12, 0.62)
+            o.left.spline.points[2].location = limit(0.14 * ratio, 0.065, 0.22)
+            o.left.spline.points[3].location = limit(0.24 * ratio, 0.10, 0.48)
+            o.left.spline.points[4].location = limit(0.32 * ratio, 0.16, 0.62)
         }
         modify("alpha_coastal_islets") { o ->
             o.left = limit(0.16 * p.islandFrequency / 50.0 * p.alphaIslands / 75.0, 0, 0.40)
-            o.right.right.right.right.right.xz_scale = limit(
+            o.right.right.right.right.xz_scale = limit(
                 0.45 * p.coastComplexity / 60.0, 0.12, 1.0)
         }
         modify("ocean_trenches") { o ->
