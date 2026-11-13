@@ -147,6 +147,29 @@ def main():
                     raise AssertionError(f"Birch feature: missing branch counts {missing_wood_counts}, "
                                          f"authored nest={saw_nest}, last placement={result}, wood={wood}")
                 print("PASS: all five birch shapes grow through a vanilla placement with bee nests", flush=True)
+                # Distinct branch counts identify the exact uploaded oak silhouettes.
+                # Use the same checked oak entry in both biomes to exercise the exclusion.
+                feature = ('place feature {type:"minecraft:simple_random_selector",'
+                           'features:["minecraft:oak_checked"]} 16 280 16')
+                for biome in ("plains", "swamp", "mangrove_swamp"):
+                    rcon(f"fillbiome 8 276 8 24 304 24 minecraft:{biome}")
+                    remaining = {23, 27}
+                    for attempt in range(80 if biome == "plains" else 5):
+                        rcon("fill 8 280 8 24 304 24 minecraft:air")
+                        result = rcon(feature)
+                        if "placed" not in result.lower():
+                            raise AssertionError(f"Oak placement in {biome}: {result}")
+                        wood = rcon("fill 8 280 8 24 304 24 minecraft:air replace minecraft:oak_wood")
+                        count = re.search(r"(\d+) block", wood)
+                        if biome == "plains" and count:
+                            remaining.discard(int(count.group(1)))
+                            if not remaining:
+                                break
+                        elif biome != "plains" and count:
+                            raise AssertionError(f"Custom oak in {biome}: {wood}")
+                    if biome == "plains" and remaining:
+                        raise AssertionError(f"Missing authored oak shapes: {remaining}")
+                print("PASS: both authored oaks generated; swamp exclusions passed", flush=True)
                 root_offsets = [(5, 5, "oak_log"), (4, 3, "oak_wood"),
                                 (5, 6, "oak_log"), (5, 6, "oak_log"),
                                 (5, 5, "oak_log")]
