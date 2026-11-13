@@ -185,16 +185,22 @@ def main():
                         f"unless block {sx} {y} {sz} minecraft:cave_air "
                         f"unless block {sx} {y} {sz} minecraft:void_air")
                     return yes
-                tall, unsupported = [], []
+                tall, unsupported, height_profiles = [], [], []
                 for sx, sz in spots:
-                    high = [y for y in (208, 224, 240, 252) if is_solid(sx, y, sz)]
-                    if not high:
+                    # Surface height estimate from *actual generated blocks*.
+                    # Unlike Distant Horizons, these are server block queries.
+                    top = next((y for y in range(288, 79, -8)
+                                if is_solid(sx, y, sz)), None)
+                    height_profiles.append((sx, sz, top))
+                    if top is None or top < 208:
                         continue
-                    supports = [y for y in (112, 144, 176, 192) if is_solid(sx, y, sz)]
-                    tall.append((sx, sz, high, supports))
+                    supports = [y for y in (112, 144, 176, 192)
+                                if is_solid(sx, y, sz)]
+                    tall.append((sx, sz, top, supports))
                     if not supports:
-                        unsupported.append((sx, sz, high))
-                print(f"Mountain columns: {tall}", flush=True)
+                        unsupported.append((sx, sz, top))
+                print(f"Jagged peaks real-block height samples: {height_profiles}", flush=True)
+                print(f"Mountain columns above Y208: {tall}", flush=True)
                 if len(unsupported) >= 3:
                     raise AssertionError(
                         f"Large cluster of unsupported high columns near jagged_peaks: {unsupported}. "
