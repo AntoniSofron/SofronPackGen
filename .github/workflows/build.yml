@@ -19,6 +19,7 @@ jobs:
         run: |
           python3 scripts/validate_design.py
           python3 scripts/validate_implementation.py
+          python3 scripts/validate_willow_templates.py
       - name: Compile real Minecraft 26.3 Fabric worldgen
         run: |
           gradle --no-daemon build --stacktrace
@@ -36,6 +37,11 @@ jobs:
               assert 'data/minecraft/worldgen/noise_settings/overworld.json' in z.namelist()
               swamp=json.loads(z.read('data/minecraft/worldgen/biome/swamp.json'))
               assert swamp['effects']['grass_color'] == '#688D46'
+              assert 'sofron_terra_lab:swamp_willows' in swamp['features'][9]
+              for i in range(1, 6):
+                  assert f'data/sofron_terra_lab/structure/swamp_willow_{i}.nbt' in z.namelist()
+              assert 'data/sofron_terra_lab/worldgen/feature/swamp_willows.json' in z.namelist()
+              assert 'data/sofron_terra_lab/worldgen/placed_feature/swamp_willows.json' in z.namelist()
               assert swamp['effects']['foliage_color'] == '#688D46'
               assert swamp['effects']['water_color'] == '#68834D'
               assert swamp['attributes']['minecraft:visual/sky_color'] == '#98C9D9'
