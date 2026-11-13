@@ -28,7 +28,7 @@ jobs:
           python3 scripts/validate_willow_templates.py
           gradle --no-daemon build
           python3 scripts/check_grounded_mountains.py
-      - name: Start Minecraft 26.3: verify native willow NBT, sea Y63 and biome safety
+      - name: Verify Minecraft 26.3 tree placement, sea Y63 and biome safety
         timeout-minutes: 8
         env:
           TERRA_SEED: ${{ matrix.seed }}

@@ -125,6 +125,28 @@ def main():
             # load in Minecraft 26.3 and place their original oak-wood trunks.
             # Test above world surface (Y280) to avoid collisions and false positives.
             if os.environ.get("TERRA_SEED", "3880636525852909587") == "3880636525852909587":
+                # Exercise the natural meadow birch placement. Each authored canopy
+                # has a unique number of branch-wood blocks in an empty plot.
+                rcon("forceload add 0 0 47 47")
+                rcon("setblock 16 279 16 minecraft:grass_block")
+                missing_wood_counts = {7, 9, 5, 17, 19}
+                saw_nest = False
+                for attempt in range(150):
+                    rcon("fill 9 280 9 23 297 23 minecraft:air")
+                    result = rcon('place feature {type:"minecraft:simple_random_selector",'
+                                  'features:["minecraft:super_birch_bees"]} 16 280 16')
+                    wood = rcon("fill 9 280 9 23 297 23 minecraft:air replace minecraft:birch_wood")
+                    count = re.search(r"(\d+) block", wood)
+                    if count:
+                        missing_wood_counts.discard(int(count.group(1)))
+                        nest = rcon("fill 9 280 9 23 297 23 minecraft:air replace minecraft:bee_nest")
+                        saw_nest |= bool(re.search(r"[1-9]\d* block", nest))
+                    if saw_nest and not missing_wood_counts:
+                        break
+                else:
+                    raise AssertionError(f"Birch feature: missing branch counts {missing_wood_counts}, "
+                                         f"authored nest={saw_nest}, last placement={result}, wood={wood}")
+                print("PASS: all five birch shapes grow through a vanilla placement with bee nests", flush=True)
                 root_offsets = [(5, 5, "oak_log"), (4, 3, "oak_wood"),
                                 (5, 6, "oak_log"), (5, 6, "oak_log"),
                                 (5, 5, "oak_log")]
