@@ -93,11 +93,11 @@ biome_files = {p.relative_to(ROOT).as_posix() for p in data
                if p.parts[-3:-1] == ('worldgen', 'biome')}
 assert biome_files == {'minecraft/worldgen/biome/swamp.json'}, biome_files
 swamp = data[ROOT / 'minecraft/worldgen/biome/swamp.json']
-assert swamp['effects']['grass_color'] == '#597E38'
-assert swamp['effects']['foliage_color'] == '#597E38'
-assert swamp['effects']['water_color'] == '#546242'
+assert swamp['effects']['grass_color'] == '#688D46'
+assert swamp['effects']['foliage_color'] == '#688D46'
+assert swamp['effects']['water_color'] == '#68834D'
 assert swamp['effects']['grass_color_modifier'] == 'none'
-assert swamp['attributes']['minecraft:visual/sky_color'] == '#A4D4BE'
+assert swamp['attributes']['minecraft:visual/sky_color'] == '#98C9D9'
 assert len(swamp['features']) == 11
 assert swamp['carvers'] == ['minecraft:cave','minecraft:cave_extra_underground','minecraft:canyon']
 assert swamp['temperature'] == 0.8 and swamp['downfall'] == 0.9
