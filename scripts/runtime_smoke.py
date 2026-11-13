@@ -128,16 +128,30 @@ def main():
                 # Exercise the natural meadow birch placement. Each authored canopy
                 # has a unique number of branch-wood blocks in an empty plot.
                 rcon("forceload add 0 0 47 47")
+                rcon("fill 8 278 8 24 278 24 minecraft:dirt")
                 rcon("setblock 16 279 16 minecraft:grass_block")
+                def reset_step():
+                    rcon("fill 12 279 12 20 279 20 minecraft:air")
+                    rcon("setblock 16 279 16 minecraft:grass_block")
+
+                def verify_footprint(expected):
+                    # No other block on this layer is grass. Every base voxel must have support.
+                    result = rcon("fill 12 279 12 20 279 20 minecraft:air replace minecraft:grass_block")
+                    count = re.search(r"(\d+) block", result)
+                    if not count or int(count.group(1)) != expected:
+                        raise AssertionError(f"Expected {expected} grass footings: {result}")
+
                 missing_wood_counts = {7, 9, 5, 17, 19}
                 saw_nest = False
                 for attempt in range(150):
+                    reset_step()
                     rcon("fill 9 280 9 23 297 23 minecraft:air")
                     result = rcon('place feature {type:"minecraft:simple_random_selector",'
                                   'features:["minecraft:super_birch_bees"]} 16 280 16')
                     wood = rcon("fill 9 280 9 23 297 23 minecraft:air replace minecraft:birch_wood")
                     count = re.search(r"(\d+) block", wood)
                     if count:
+                        verify_footprint(3 if int(count.group(1)) == 19 else 1)
                         missing_wood_counts.discard(int(count.group(1)))
                         nest = rcon("fill 9 280 9 23 297 23 minecraft:air replace minecraft:bee_nest")
                         saw_nest |= bool(re.search(r"[1-9]\d* block", nest))
@@ -155,6 +169,7 @@ def main():
                     rcon(f"fillbiome 8 276 8 24 304 24 minecraft:{biome}")
                     remaining = {23, 27}
                     for attempt in range(80 if biome == "plains" else 5):
+                        reset_step()
                         rcon("fill 8 280 8 24 304 24 minecraft:air")
                         result = rcon(feature)
                         if "placed" not in result.lower():
@@ -162,6 +177,7 @@ def main():
                         wood = rcon("fill 8 280 8 24 304 24 minecraft:air replace minecraft:oak_wood")
                         count = re.search(r"(\d+) block", wood)
                         if biome == "plains" and count:
+                            verify_footprint(3)
                             remaining.discard(int(count.group(1)))
                             if not remaining:
                                 break
@@ -184,6 +200,25 @@ def main():
                         raise AssertionError(
                             f"Willow variant {index} NBT failed real placement: {result}; {probe}")
                 print("PASS: all five cleaned willow NBT templates place their trunks in Minecraft", flush=True)
+                # A willow on a cliff must fail atomically if one layer cannot bridge the gap.
+                rcon("fill 8 275 8 24 304 24 minecraft:air")
+                result = rcon("place feature sofron_terra_lab:swamp_willows 16 280 16")
+                if "placed " in result.lower():
+                    raise AssertionError(f"Unsupported willow generated: {result}")
+                # One-block step: each log/wood block at the base needs a grass block.
+                rcon("fill 8 278 8 24 278 24 minecraft:dirt")
+                rcon("fill 8 279 8 15 279 24 minecraft:dirt")
+                result = rcon("place feature sofron_terra_lab:swamp_willows 16 280 16")
+                if "placed " not in result.lower():
+                    raise AssertionError(f"Willow on one-block step failed: {result}")
+                for x in range(13, 20):
+                    for z in range(13, 20):
+                        unsupported = rcon(f"execute if block {x} 280 {z} #minecraft:logs "
+                                           f"unless block {x} 279 {z} minecraft:grass_block")
+                        if "Test passed" in unsupported or "count: 1" in unsupported:
+                            raise AssertionError(f"Willow has an unsupported root at {x}, {z}")
+                print("PASS: willow roots follow the step, and a deeper gap rejects placement", flush=True)
+
                 # Validate the *placed feature* registration in a naturally
                 # selected vanilla swamp, not only the raw template command.
                 located_swamp = rcon("locate biome minecraft:swamp")
@@ -196,7 +231,8 @@ def main():
                 for dx, dz in ((0,0), (8,8), (-8,-8), (16,0), (0,16)):
                     tx, tz = wx+dx, wz+dz
                     rcon(f"forceload add {tx} {tz}")
-                    response = rcon(f"place feature sofron_terra_lab:swamp_willows {tx} 80 {tz}")
+                    response = rcon(f"execute positioned {tx} 80 {tz} positioned over ocean_floor run "
+                                    "place feature sofron_terra_lab:swamp_willows ~ ~ ~")
                     print(f"Willow placed feature test ({tx},{tz}): {response}", flush=True)
                     if "placed \"sofron_terra_lab:swamp_willows\"" in response.lower():
                         successes += 1

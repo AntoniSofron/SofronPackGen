@@ -15,6 +15,8 @@ public final class TerraLabMod implements ModInitializer {
                 net.minecraft.resources.Identifier.fromNamespaceAndPath(MOD_ID, "birch_variants"), BirchVariants.CODEC);
         net.minecraft.core.Registry.register(net.minecraft.core.registries.BuiltInRegistries.FEATURE_TYPE,
                 net.minecraft.resources.Identifier.fromNamespaceAndPath(MOD_ID, "oak_variants"), OakVariants.CODEC);
+        net.minecraft.core.Registry.register(net.minecraft.core.registries.BuiltInRegistries.FEATURE_TYPE,
+                net.minecraft.resources.Identifier.fromNamespaceAndPath(MOD_ID, "grounded_willow"), GroundedWillow.CODEC);
         System.out.println("[Sofron Pack Gen] Approved 84-parameter worldgen enabled; Vanilla biomes and structures preserved.");
     }
 }
