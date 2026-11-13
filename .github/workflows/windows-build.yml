@@ -1,0 +1,48 @@
+name: Terra Lab — Windows one-click builder
+on:
+  push:
+    paths:
+      - 'scripts/build.ps1'
+      - 'BUILD.bat'
+      - 'BUILD_AND_INSTALL.bat'
+      - '.github/workflows/windows-build.yml'
+      - 'build.gradle'
+      - 'gradle/**'
+  pull_request:
+    paths:
+      - 'scripts/build.ps1'
+      - 'BUILD.bat'
+      - 'BUILD_AND_INSTALL.bat'
+      - '.github/workflows/windows-build.yml'
+      - 'build.gradle'
+      - 'gradle/**'
+  workflow_dispatch:
+
+jobs:
+  windows-build:
+    runs-on: windows-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '25'
+      - name: Windows PowerShell 5.1 startup test
+        shell: cmd
+        run: powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts\build.ps1 -Preflight
+      - name: Full one-click build without manually installed Gradle
+        shell: cmd
+        run: powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts\build.ps1
+      - name: Assert distributable mod JAR exists
+        shell: powershell
+        run: |
+          $jars = @(Get-ChildItem build\libs\*.jar | Where-Object { $_.Name -notmatch '(-sources|-dev)\.jar$' })
+          if ($jars.Count -ne 1) { throw "Expected exactly 1 JAR; found $($jars.Count)" }
+          Write-Host "Windows build passed: $($jars[0].FullName)"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Sofron-Terra-Lab-Windows-JAR
+          path: build/libs/*.jar
+          if-no-files-found: error
+          retention-days: 7
