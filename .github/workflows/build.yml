@@ -48,6 +48,14 @@ jobs:
               assert 'data/sofron_terra_lab/worldgen/density_function/terrain/final_density.json' in z.namelist()
           print('PASS: real worldgen bundled:',jars[0])
           PY
+      - name: Boot real Minecraft 26.3 and verify all 5 NBT willow structures
+        timeout-minutes: 9
+        run: python3 scripts/runtime_smoke.py
+      - name: Show Minecraft worldgen diagnostics if the test fails
+        if: failure()
+        run: |
+          if [ -f runtime-smoke.log ]; then tail -n 130 runtime-smoke.log; fi
+          if [ -f run/logs/latest.log ]; then tail -n 130 run/logs/latest.log; fi
       - uses: actions/upload-artifact@v4
         with:
           name: Sofron-Terra-Lab-MC26.3-Worldgen
