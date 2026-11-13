@@ -1,21 +1,14 @@
-# Local Gradle bootstrap (hundreds of MB; never commit distributions)
-.build-tools/
 .gradle/
-# Gradle outputs
+.build-tools/
 build/
 out/
-# Local IDE
+run/
 .idea/
 .vscode/
 *.iml
-# Local Java crash reports and logs
-hs_err_pid*
-replay_pid*
 *.log
-# OS
+hs_err_pid*
 Thumbs.db
 .DS_Store
-# Minecraft saves and runtime
-run/
 worlds/
 saves/

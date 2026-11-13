@@ -1,5 +1,0 @@
-{
-  "type": "minecraft:add",
-  "left": "sofron_pack:terrain/extended_base",
-  "right": "sofron_pack:karst/height_limited"
-}

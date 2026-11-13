@@ -1,0 +1,1637 @@
+{
+  "version": "design-v1",
+  "minecraft": "26.3",
+  "categories": [
+    {
+      "id": "vision",
+      "title": "Wizja świata",
+      "subtitle": "Beta + Cascades + realizm",
+      "description": "Ostateczny charakter generatora i proporcje stylów."
+    },
+    {
+      "id": "continents",
+      "title": "Kontynenty i oceany",
+      "subtitle": "Skala świata",
+      "description": "Ląd, oceany, linia brzegowa i oceaniczne dna."
+    },
+    {
+      "id": "mountains",
+      "title": "Góry i grzbiety",
+      "subtitle": "Pasma i szczyty",
+      "description": "Długie pasma, izolowane góry, śnieg i erozja."
+    },
+    {
+      "id": "beta",
+      "title": "Klify, zwisy i doliny Classic",
+      "subtitle": "Powrót starego Minecrafta",
+      "description": "Charakterystyczna geometria Beta i Classic bez przypadkowych ścian."
+    },
+    {
+      "id": "karst",
+      "title": "Kras i iglice skalne",
+      "subtitle": "BOP Jade Cliffs",
+      "description": "Smukłe słupy, wieże, grupowanie i naturalne podstawy."
+    },
+    {
+      "id": "islands",
+      "title": "Wyspy i archipelagi",
+      "subtitle": "Alpha Islands",
+      "description": "Wyspy klasyczne, rzeczne, oceaniczne, skalne i sporadyczne wyspy wiszące."
+    },
+    {
+      "id": "rivers",
+      "title": "Rzeki i dopływy",
+      "subtitle": "Hydrologia zgodna z wysokością",
+      "description": "Źródła w górach, spływ, meandry, szerokość, plaże i podziemne odcinki."
+    },
+    {
+      "id": "lakes",
+      "title": "Jeziora i wodospady",
+      "subtitle": "Zbiorniki z wodą",
+      "description": "Jeziora i naturalne kaskady oraz wypełnienie płynem."
+    },
+    {
+      "id": "caves",
+      "title": "Jaskinie i podziemia",
+      "subtitle": "Od grot po podziemne rzeki",
+      "description": "Jaskinie, wejścia, komory, wodonośne poziomy, podziemne biomy."
+    },
+    {
+      "id": "surface",
+      "title": "Powierzchnia i klimat",
+      "subtitle": "Vanilla, ale ciekawsza",
+      "description": "Materiały stoków, plaże, śnieg, roślinność bez nowych biomów."
+    },
+    {
+      "id": "engineering",
+      "title": "Wydajność i zgodność",
+      "subtitle": "Bezpieczne generowanie",
+      "description": "Granice świata, struktury, wydajność, testy i kompatybilność."
+    }
+  ],
+  "questions": [
+    {
+      "category": "vision",
+      "key": "betaInfluence",
+      "label": "Udział wizualnego klimatu Beta",
+      "desc": "Klify, stare tarasy, nieregularne łuki — nie osobne biomy.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 75,
+      "unit": "%",
+      "refs": [
+        "Cascades",
+        "Moderner Beta"
+      ]
+    },
+    {
+      "category": "vision",
+      "key": "geologicalRealism",
+      "label": "Realizm geologiczny",
+      "desc": "Spójne łańcuchy i erozja kontra fantazyjne formy.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 68,
+      "unit": "%",
+      "refs": [
+        "Tectonic",
+        "Wythers"
+      ]
+    },
+    {
+      "category": "vision",
+      "key": "landmarkFrequency",
+      "label": "Częstość formacji wyjątkowych",
+      "desc": "Jak często świat ma zaskakiwać nietypowym krajobrazem.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 56,
+      "unit": "%",
+      "refs": [
+        "Cascades",
+        "Terralith"
+      ]
+    },
+    {
+      "category": "vision",
+      "key": "worldMood",
+      "label": "Dominująca estetyka",
+      "desc": "Wybierz dominującą interpretację klasycznego świata.",
+      "type": "choice",
+      "options": [
+        [
+          "balanced",
+          "Beta + naturalizm"
+        ],
+        [
+          "beta",
+          "Mocno Beta"
+        ],
+        [
+          "scenic",
+          "Cascades — widowiskowo"
+        ],
+        [
+          "realistic",
+          "Tectonic — geologicznie"
+        ],
+        [
+          "wild",
+          "Dziko i fantasy"
+        ]
+      ],
+      "default": "balanced",
+      "refs": [
+        "Cascades",
+        "Tectonic",
+        "Moderner Beta"
+      ]
+    },
+    {
+      "category": "vision",
+      "key": "terrainRules",
+      "label": "Zasada prowadzenia zmian",
+      "desc": "Czy szczegóły ponad normalnością świata?",
+      "type": "choice",
+      "options": [
+        [
+          "conservative",
+          "Zachowaj logikę vanilla"
+        ],
+        [
+          "natural",
+          "Realizm i płynne przejścia"
+        ],
+        [
+          "hybrid",
+          "Naturalnie + unikatowe formy"
+        ],
+        [
+          "dramatic",
+          "Silnie fantastycznie"
+        ]
+      ],
+      "default": "hybrid",
+      "refs": [
+        "Cascades",
+        "Tectonic"
+      ]
+    },
+    {
+      "category": "continents",
+      "key": "landCoverage",
+      "label": "Udział lądu",
+      "desc": "Planowany odsetek lądu w dużych próbach; kalibrowany statystycznie.",
+      "type": "range",
+      "min": 35,
+      "max": 85,
+      "step": 1,
+      "default": 68,
+      "unit": "%",
+      "refs": [
+        "Continents",
+        "Tectonic"
+      ]
+    },
+    {
+      "category": "continents",
+      "key": "continentScale",
+      "label": "Wielkość kontynentów",
+      "desc": "Mała: częste morza; duża: wielkie masy lądu.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 68,
+      "unit": "%",
+      "refs": [
+        "Continents",
+        "Tectonic"
+      ]
+    },
+    {
+      "category": "continents",
+      "key": "coastComplexity",
+      "label": "Postrzępienie wybrzeży",
+      "desc": "Zatoki, półwyspy i płynne, nieprostokątne brzegi.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 72,
+      "unit": "%",
+      "refs": [
+        "Continents",
+        "Tectonic"
+      ]
+    },
+    {
+      "category": "continents",
+      "key": "oceanDepth",
+      "label": "Głębokość oceanów",
+      "desc": "Uwaga: podnosi/obniża dno, nie sam poziom płynu.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 66,
+      "unit": "%",
+      "refs": [
+        "Tectonic",
+        "Terralith"
+      ]
+    },
+    {
+      "category": "continents",
+      "key": "oceanTrenches",
+      "label": "Rowy i głębie oceaniczne",
+      "desc": "Regionalne uskoki dna, z dala od lądu.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 32,
+      "unit": "%",
+      "refs": [
+        "Tectonic"
+      ]
+    },
+    {
+      "category": "continents",
+      "key": "continentalShelf",
+      "label": "Szerokość szelfu",
+      "desc": "Łagodne płytkie pasy przybrzeżne.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 62,
+      "unit": "%",
+      "refs": [
+        "Tectonic"
+      ]
+    },
+    {
+      "category": "continents",
+      "key": "continentalSystem",
+      "label": "Sposób rozłożenia lądów",
+      "desc": "Cały generator obejmie jeden model kontynentalności.",
+      "type": "choice",
+      "options": [
+        [
+          "continents",
+          "Duże kontynenty + oceany"
+        ],
+        [
+          "hybrid",
+          "Kontynenty z archipelagami"
+        ],
+        [
+          "fragmented",
+          "Rozdrobnione krainy"
+        ],
+        [
+          "supercontinent",
+          "Kilka superkontynentów"
+        ]
+      ],
+      "default": "hybrid",
+      "refs": [
+        "Continents",
+        "Tectonic",
+        "Terralith"
+      ]
+    },
+    {
+      "category": "mountains",
+      "key": "mountainFrequency",
+      "label": "Częstość gór",
+      "desc": "Od rzadkich masywów do regionów górskich.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 43,
+      "unit": "%",
+      "refs": [
+        "Tectonic",
+        "Cascades"
+      ]
+    },
+    {
+      "category": "mountains",
+      "key": "rangeLength",
+      "label": "Długość pasm",
+      "desc": "Krótkie masywy → długie łańcuchy.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 74,
+      "unit": "%",
+      "refs": [
+        "Tectonic"
+      ]
+    },
+    {
+      "category": "mountains",
+      "key": "rangeWidth",
+      "label": "Szerokość pasm",
+      "desc": "Wąskie ostre grzbiety kontra szerokie masywy.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 37,
+      "unit": "%",
+      "refs": [
+        "Tectonic"
+      ]
+    },
+    {
+      "category": "mountains",
+      "key": "peakHeight",
+      "label": "Wysokość najwyższych szczytów",
+      "desc": "Docelowy najwyższy poziom Y przy zwykłej wysokości świata.",
+      "type": "range",
+      "min": 150,
+      "max": 310,
+      "step": 1,
+      "default": 255,
+      "unit": "Y",
+      "refs": [
+        "Tectonic"
+      ]
+    },
+    {
+      "category": "mountains",
+      "key": "mountainSteepness",
+      "label": "Stromość ścian górskich",
+      "desc": "Od łagodnych stoków do stromych skalnych ścian.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 67,
+      "unit": "%",
+      "refs": [
+        "Cascades",
+        "Tectonic"
+      ]
+    },
+    {
+      "category": "mountains",
+      "key": "erosionStrength",
+      "label": "Siła erozji",
+      "desc": "Zaokrąglenie stoków, dolin i grani.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 60,
+      "unit": "%",
+      "refs": [
+        "Tectonic",
+        "Wythers"
+      ]
+    },
+    {
+      "category": "mountains",
+      "key": "mountainIsolation",
+      "label": "Góry samotne",
+      "desc": "Masywy poza głównymi pasmami.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 35,
+      "unit": "%",
+      "refs": [
+        "Cascades"
+      ]
+    },
+    {
+      "category": "mountains",
+      "key": "alpineSnow",
+      "label": "Piętro śnieżne",
+      "desc": "Jak często wysokie szczyty mają śnieg i lód.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 65,
+      "unit": "%",
+      "refs": [
+        "Tectonic"
+      ]
+    },
+    {
+      "category": "mountains",
+      "key": "mountainShape",
+      "label": "Styl szczytów",
+      "desc": "Zachowujemy różnorodność nawet przy jednym stylu dominującym.",
+      "type": "choice",
+      "options": [
+        [
+          "mixed",
+          "Mieszanka geologiczna"
+        ],
+        [
+          "ridges",
+          "Długie grzbiety"
+        ],
+        [
+          "peaks",
+          "Ostre szczyty"
+        ],
+        [
+          "beta",
+          "Fantazyjne górskie ściany"
+        ],
+        [
+          "rounded",
+          "Zaokrąglone góry"
+        ]
+      ],
+      "default": "mixed",
+      "refs": [
+        "Tectonic",
+        "Cascades"
+      ]
+    },
+    {
+      "category": "beta",
+      "key": "betaCliffFrequency",
+      "label": "Częstość klifów Beta",
+      "desc": "Od śladowych po rozpoznawalny element krajobrazu.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 54,
+      "unit": "%",
+      "refs": [
+        "Cascades",
+        "Moderner Beta"
+      ]
+    },
+    {
+      "category": "beta",
+      "key": "betaCliffHeight",
+      "label": "Wysokość klasycznych klifów",
+      "desc": "Wyraźne skały bez nagłego ucinania mapy.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 65,
+      "unit": "%",
+      "refs": [
+        "Cascades"
+      ]
+    },
+    {
+      "category": "beta",
+      "key": "overhangFrequency",
+      "label": "Zwisy i nawisy",
+      "desc": "Skalne półki i podcięcia, ale bez gigantycznych pustek.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 43,
+      "unit": "%",
+      "refs": [
+        "Cascades",
+        "Moderner Beta"
+      ]
+    },
+    {
+      "category": "beta",
+      "key": "floatingLandmass",
+      "label": "Unoszące się skały",
+      "desc": "Bardzo rzadkie klasyczne zawieszone wyspy.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 12,
+      "unit": "%",
+      "refs": [
+        "Cascades"
+      ]
+    },
+    {
+      "category": "beta",
+      "key": "classicValleyAmount",
+      "label": "Dolinny krajobraz Classic",
+      "desc": "Własna interpretacja dolin Classic/Indev — nazwa niepotwierdzona w ZIP.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 55,
+      "unit": "%",
+      "refs": [
+        "Moderner Beta",
+        "Cascades"
+      ]
+    },
+    {
+      "category": "beta",
+      "key": "valleyDepth",
+      "label": "Głębokość dolin",
+      "desc": "Od płytkich niecek do głębokich dolin.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 69,
+      "unit": "%",
+      "refs": [
+        "Tectonic",
+        "Wythers"
+      ]
+    },
+    {
+      "category": "beta",
+      "key": "valleyWidth",
+      "label": "Szerokość dna dolin",
+      "desc": "Od wąwozów do szerokich zielonych kotlin.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 62,
+      "unit": "%",
+      "refs": [
+        "Tectonic",
+        "Wythers"
+      ]
+    },
+    {
+      "category": "beta",
+      "key": "plateauFrequency",
+      "label": "Częstość płaskowyżów",
+      "desc": "Mniej geometrycznych płaskich mesa, więcej naturalnych wysoczyzn.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 30,
+      "unit": "%",
+      "refs": [
+        "Tectonic"
+      ]
+    },
+    {
+      "category": "beta",
+      "key": "cliffPlacement",
+      "label": "Gdzie pojawiają się klify?",
+      "desc": "Zapobieganie nienaturalnym ścianom w całym świecie.",
+      "type": "choice",
+      "options": [
+        [
+          "slopes",
+          "Stoki gór i przełomy"
+        ],
+        [
+          "coast",
+          "Wybrzeża i zatoki"
+        ],
+        [
+          "mixed",
+          "Różne regiony, selektywnie"
+        ],
+        [
+          "wild",
+          "Wszędzie — bardzo dziko"
+        ]
+      ],
+      "default": "mixed",
+      "refs": [
+        "Cascades",
+        "Tectonic"
+      ]
+    },
+    {
+      "category": "karst",
+      "key": "karstFrequency",
+      "label": "Częstość krasu",
+      "desc": "Od legendarnie rzadkich do widocznych kompleksów.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 19,
+      "unit": "%",
+      "refs": [
+        "Biomes O’ Plenty",
+        "Terralith"
+      ]
+    },
+    {
+      "category": "karst",
+      "key": "karstCluster",
+      "label": "Skupiska kolumn",
+      "desc": "Pojedyncze wieże czy całe kamienne lasy?",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 81,
+      "unit": "%",
+      "refs": [
+        "Biomes O’ Plenty"
+      ]
+    },
+    {
+      "category": "karst",
+      "key": "karstHeight",
+      "label": "Wysokość kolumn",
+      "desc": "Wysokie iglice inspirowane Jade Cliffs.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 78,
+      "unit": "%",
+      "refs": [
+        "Biomes O’ Plenty"
+      ]
+    },
+    {
+      "category": "karst",
+      "key": "karstWidth",
+      "label": "Grubość kolumn",
+      "desc": "0 = smukłe; 100 = masywne",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 17,
+      "unit": "%",
+      "refs": [
+        "Biomes O’ Plenty"
+      ]
+    },
+    {
+      "category": "karst",
+      "key": "karstSharpness",
+      "label": "Ostrość zwieńczeń",
+      "desc": "Zaostrzone czubki, nierówne boki i szczeliny.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 92,
+      "unit": "%",
+      "refs": [
+        "Biomes O’ Plenty"
+      ]
+    },
+    {
+      "category": "karst",
+      "key": "karstSeparation",
+      "label": "Odległości między kolumnami",
+      "desc": "Zwarty skalny las kontra luźne iglice.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 48,
+      "unit": "%",
+      "refs": [
+        "Biomes O’ Plenty"
+      ]
+    },
+    {
+      "category": "karst",
+      "key": "karstVegetation",
+      "label": "Roślinność na kolumnach",
+      "desc": "Czasem zielone szczyty, czasem goła skała.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 35,
+      "unit": "%",
+      "refs": [
+        "Biomes O’ Plenty"
+      ]
+    },
+    {
+      "category": "karst",
+      "key": "karstShape",
+      "label": "Forma dominująca",
+      "desc": "Podgląd pokazuje schematy inspirowane mechanikami, nie skopiowany kod.",
+      "type": "choice",
+      "options": [
+        [
+          "slim",
+          "Smukłe skalne iglice"
+        ],
+        [
+          "towers",
+          "Wysokie wieże erozyjne"
+        ],
+        [
+          "mixed",
+          "Iglice + wieże + ściany"
+        ],
+        [
+          "natural",
+          "Naturalne ostańce skalne"
+        ]
+      ],
+      "default": "mixed",
+      "refs": [
+        "Biomes O’ Plenty",
+        "Terralith"
+      ]
+    },
+    {
+      "category": "karst",
+      "key": "karstLocation",
+      "label": "Umiejscowienie krasu",
+      "desc": "Bez nowych biomów: tylko rzeźba i bloki Vanilla.",
+      "type": "choice",
+      "options": [
+        [
+          "lowlands",
+          "Niziny i łagodne doliny"
+        ],
+        [
+          "mountains",
+          "Górskie ściany"
+        ],
+        [
+          "islands",
+          "Wyspy i brzegi"
+        ],
+        [
+          "mixed",
+          "Wszystkie odpowiednie regiony"
+        ]
+      ],
+      "default": "mixed",
+      "refs": [
+        "Biomes O’ Plenty"
+      ]
+    },
+    {
+      "category": "islands",
+      "key": "islandFrequency",
+      "label": "Wyspy oceaniczne",
+      "desc": "Występowanie mniejszych lądów poza kontynentami.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 57,
+      "unit": "%",
+      "refs": [
+        "Continents",
+        "Terralith"
+      ]
+    },
+    {
+      "category": "islands",
+      "key": "archipelagoDensity",
+      "label": "Zwartość archipelagów",
+      "desc": "Więcej grup wysp niż pojedynczych punktów.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 63,
+      "unit": "%",
+      "refs": [
+        "Continents"
+      ]
+    },
+    {
+      "category": "islands",
+      "key": "islandVariety",
+      "label": "Różnorodność wysp",
+      "desc": "Płaskie, górskie, skalne, porośnięte, piaszczyste.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 80,
+      "unit": "%",
+      "refs": [
+        "Terralith"
+      ]
+    },
+    {
+      "category": "islands",
+      "key": "alphaIslands",
+      "label": "Charakter Alpha Islands",
+      "desc": "Fantastyczne wyspy i strome obrzeża, inspirowane Terralith.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 63,
+      "unit": "%",
+      "refs": [
+        "Terralith",
+        "Moderner Beta"
+      ]
+    },
+    {
+      "category": "islands",
+      "key": "skyIslandFrequency",
+      "label": "Wyspy w powietrzu",
+      "desc": "Tylko bardzo rzadko, osobno od zwykłych oceanicznych.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 10,
+      "unit": "%",
+      "refs": [
+        "Terralith",
+        "Cascades"
+      ]
+    },
+    {
+      "category": "islands",
+      "key": "islandMountain",
+      "label": "Górzystość wysp",
+      "desc": "Od płaskich atolów po strome wyspy.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 54,
+      "unit": "%",
+      "refs": [
+        "Terralith"
+      ]
+    },
+    {
+      "category": "islands",
+      "key": "islandShape",
+      "label": "Typowy układ archipelagu",
+      "desc": "Wartości łączą się z częstotliwością.",
+      "type": "choice",
+      "options": [
+        [
+          "mixed",
+          "Różne formy"
+        ],
+        [
+          "chains",
+          "Łańcuchy wysp"
+        ],
+        [
+          "clusters",
+          "Gęste skupiska"
+        ],
+        [
+          "scattered",
+          "Rozsiane wysepki"
+        ]
+      ],
+      "default": "mixed",
+      "refs": [
+        "Continents",
+        "Terralith"
+      ]
+    },
+    {
+      "category": "rivers",
+      "key": "riverFrequency",
+      "label": "Częstość rzek",
+      "desc": "Ile dorzeczy i głównych cieków ma występować.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 58,
+      "unit": "%",
+      "refs": [
+        "Cascades",
+        "Wythers"
+      ]
+    },
+    {
+      "category": "rivers",
+      "key": "riverWidth",
+      "label": "Szerokość koryt",
+      "desc": "Od strumieni do żeglownych rzek.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 51,
+      "unit": "%",
+      "refs": [
+        "Wythers",
+        "Navigable Rivers"
+      ]
+    },
+    {
+      "category": "rivers",
+      "key": "riverMeander",
+      "label": "Stopień meandrowania",
+      "desc": "Rzeki wiją się po nizinach, a w górach biegną prościej.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 72,
+      "unit": "%",
+      "refs": [
+        "Wythers",
+        "Cascades"
+      ]
+    },
+    {
+      "category": "rivers",
+      "key": "riverSourceAltitude",
+      "label": "Górskie źródła",
+      "desc": "Wiązanie początków cieków z wysokościami górskimi.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 85,
+      "unit": "%",
+      "refs": [
+        "Tectonic",
+        "Cascades"
+      ]
+    },
+    {
+      "category": "rivers",
+      "key": "tributaryFrequency",
+      "label": "Liczba dopływów",
+      "desc": "Od jednego głównego nurtu po rozgałęzione dorzecza.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 61,
+      "unit": "%",
+      "refs": [
+        "Wythers"
+      ]
+    },
+    {
+      "category": "rivers",
+      "key": "waterfallRivers",
+      "label": "Spadki i kaskady",
+      "desc": "Zależne od pochylenia koryta, nie losowej wysokości.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 53,
+      "unit": "%",
+      "refs": [
+        "Cascades"
+      ]
+    },
+    {
+      "category": "rivers",
+      "key": "riverBeaches",
+      "label": "Piaszczyste i żwirowe brzegi",
+      "desc": "Szerokość oraz częstość naturalnych pasów nadrzecznych.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 72,
+      "unit": "%",
+      "refs": [
+        "Cascades",
+        "Wythers"
+      ]
+    },
+    {
+      "category": "rivers",
+      "key": "subterraneanRivers",
+      "label": "Rzeki pod lądem",
+      "desc": "Hydrologiczne podziemne odcinki z wejściem i wyjściem.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 40,
+      "unit": "%",
+      "refs": [
+        "Tectonic",
+        "Cascades"
+      ]
+    },
+    {
+      "category": "rivers",
+      "key": "navigableRivers",
+      "label": "Żeglowność",
+      "desc": "Udział rzek, po których można pływać łodzią.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 70,
+      "unit": "%",
+      "refs": [
+        "Navigable Rivers",
+        "Cascades"
+      ]
+    },
+    {
+      "category": "rivers",
+      "key": "riverAlgorithm",
+      "label": "Reguła przepływu",
+      "desc": "Sugerowany typ implementacji w nowym modzie.",
+      "type": "choice",
+      "options": [
+        [
+          "watershed",
+          "Graf zlewisk — realne spadki"
+        ],
+        [
+          "hybrid",
+          "Zlewiska + naturalny szum"
+        ],
+        [
+          "scenic",
+          "Mocno malownicze przebiegi"
+        ]
+      ],
+      "default": "watershed",
+      "refs": [
+        "Wythers",
+        "Tectonic"
+      ]
+    },
+    {
+      "category": "lakes",
+      "key": "lakeFrequency",
+      "label": "Częstość jezior",
+      "desc": "Od rzadkich mis po naturalnie liczne jeziora.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 52,
+      "unit": "%",
+      "refs": [
+        "Tectonic",
+        "Cascades"
+      ]
+    },
+    {
+      "category": "lakes",
+      "key": "lakeScale",
+      "label": "Rozmiar jezior",
+      "desc": "Małe jeziora kontra duże baseny.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 58,
+      "unit": "%",
+      "refs": [
+        "Cascades"
+      ]
+    },
+    {
+      "category": "lakes",
+      "key": "mountainLakes",
+      "label": "Jeziora górskie",
+      "desc": "Tarny, jeziora cyrkowe i dolinne.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 63,
+      "unit": "%",
+      "refs": [
+        "Tectonic"
+      ]
+    },
+    {
+      "category": "lakes",
+      "key": "waterfallFrequency",
+      "label": "Częstość wodospadów",
+      "desc": "Związana ze spadkiem rzek i geologią.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 55,
+      "unit": "%",
+      "refs": [
+        "Cascades",
+        "Wythers"
+      ]
+    },
+    {
+      "category": "lakes",
+      "key": "wetlands",
+      "label": "Mokradła",
+      "desc": "Naturalne strefy przejścia do podmokłych dolin.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 34,
+      "unit": "%",
+      "refs": [
+        "Wythers"
+      ]
+    },
+    {
+      "category": "lakes",
+      "key": "lakeOutlets",
+      "label": "Odpływy z jezior",
+      "desc": "Jeziora mają sensowne bilanse hydrologiczne.",
+      "type": "choice",
+      "options": [
+        [
+          "connected",
+          "Większość połączona z rzekami"
+        ],
+        [
+          "mixed",
+          "Połączone + bezodpływowe"
+        ],
+        [
+          "isolated",
+          "Wiele izolowanych jezior"
+        ]
+      ],
+      "default": "connected",
+      "refs": [
+        "Cascades"
+      ]
+    },
+    {
+      "category": "caves",
+      "key": "caveFrequency",
+      "label": "Częstość jaskiń",
+      "desc": "Zachowanie dostępności normalnych jaskiń Vanilla.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 53,
+      "unit": "%",
+      "refs": [
+        "Tectonic"
+      ]
+    },
+    {
+      "category": "caves",
+      "key": "caveChambers",
+      "label": "Wielkość komór",
+      "desc": "Duże groty, ale bez odsłoniętych biomów podziemnych.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 60,
+      "unit": "%",
+      "refs": [
+        "Tectonic"
+      ]
+    },
+    {
+      "category": "caves",
+      "key": "caveVertical",
+      "label": "Pionowa rozpiętość",
+      "desc": "Głębokie systemy szybów i komór.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 62,
+      "unit": "%",
+      "refs": [
+        "Tectonic"
+      ]
+    },
+    {
+      "category": "caves",
+      "key": "caveOpenings",
+      "label": "Wejścia jaskiniowe",
+      "desc": "Naturalne otwory w stokach i dnach dolin.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 38,
+      "unit": "%",
+      "refs": [
+        "Cascades"
+      ]
+    },
+    {
+      "category": "caves",
+      "key": "caveWater",
+      "label": "Wodne komory",
+      "desc": "Podziemne akweny bez zalewania całego świata.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 40,
+      "unit": "%",
+      "refs": [
+        "Tectonic"
+      ]
+    },
+    {
+      "category": "caves",
+      "key": "caveBiomeSafety",
+      "label": "Separacja biomów podziemnych",
+      "desc": "100 = Deep Dark i Lush Caves nie ujawniają się przypadkowo na powierzchni.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 100,
+      "unit": "%",
+      "refs": [
+        "Tectonic"
+      ]
+    },
+    {
+      "category": "caves",
+      "key": "caveSystem",
+      "label": "Architektura jaskiń",
+      "desc": "Żądany sposób łączenia nowego i sprawdzonego generatora.",
+      "type": "choice",
+      "options": [
+        [
+          "vanilla",
+          "Vanilla bez modyfikacji"
+        ],
+        [
+          "hybrid",
+          "Vanilla + kontrolowane dodatki"
+        ],
+        [
+          "extreme",
+          "Rozbudowane korytarze i komory"
+        ]
+      ],
+      "default": "hybrid",
+      "refs": [
+        "Tectonic"
+      ]
+    },
+    {
+      "category": "surface",
+      "key": "stoneExposure",
+      "label": "Widoczne skały na zboczach",
+      "desc": "0 = prawie bez skał; 100 = szeroko odsłonięte stokowe skały.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 39,
+      "unit": "%",
+      "refs": [
+        "Cascades",
+        "Tectonic"
+      ]
+    },
+    {
+      "category": "surface",
+      "key": "slopeSoils",
+      "label": "Gleba i trawa na stokach",
+      "desc": "Powłoka ziemi poza stromymi klifami.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 76,
+      "unit": "%",
+      "refs": [
+        "Wythers"
+      ]
+    },
+    {
+      "category": "surface",
+      "key": "beachWidth",
+      "label": "Szerokość plaż",
+      "desc": "Wybrzeża i okolice delt.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 63,
+      "unit": "%",
+      "refs": [
+        "Cascades"
+      ]
+    },
+    {
+      "category": "surface",
+      "key": "climateGradient",
+      "label": "Gładkość przejść klimatu",
+      "desc": "Zmiany tylko intensywności rozmieszczenia biomów vanilla.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 58,
+      "unit": "%",
+      "refs": [
+        "Terralith"
+      ]
+    },
+    {
+      "category": "surface",
+      "key": "microrelief",
+      "label": "Drobna nierówność terenu",
+      "desc": "Nierówna powierzchnia trawy zamiast płaskich tarasów.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 57,
+      "unit": "%",
+      "refs": [
+        "Moderner Beta"
+      ]
+    },
+    {
+      "category": "surface",
+      "key": "biomeSize",
+      "label": "Wielkość regionów biomów",
+      "desc": "Vanilla biomy bardziej rozległe lub rozdrobnione.",
+      "type": "range",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 54,
+      "unit": "%",
+      "refs": [
+        "Wythers",
+        "Continents"
+      ]
+    },
+    {
+      "category": "surface",
+      "key": "vanillaBiomesOnly",
+      "label": "Wyłącznie biomy Vanilla",
+      "desc": "Blokada nowych biomów — wymaganie projektu.",
+      "type": "bool",
+      "default": true,
+      "refs": [
+        "Cascades",
+        "Terralith"
+      ]
+    },
+    {
+      "category": "engineering",
+      "key": "vanillaStructuresOnly",
+      "label": "Wyłącznie struktury Vanilla",
+      "desc": "Bez struktur i schematów innych modów.",
+      "type": "bool",
+      "default": true,
+      "refs": [
+        "Tectonic",
+        "Terralith"
+      ]
+    },
+    {
+      "category": "engineering",
+      "key": "seaLevel",
+      "label": "Poziom morza",
+      "desc": "Poziom bloków wody; zmiana wymaga osobnego testu fluidów.",
+      "type": "range",
+      "min": 60,
+      "max": 72,
+      "step": 1,
+      "default": 64,
+      "unit": "Y",
+      "refs": [
+        "Cascades",
+        "Tectonic"
+      ]
+    },
+    {
+      "category": "engineering",
+      "key": "worldHeight",
+      "label": "Górna granica świata",
+      "desc": "Minecraft 26.3 — dodatkowa wysokość wymaga ostrożnej zmiany wymiaru.",
+      "type": "choice",
+      "options": [
+        [
+          "320",
+          "Standard do Y=320"
+        ],
+        [
+          "384",
+          "Do Y=384 (eksperymentalnie)"
+        ]
+      ],
+      "default": "320",
+      "refs": [
+        "Tectonic"
+      ]
+    },
+    {
+      "category": "engineering",
+      "key": "performanceProfile",
+      "label": "Profil wydajności",
+      "desc": "Zawsze deterministyczna generacja niezależna od kamery.",
+      "type": "choice",
+      "options": [
+        [
+          "balanced",
+          "Zrównoważony"
+        ],
+        [
+          "quality",
+          "Jakość kosztem czasu"
+        ],
+        [
+          "speed",
+          "Szybsza eksploracja"
+        ]
+      ],
+      "default": "balanced",
+      "refs": [
+        "Tectonic"
+      ]
+    },
+    {
+      "category": "engineering",
+      "key": "compatibility",
+      "label": "Cel techniczny",
+      "desc": "Platforma docelowa.",
+      "type": "choice",
+      "options": [
+        [
+          "fabric26.3",
+          "Fabric / Minecraft 26.3"
+        ]
+      ],
+      "default": "fabric26.3",
+      "refs": [
+        "Tectonic"
+      ]
+    },
+    {
+      "category": "engineering",
+      "key": "villagesTerrainAware",
+      "label": "Dostosuj grunt pod struktury Vanilla",
+      "desc": "Bez dodawania nowych struktur.",
+      "type": "bool",
+      "default": true,
+      "refs": [
+        "Tectonic"
+      ]
+    },
+    {
+      "category": "engineering",
+      "key": "multiSeedTests",
+      "label": "Testy wielu seedów",
+      "desc": "Automatyczny test oceanów, biomów i przejść chunków.",
+      "type": "bool",
+      "default": true,
+      "refs": [
+        "Tectonic"
+      ]
+    },
+    {
+      "category": "engineering",
+      "key": "lodCompatible",
+      "label": "Odporność na DH/LOD",
+      "desc": "Rzeczywiste bloki i LOD muszą pokazywać tę samą geometrię.",
+      "type": "bool",
+      "default": true,
+      "refs": [
+        "Tectonic"
+      ]
+    }
+  ],
+  "audit": [
+    {
+      "name": "Cascades / Hybrid Beta",
+      "id": "cascades",
+      "root": "Hybrid-Beta-master/Cascades",
+      "role": "klif Beta, zwisy, krajobrazy, rzeki żeglowne, skalne plaże",
+      "mechanic": "Stary datapack modyfikuje główne noise_settings Overworld, offset/factor i river_carver; ma własną funkcję floodedness; README deklaruje podziemne rzeki. W ZIP starszy format aquifers_enabled/surface_rule.",
+      "license": "CC BY-NC-ND 4.0 według aktualnej karty Modrinth; w ZIP brak LICENCE.md — nie kopiować.",
+      "version": "W ZIP starszy schemat 1.20–1.21, a Modrinth ma wydanie 26.3",
+      "source": "https://github.com/Crystalis7/Hybrid-Beta"
+    },
+    {
+      "name": "Tectonic",
+      "id": "tectonic",
+      "root": "tectonic-rewrite-squared",
+      "role": "pasma, kontynenty, oceany, jaskinie i rzeki pod ziemią",
+      "mechanic": "Warstwa konfiguracyjna GlobalTerrain/Continents/Islands/Oceans/Caves, terrain_spline, continent_selector i osobne underground_river/noise/total. Przesłany podgląd używa miejscami starego 1.21 formatu noise_settings.",
+      "license": "Brak licencji w archiwalnym katalogu; prawa niepotwierdzone — tylko analiza.",
+      "version": "W ZIP wariant w trakcie przebudowy; trzeba przenieść pomysł, nie JSON bez zmian",
+      "source": "https://github.com/Apollounknowndev/tectonic"
+    },
+    {
+      "name": "Terralith 2.6.5 (26.3)",
+      "id": "terralith",
+      "root": "Terralith_v2.6.5+26.3",
+      "role": "Alpha Islands, organiczne krainy, spires, jeziora, klify",
+      "mechanic": "26.3 noise_settings zawiera aquifers obiekt, material_rule i spójny noise_router; alpha_islands to zdefiniowane biomy i regiony, nie pojedyncza funkcja generowania wyspy. Ma warstwy pillar/reference oraz biome-specific material.",
+      "license": "Własna licencja Stardust Labs zabraniająca redystrybucji zmodyfikowanych wersji.",
+      "version": "ZIP 2.6.5+26.3",
+      "source": "https://modrinth.com/datapack/terralith"
+    },
+    {
+      "name": "Terralith 1.20",
+      "id": "terralith120",
+      "root": "Terralith-1.20",
+      "role": "porównanie ewolucji terenu i starych Alpha Islands",
+      "mechanic": "Stary schemat aquifers_enabled/noise_router z kontynentami; stare definicje alpha_islands; niekompatybilny bez migracji z 26.3.",
+      "license": "Własna licencja Stardust Labs.",
+      "version": "Minecraft 1.20",
+      "source": "https://github.com/Stardust-Labs-MC/Terralith"
+    },
+    {
+      "name": "Biomes O’ Plenty 26.3",
+      "id": "bop",
+      "root": "BiomesOPlenty-26.3",
+      "role": "smukłe ostańce skalne i erodowane kolumny (Jade Cliffs)",
+      "mechanic": "ErodedPillarFeature Java: szerokość bazowa 8, wysokość 10–19 + niekiedy 15–29, promień maleje ku wierzchołkowi, dodatkowe nieregularności i wygładzanie; w Jade Cliffs placed_feature rarity_filter chance=3 + OCEAN_FLOOR_WG. Nie korzystamy z nowych biomów ani bloków.",
+      "license": "All rights reserved — zakaz kopiowania implementacji.",
+      "version": "Źródła 26.3",
+      "source": "https://github.com/Glitchfiend/BiomesOPlenty"
+    },
+    {
+      "name": "Continents",
+      "id": "continents",
+      "root": "Continents-1.20",
+      "role": "rozdzielanie oceanów, kontynentów i wysp",
+      "mechanic": "Ma adjusted_continents, continent_bias, islands oraz układ ring1-ring4 wokół centroidów; odmiana large kontynentów; trzeba opracować własny system kontynentów zgodny z 26.3.",
+      "license": "Własna licencja Stardust Labs.",
+      "version": "Minecraft 1.20",
+      "source": "https://modrinth.com/datapack/continents"
+    },
+    {
+      "name": "William Wythers Overhauled Overworld",
+      "id": "wythers",
+      "root": "William Wythers' Overhauled Overworld v2.6.0",
+      "role": "meandry, naturalne brzegi, dopasowanie materiałów, bogata hydrologia",
+      "mechanic": "Oddzielne placed_feature/terrain/carver/river i river_water, przejścia sand/gravel/soil; implementacja bazuje na powiązanym źródle wythers, część to tylko JSON wywołujące funkcje poza paczką.",
+      "license": "Brak dedykowanej licencji w archiwum — nie kopiować.",
+      "version": "2.6.0 (stare overlay 1.20.5–1.21.5)",
+      "source": "https://modrinth.com/datapack/wythers-overhauled-overworld"
+    },
+    {
+      "name": "Navigable Rivers 1.5.0",
+      "id": "navigable",
+      "root": "Navigable Rivers v1.5.0",
+      "role": "rzeki przepływowe i wypełnione wodą",
+      "mechanic": "Minimalny datapack: w praktyce definicje placed_feature/terrain/carver/river oraz river_water we wspólnej przestrzeni wythers. Brak samodzielnego algorytmu hydrologicznego w przesłanych 8 plikach.",
+      "license": "Brak licencji w ZIP.",
+      "version": "1.5.0 (overlay do 1.21.5)",
+      "source": "https://modrinth.com/datapack/navigable-rivers"
+    },
+    {
+      "name": "Moderner Beta",
+      "id": "modernbeta",
+      "root": "moderner-beta-multiversion",
+      "role": "charakter starego Classic/Infdev/Alpha/Beta",
+      "mechanic": "Osobny generator chunków i klasy starszych algorytmów; fraktalne warstwy ComputeRiver/InitRiver/MixRiver; presety Classic 0.0.14a_08 i Classic 0.30 oraz Beta. Nadaje się do czystej inspiracji wizualnej i analizy matematyki, nie do importowania całego generatora.",
+      "license": "MIT (zachować notice przy kopiowaniu, ale preferujemy własny kod).",
+      "version": "W ZIP wielowersyjny do 26.2 (README); 26.3 niepotwierdzone",
+      "source": "https://github.com/BlueStaggo/Moderner-Beta"
+    },
+    {
+      "name": "TerraBlender 26.3",
+      "id": "terrablender",
+      "root": "TerraBlender-26.3",
+      "role": "integracja biome/region registry",
+      "mechanic": "Biblioteka do dokładania biomów i regionów, nie gotowy generator gór, krasu ani rzek; przy wyłącznie vanillowych biomach niepotrzebna jako wymagane dependency.",
+      "license": "LGPLv3",
+      "version": "Źródła 26.3",
+      "source": "https://github.com/Glitchfiend/TerraBlender"
+    },
+    {
+      "name": "SofronPackGen v0.1 (wyłączony)",
+      "id": "legacy",
+      "root": "26.3-Sofron-Pack-Gen-v0.1",
+      "role": "nie używać jako źródła / przeciwprzykład krasu",
+      "mechanic": "Własne biomy, struktury, stary kras, river carver; świadomie nieprzenoszone.",
+      "license": "Kod użytkownika — pominięty zgodnie z wyraźnym poleceniem.",
+      "version": "Archiwalna wersja 26.3",
+      "source": "https://github.com/AntoniSofron/SofronPackGen"
+    }
+  ]
+}

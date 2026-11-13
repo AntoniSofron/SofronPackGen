@@ -1,9 +1,0 @@
-{
-  "type": "minecraft:gradient",
-  "axis": "y",
-  "tiling": "clamp_to_edge",
-  "from_coordinate": -64,
-  "to_coordinate": 320,
-  "from_value": 6,
-  "to_value": -10
-}
