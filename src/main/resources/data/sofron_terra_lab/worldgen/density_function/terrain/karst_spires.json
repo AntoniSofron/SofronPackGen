@@ -1,0 +1,74 @@
+{
+  "type": "minecraft:mul",
+  "left": 0.33,
+  "right": {
+    "type": "minecraft:mul",
+    "left": "sofron_terra_lab:terrain/karst_region",
+    "right": {
+      "type": "minecraft:mul",
+      "left": "sofron_terra_lab:terrain/karst_pillar_footprint",
+      "right": {
+        "type": "minecraft:mul",
+        "left": {
+          "type": "minecraft:mul",
+          "left": {
+            "type": "minecraft:gradient",
+            "axis": "y",
+            "tiling": "clamp_to_edge",
+            "from_coordinate": 63,
+            "to_coordinate": 90,
+            "from_value": 0,
+            "to_value": 1
+          },
+          "right": {
+            "type": "minecraft:gradient",
+            "axis": "y",
+            "tiling": "clamp_to_edge",
+            "from_coordinate": 125,
+            "to_coordinate": 205,
+            "from_value": 1,
+            "to_value": 0
+          }
+        },
+        "right": {
+          "type": "minecraft:spline",
+          "spline": {
+            "coordinate": "minecraft:overworld/final_density",
+            "points": [
+              {
+                "location": -2,
+                "value": 0,
+                "derivative": 0
+              },
+              {
+                "location": -0.55,
+                "value": 0,
+                "derivative": 0
+              },
+              {
+                "location": -0.16,
+                "value": 0.8,
+                "derivative": 0
+              },
+              {
+                "location": 0.12,
+                "value": 1,
+                "derivative": 0
+              },
+              {
+                "location": 0.5,
+                "value": 0.35,
+                "derivative": 0
+              },
+              {
+                "location": 2,
+                "value": 0,
+                "derivative": 0
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

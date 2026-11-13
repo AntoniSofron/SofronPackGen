@@ -27,3 +27,5 @@ processResources {
 tasks.withType(JavaCompile).configureEach {
     options.release = 25
 }
+
+apply from: 'gradle/approved-worldgen.gradle'

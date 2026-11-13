@@ -1,0 +1,70 @@
+{
+  "type": "minecraft:mul",
+  "left": -0.19,
+  "right": {
+    "type": "minecraft:mul",
+    "left": "sofron_terra_lab:terrain/deep_ocean_region",
+    "right": {
+      "type": "minecraft:mul",
+      "left": {
+        "type": "minecraft:spline",
+        "spline": {
+          "coordinate": {
+            "type": "minecraft:noise",
+            "noise": "sofron_terra_lab:ocean_trench",
+            "xz_scale": 0.18,
+            "y_scale": 0
+          },
+          "points": [
+            {
+              "location": -1,
+              "value": 0.1,
+              "derivative": 0
+            },
+            {
+              "location": -0.3,
+              "value": 0.35,
+              "derivative": 0
+            },
+            {
+              "location": 0.1,
+              "value": 0.6,
+              "derivative": 0
+            },
+            {
+              "location": 0.5,
+              "value": 1,
+              "derivative": 0
+            },
+            {
+              "location": 1,
+              "value": 1,
+              "derivative": 0
+            }
+          ]
+        }
+      },
+      "right": {
+        "type": "minecraft:mul",
+        "left": {
+          "type": "minecraft:gradient",
+          "axis": "y",
+          "tiling": "clamp_to_edge",
+          "from_coordinate": -64,
+          "to_coordinate": -5,
+          "from_value": 0,
+          "to_value": 1
+        },
+        "right": {
+          "type": "minecraft:gradient",
+          "axis": "y",
+          "tiling": "clamp_to_edge",
+          "from_coordinate": 25,
+          "to_coordinate": 65,
+          "from_value": 1,
+          "to_value": 0
+        }
+      }
+    }
+  }
+}

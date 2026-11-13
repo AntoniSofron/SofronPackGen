@@ -1,42 +1,43 @@
-# Sofron Terra Lab — clean-room worldgen project
+# Sofron Terra Lab — Minecraft Java 26.3 / Fabric
 
-**Minecraft Java 26.3 · Fabric · Java 25**
+**Clean-room terrain generation, version 0.2.0-alpha.1.** Based on the owner's **approved 84-parameter JSON specification**, not on old SofronPackGen terrain code.
 
-This repository branch starts from a **new Git tree, not from existing SofronPackGen source code**. It includes an original visual decision sheet and buildable mod scaffold. No old SofronPackGen terrain, karst, biomes, structures, or assets are imported.
+This branch contains a **real, active Overworld density-function generator**. It is not the earlier vanilla-only design scaffold.
 
-## Otwórz na iPhonie bez pobierania plików
+## Your approved settings
 
-W aplikacji ChatGPT podgląd plików `.html`, `.md` i `.xlsx` może nie działać. Korzystaj z linków internetowych:
+- [Exact approved specification (84 settings)](config/approved-worldgen-spec.json).
+- [Original visual configurator](design/Sofron_Terra_Lab_Konfigurator.html) and [analysis of 11 reference mods](docs/ANALIZA_MODOW.md).
+- [Current terrain architecture and feature implementation limits](docs/TERRAIN_ARCHITECTURE.md).
+- [Transparent status of all 84 settings](docs/PARAMETER_COVERAGE.md).
 
-- [Konfigurator interaktywny — przez podgląd HTML](https://rawcdn.githack.com/AntoniSofron/SofronPackGen/d0b5642495e9d7ca47594648b88bc6b8ad7943c7/design/Sofron_Terra_Lab_Konfigurator.html) (publiczny serwis zewnętrzny; może wymagać potwierdzenia strony).
-- [Arkusz 84 pytań — wersja mobilna](https://rawcdn.githack.com/AntoniSofron/SofronPackGen/d0b5642495e9d7ca47594648b88bc6b8ad7943c7/design/Arkusz_84_Pytania.html).
-- [Analiza 11 modów — czytaj jako GitHub Markdown](docs/ANALIZA_MODOW.md).
-- [Arkusz CSV dla Excela](design/PYTANIA_I_USTAWIENIA.csv).
+**Fixed requirements:** Minecraft 26.3, Fabric, only original Vanilla biomes and structures, no reused old SofronPackGen generator, sea level Y=64 and normal ceiling Y=320 (generated blocks through Y=319). Vanilla cave-biome routing and the native fluid/aquifer mechanisms remain active.
 
-Dodałem workflow `.github/workflows/publish-configurator.yml` do publikacji na **GitHub Pages**. Właściciel repozytorium może jednorazowo włączyć **Settings → Pages → Source: GitHub Actions**. Gdy publikacja zakończy się pomyślnie, oficjalny adres strony będzie `https://antonisofron.github.io/SofronPackGen/`. Nie udostępniaj tego adresu jako działającego, dopóki nie potwierdzisz wyniku deployu.
+## Active terrain features
 
-Konfigurator zapamiętuje ustawienia lokalnie w przeglądarce i umożliwia skopiowanie całego JSON (przycisk **Kopiuj JSON**) nawet bez pobrania pliku.
+New, original density functions shape a 26.3 world with inland mountain belts, erosion-aware ridges, old Beta-style cliff and overhang variation, softer Classic valleys, smaller rough hills, scarce clustered karst-like columns, irregular shallow coastal islets, and somewhat deeper offshore trenches. Vanilla surface materials, biomes, caves, rivers and structure definitions remain intact.
 
-## Start with the owner’s design
+**This is an experimental alpha, not completion of all 84 settings.** The real drainage-basin solver, navigable downhill river network, tributary connections, underground flowing rivers, independent inland lakes and waterfalls, measured 60% land ratio, exact summit Y256 and extensive multi-seed terrain calibration are still outstanding. The JSON is a requirements document, not a claim that all sliders are implemented.
 
-1. Open [the offline interactive configurator](design/Sofron_Terra_Lab_Konfigurator.html).
-2. Choose among **84 settings in 11 areas**, with live **illustrative** previews of continents, mountains, karst and rivers and source-mod comparison diagrams.
-3. Export `sofron-worldgen-spec.json` and approve it. Only then implement the actual terrain generator.
-4. Research audit: [11 packs studied](docs/ANALIZA_MODOW.md); implementation contract: [NEXT_IMPLEMENTATION.md](docs/NEXT_IMPLEMENTATION.md).
+## Windows: one-click build and installation
 
-**Current JAR is a design-stage scaffold. It does not yet change world generation!** The vanilla biome and structure requirements are intentionally preserved. The HTML previews are *concept illustrations*, not actual rendered Minecraft chunks.
+1. Install Minecraft 26.3 with **Fabric Loader 0.20.1+**, and **Fabric API 0.166.2+26.3**.
+2. Install **Java JDK 25** and ensure `java` is on PATH.
+3. Download the code from this implementation branch and extract it (not the previous design-only branch).
+4. Double-click **`BUILD_AND_INSTALL.bat`** to automatically download the official Gradle 9.5.0 distribution, verify SHA-256, compile and install the JAR into `%APPDATA%\\.minecraft\\mods`.
+5. The installer moves older **Sofron** generator JARs to a backup folder so two conflicting Overworld generators do not run simultaneously. It does not uninstall other mods. `BUILD.bat` compiles without installing.
+6. Back up existing worlds and **create a NEW world**; old generated chunks cannot be regenerated by updating the mod.
 
-## One-click Windows build
+For testing terrain appearance, temporarily disable Distant Horizons and any other world-generation overhaul. Distant Horizons should be enabled only after real chunk generation looks correct.
 
-- `BUILD.bat` — downloads verified Gradle 9.5.0 if required, compiles the scaffold and produces JAR.
-- `BUILD_AND_INSTALL.bat` — also copies the JAR to `%APPDATA%\.minecraft\mods` (or a mods folder passed as first argument).
-- Requirements: Java JDK 25 on PATH, internet for first Gradle + Minecraft dependencies.
-- Minecraft runtime requires Fabric Loader 0.20.1+ and Fabric API 0.166.2+26.3.
+## Verification
+
+Github Actions runs structural validation of the exact 84 settings, verifies the distributable JAR contains the Overworld noise settings, and starts an actual Minecraft 26.3 server with the `sofron_terra_lab` data pack enabled. **Three seeds have passed**: `3880636525852909587`, `123456789`, `-987654321`. Tests verified water blocks at Y54 and Y63 in sampled deep-ocean biome coordinates and the absence of Deep Dark at selected high-Y positions. This does not establish correct land coverage, island quality, river navigability or village placement.
+
+Do not treat a build-only green check as proof that every worldgen setting is implemented. For results and known issues, see [docs/TERRAIN_ARCHITECTURE.md](docs/TERRAIN_ARCHITECTURE.md).
 
 ## Licensing
 
-Third-party code/assets were **not** copied. Biomes O' Plenty is ARR, Stardust Labs content has redistribution restrictions, and Cascades' current license is CC BY-NC-ND. Reference patterns are described at a high level in our original research notes.
+All original code and datapack definitions belong to this project. No third-party source code, resources, biome JSON, structure JSON or texture assets have been copied from Tectonic, Terralith, Biomes O' Plenty, Cascades, Moderner Beta or other reviewed packages. References were studied for design principles and compatibility only.
 
-## CI
-
-Github Actions validates the interactive specification catalog and compiles the fresh mod; a full integrated worldgen test will be required once actual generation is implemented.
+**Current PR:** [Sofron Terra Lab — approved configuration implementation](https://github.com/AntoniSofron/SofronPackGen/pull/26).

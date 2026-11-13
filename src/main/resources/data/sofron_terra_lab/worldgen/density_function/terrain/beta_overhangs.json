@@ -1,0 +1,42 @@
+{
+  "type": "minecraft:mul",
+  "left": 0.17,
+  "right": {
+    "type": "minecraft:mul",
+    "left": "sofron_terra_lab:terrain/land_gate",
+    "right": {
+      "type": "minecraft:mul",
+      "left": "sofron_terra_lab:terrain/beta_region",
+      "right": {
+        "type": "minecraft:mul",
+        "left": {
+          "type": "minecraft:mul",
+          "left": {
+            "type": "minecraft:gradient",
+            "axis": "y",
+            "tiling": "clamp_to_edge",
+            "from_coordinate": 62,
+            "to_coordinate": 93,
+            "from_value": 0,
+            "to_value": 1
+          },
+          "right": {
+            "type": "minecraft:gradient",
+            "axis": "y",
+            "tiling": "clamp_to_edge",
+            "from_coordinate": 155,
+            "to_coordinate": 238,
+            "from_value": 1,
+            "to_value": 0
+          }
+        },
+        "right": {
+          "type": "minecraft:noise",
+          "noise": "sofron_terra_lab:beta_overhang",
+          "xz_scale": 0.55,
+          "y_scale": 0.6
+        }
+      }
+    }
+  }
+}

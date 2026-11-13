@@ -18,5 +18,5 @@ for q in qs:
 assert next(q["default"] for q in qs if q["key"]=="vanillaBiomesOnly")
 assert next(q["default"] for q in qs if q["key"]=="vanillaStructuresOnly")
 assert Path("design/Sofron_Terra_Lab_Konfigurator.html").exists()
-assert not Path("src/main/resources/data/minecraft/worldgen/noise_settings/overworld.json").exists(), "Do not alter worldgen before specs are approved"
-print(f"PASS: {len(qs)} editable design decisions; vanilla biome/structure constraints; no old worldgen")
+assert Path("src/main/resources/data/minecraft/worldgen/noise_settings/overworld.json").exists(), "Approved configuration must activate real worldgen"
+print(f"PASS: {len(qs)} choices; vanilla biomes and structures; approved worldgen enabled")
