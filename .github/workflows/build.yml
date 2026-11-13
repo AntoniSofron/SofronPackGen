@@ -20,7 +20,9 @@ jobs:
           python3 scripts/validate_design.py
           python3 scripts/validate_implementation.py
       - name: Compile real Minecraft 26.3 Fabric worldgen
-        run: gradle --no-daemon build --stacktrace
+        run: |
+          gradle --no-daemon build --stacktrace
+          python3 scripts/check_grounded_mountains.py
       - name: Verify distributable Fabric JAR and real overworld data pack
         run: |
           python3 - <<'PY'
