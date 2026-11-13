@@ -27,7 +27,7 @@ for q in questions:
     else:
         assert q["type"] == "bool" and isinstance(value, bool)
 assert approved["vanillaBiomesOnly"] and approved["vanillaStructuresOnly"]
-assert approved["seaLevel"] == 64 and approved["worldHeight"] == "320"
+assert approved["seaLevel"] == 63 and approved["worldHeight"] == "320"
 
 data = {}
 for path in ROOT.rglob("*.json"):
@@ -58,7 +58,7 @@ for path, obj in data.items():
     walk(obj, path)
 
 s = data[ROOT / "minecraft/worldgen/noise_settings/overworld.json"]
-assert s["sea_level"] == 64
+assert s["sea_level"] == 63
 assert s["noise"] == {"min_y": -64, "height": 384}
 assert s["default_fluid"] == "minecraft:water"
 assert s["material_rule"] == "minecraft:overworld"
@@ -68,12 +68,25 @@ assert s["noise_router"]["continents"] == "minecraft:overworld/continents"
 assert s["noise_router"]["chunk_surface_level"] == "minecraft:overworld/chunk_surface_level"
 assert s["aquifers"]["surface_level"] == "minecraft:overworld/chunk_surface_level"
 final = data[ROOT / "sofron_terra_lab/worldgen/density_function/terrain/final_density.json"]
-assert final["left"] == "minecraft:overworld/final_density"
-assert final["right"] == "sofron_terra_lab:terrain/sculpted_relief"
+assert final["type"] == "minecraft:max"
+assert final["left"]["type"] == "minecraft:add"
+assert final["left"]["left"] == "minecraft:overworld/final_density"
+assert final["left"]["right"] == "sofron_terra_lab:terrain/sculpted_relief"
+assert final["right"] == "sofron_terra_lab:terrain/mountain_ranges"
 land_gate = data[ROOT / "sofron_terra_lab/worldgen/density_function/terrain/land_gate.json"]
 assert all(p["value"] == 0 for p in land_gate["spline"]["points"] if p["location"] <= -0.12)
 ocean = data[ROOT / "sofron_terra_lab/worldgen/density_function/terrain/ocean_trenches.json"]
 assert ocean["type"] == "minecraft:mul" and ocean["left"] < 0
+core = data[ROOT / "sofron_terra_lab/worldgen/density_function/terrain/mountain_ranges.json"]
+assert core["type"] == "minecraft:min"
+alt = core["left"]
+assert alt["type"] == "minecraft:add"
+assert alt["left"]["type"] == "minecraft:gradient" and alt["left"]["axis"] == "y"
+assert alt["left"]["from_value"] > alt["left"]["to_value"], "Mountain mass must descend with Y"
+assert alt["right"]["right"] == "sofron_terra_lab:terrain/mountain_strength"
+assert core["right"]["type"] == "minecraft:gradient" and core["right"]["to_coordinate"] <= 64
+for key in ("surface_envelope", "beta_overhangs", "karst_spires", "upland_lift"):
+    assert key in {p.stem for p in data}, key
 assert not any(('worldgen', 'biome') == p.parts[-3:-1] for p in data)
 assert not any(p.parts[-3:-1] in {('worldgen','structure'), ('worldgen','structure_set')} for p in data)
 assert not any("sofron_pack" in p.parts for p in data), "Legacy namespace prohibited"
