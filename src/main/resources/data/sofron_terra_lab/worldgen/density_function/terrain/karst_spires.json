@@ -15,8 +15,8 @@
             "type": "minecraft:gradient",
             "axis": "y",
             "tiling": "clamp_to_edge",
-            "from_coordinate": 63,
-            "to_coordinate": 90,
+            "from_coordinate": 60,
+            "to_coordinate": 70,
             "from_value": 0,
             "to_value": 1
           },
@@ -24,8 +24,8 @@
             "type": "minecraft:gradient",
             "axis": "y",
             "tiling": "clamp_to_edge",
-            "from_coordinate": 125,
-            "to_coordinate": 205,
+            "from_coordinate": 132,
+            "to_coordinate": 198,
             "from_value": 1,
             "to_value": 0
           }
