@@ -16,10 +16,12 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public final class BirchColors implements ClientModInitializer {
     private static final int VANILLA = 0xFF80A755;
+    private static final int MIXED_FOREST = 0xFF92BF00;
     private static final ColorResolver BIRCH = (biome, x, z) -> {
         var level = Minecraft.getInstance().level;
         if (level != null) {
             var key = level.registryAccess().lookupOrThrow(Registries.BIOME).getResourceKey(biome);
+            if (key.isPresent() && key.get().equals(Biomes.FOREST)) return MIXED_FOREST;
             if (key.isPresent() && (key.get().equals(Biomes.BIRCH_FOREST)
                     || key.get().equals(Biomes.OLD_GROWTH_BIRCH_FOREST))) return biome.getFoliageColor();
         }
