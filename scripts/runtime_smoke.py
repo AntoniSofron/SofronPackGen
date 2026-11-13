@@ -136,24 +136,29 @@ def main():
             ocean_samples = []
             for dx, dz in ((0,0),(8,8),(-8,-8),(16,0),(0,16)):
                 px, pz = x+dx, z+dz
-                biome63, biome_msg = passes(f"execute if biome {px} 63 {pz} minecraft:deep_ocean")
+                biome62, biome_msg = passes(f"execute if biome {px} 62 {pz} minecraft:deep_ocean")
                 water54, msg54 = passes(f"execute if block {px} 54 {pz} minecraft:water")
-                water63, msg63 = passes(f"execute if block {px} 63 {pz} minecraft:water")
-                print(f"sample ({px},{pz}) biome at Y63={biome63}: {biome_msg}; water Y54={water54} ({msg54}); Y63={water63} ({msg63})", flush=True)
-                if biome63:
-                    ocean_samples.append((px, pz, water54, water63))
-            print("First deep-ocean water/solid column:", flush=True)
-            for y in range(49, 67):
+                water62, msg62 = passes(f"execute if block {px} 62 {pz} minecraft:water")
+                air63, msg63 = passes(f"execute if block {px} 63 {pz} minecraft:air")
+                print(f"sample ({px},{pz}) deep-ocean Y62={biome62}; "
+                      f"water Y54={water54}, Y62={water62}; air Y63={air63}; "
+                      f"responses={biome_msg};{msg54};{msg62};{msg63}", flush=True)
+                if biome62:
+                    ocean_samples.append((px, pz, water54, water62, air63))
+            print("First deep-ocean water/solid column (sea_level=63):", flush=True)
+            for y in range(56, 66):
                 found = []
-                for block in ("water", "air", "stone", "grass_block", "dirt", "ice", "snow_block"):
+                for block in ("water", "air", "stone", "grass_block", "dirt", "ice"):
                     yes, _ = passes(f"execute if block {x} {y} {z} minecraft:{block}")
                     if yes: found.append(block)
                 print(f"  Y={y}: {','.join(found) if found else 'other material'}", flush=True)
             if len(ocean_samples) < 2:
-                raise AssertionError(f"Fewer than two verified deep-ocean samples: {ocean_samples}")
-            missing = [(px, pz, w54, w63) for px, pz, w54, w63 in ocean_samples if not (w54 and w63)]
+                raise AssertionError(f"Fewer than two confirmed deep-ocean samples: {ocean_samples}")
+            missing = [(px, pz, w54, w62, a63) for px, pz, w54, w62, a63 in ocean_samples
+                       if not (w54 and w62 and a63)]
             if missing:
-                raise AssertionError(f"Unfilled deep ocean: {missing}; expected water at BOTH Y54 and Y63.")
+                raise AssertionError(f"Sea level mismatch or dry deep ocean: {missing}. "
+                                     "Expected water Y54/Y62 and air Y63 (sea_level=63).")
             # Verify Vanilla depth routing never chooses the Deep Dark high above the surface.
             above_samples = ((0, 160, 0), (256, 160, 256), (-256, 160, -256))
             for lx, ly, lz in above_samples:
@@ -161,7 +166,7 @@ def main():
                 print(f"Deep Dark biome at open-sky Y={ly} ({lx},{lz}): {is_deep} ({answer})", flush=True)
                 if is_deep:
                     raise AssertionError(f"Deep Dark biome mapped to high sky / surface at {(lx,ly,lz)}")
-            print("PASS: server loads Terra Lab worldgen; ocean water + upper-level biome safety verified.", flush=True)
+            print("PASS: sea Y63 (water through Y62), actual ocean blocks and upper-level biome safety verified.", flush=True)
         finally:
             try:
                 rcon("stop")
