@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "id": "sofron_terra_lab",
   "version": "${version}",
-  "name": "Sofron Terra Lab — design scaffold",
-  "description": "Clean-room Minecraft 26.3 Fabric mod scaffold; terrain modules pending owner-approved choices.",
+  "name": "Sofron Terra Lab — Minecraft 26.3 world generator",
+  "description": "Experimental clean-room terrain generator: Beta/Cascades-style mountain belts, cliffs, coastal islands, karst and valleys; Vanilla biomes and structures.",
   "authors": [
     "SofronPackGen contributors"
   ],
