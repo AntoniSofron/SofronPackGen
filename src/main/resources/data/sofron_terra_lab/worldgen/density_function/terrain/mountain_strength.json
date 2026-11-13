@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:mul",
+  "left": "sofron_terra_lab:terrain/land_gate",
+  "right": {
+    "type": "minecraft:mul",
+    "left": "sofron_terra_lab:terrain/mountain_region",
+    "right": "sofron_terra_lab:terrain/mountain_profile"
+  }
+}
