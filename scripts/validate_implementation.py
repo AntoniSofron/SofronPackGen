@@ -52,7 +52,10 @@ def walk(node, path):
     elif isinstance(node, list):
         for value in node: walk(value, path)
     elif isinstance(node, str) and node.startswith("sofron_terra_lab:"):
-        if "/worldgen/noise/" not in str(path):
+        # Only density-function JSON may reference the custom density graph.
+        # New Vanilla 26.3 worldgen/feature and placed_feature IDs are checked
+        # separately below; they are NOT density functions.
+        if "worldgen/density_function" in path.as_posix() or "worldgen/noise_settings" in path.as_posix():
             check_ref(node, "density_function", path)
 for path, obj in data.items():
     walk(obj, path)
@@ -99,6 +102,32 @@ assert swamp['effects']['water_color'] == '#68834D'
 assert swamp['effects']['grass_color_modifier'] == 'none'
 assert swamp['attributes']['minecraft:visual/sky_color'] == '#98C9D9'
 assert len(swamp['features']) == 11
+vegetation = swamp['features'][9]
+assert vegetation.count('minecraft:trees_swamp') == 1
+assert vegetation.count('minecraft:patch_waterlily') == 1
+assert vegetation.count('sofron_terra_lab:swamp_willows') == 1
+assert vegetation.index('sofron_terra_lab:swamp_willows') == vegetation.index('minecraft:trees_swamp') + 1
+placed = data[ROOT / 'sofron_terra_lab/worldgen/placed_feature/swamp_willows.json']
+assert placed['feature'] == 'sofron_terra_lab:swamp_willows'
+assert placed['placement'] == [
+    {'type': 'minecraft:count', 'count': 5},
+    {'type': 'minecraft:in_square'},
+    {'type': 'minecraft:surface_water_depth_filter', 'max_water_depth': 2},
+    {'type': 'minecraft:heightmap', 'heightmap': 'OCEAN_FLOOR'},
+    {'type': 'minecraft:biome'},
+    {'type': 'minecraft:block_predicate_filter', 'predicate': {
+        'type': 'minecraft:would_survive', 'state': 'minecraft:oak_sapling'}},
+]
+feature = data[ROOT / 'sofron_terra_lab/worldgen/feature/swamp_willows.json']
+assert feature['type'] == 'minecraft:template'
+assert feature['processors'] == {'processors': []}
+assert len(feature['templates']) == 5
+assert {t['data']['id'] for t in feature['templates']} == {
+    f'sofron_terra_lab:swamp_willow_{i}' for i in range(1, 6)
+}
+for i in range(1, 6):
+    assert (ROOT / f'sofron_terra_lab/structure/swamp_willow_{i}.nbt').exists()
+
 assert swamp['carvers'] == ['minecraft:cave','minecraft:cave_extra_underground','minecraft:canyon']
 assert swamp['temperature'] == 0.8 and swamp['downfall'] == 0.9
 
