@@ -81,7 +81,7 @@
 | Powierzchnia i klimat | `biomeSize` | 50 | Do implementacji lub kalibracji |
 | Powierzchnia i klimat | `vanillaBiomesOnly` | true | **Obowiązuje** |
 | Wydajność i zgodność | `vanillaStructuresOnly` | true | **Obowiązuje** |
-| Wydajność i zgodność | `seaLevel` | 64 | **Obowiązuje** |
+| Wydajność i zgodność | `seaLevel` | 63 | **Obowiązuje** |
 | Wydajność i zgodność | `worldHeight` | 320 | **Obowiązuje** |
 | Wydajność i zgodność | `performanceProfile` | quality | Do implementacji lub kalibracji |
 | Wydajność i zgodność | `compatibility` | fabric26.3 | **Obowiązuje** |
@@ -105,3 +105,5 @@
 3. Wypełnienie rzek/jezior rzeczywistymi blokami wody, również powyżej Y64; stabilny przepływ i ujścia.
 4. Podziemne odcinki rzek, wodospady oraz jaskinie w górach, bez podziemnych biomów na otwartym niebie.
 5. Rzeczywiste filary krasowe i Alpha Islands, pomiary gór, stromości oraz rozmieszczenia obiektów Vanilla.
+
+**Aktualizacja 13.11.2026:** `seaLevel` ustawiono na **63**. `peakHeight=256` jest docelową wysokością wysokich szczytów, realizowaną teraz przez rdzeń ciągłej górskiej bryły, a nie przez wysokościową wyspę. Dodatkowa funkcja `upland_lift` zwiększa wyniesienie lądów. Algorytm pełnych połączonych rzek nadal pozostaje do zbudowania.

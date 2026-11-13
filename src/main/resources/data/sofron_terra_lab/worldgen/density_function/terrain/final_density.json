@@ -1,5 +1,9 @@
 {
-  "type": "minecraft:add",
-  "left": "minecraft:overworld/final_density",
-  "right": "sofron_terra_lab:terrain/sculpted_relief"
+  "type": "minecraft:max",
+  "left": {
+    "type": "minecraft:add",
+    "left": "minecraft:overworld/final_density",
+    "right": "sofron_terra_lab:terrain/sculpted_relief"
+  },
+  "right": "sofron_terra_lab:terrain/mountain_ranges"
 }

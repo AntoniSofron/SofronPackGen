@@ -13,8 +13,8 @@
     "type": "minecraft:gradient",
     "axis": "y",
     "tiling": "clamp_to_edge",
-    "from_coordinate": 190,
-    "to_coordinate": 302,
+    "from_coordinate": 150,
+    "to_coordinate": 215,
     "from_value": 1,
     "to_value": 0
   }

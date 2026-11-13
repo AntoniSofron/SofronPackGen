@@ -62,7 +62,7 @@
     "temperature": "minecraft:overworld/temperature",
     "vegetation": "minecraft:overworld/vegetation"
   },
-  "sea_level": 64,
+  "sea_level": 63,
   "spawn_target": [
     {
       "minecraft:overworld/continents": [

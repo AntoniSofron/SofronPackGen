@@ -1,17 +1,29 @@
 {
-  "type": "minecraft:mul",
-  "left": "sofron_terra_lab:terrain/land_gate",
-  "right": {
-    "type": "minecraft:mul",
-    "left": "sofron_terra_lab:terrain/surface_envelope",
+  "type": "minecraft:min",
+  "left": {
+    "type": "minecraft:add",
+    "left": {
+      "type": "minecraft:gradient",
+      "axis": "y",
+      "tiling": "clamp_to_edge",
+      "from_coordinate": 80,
+      "to_coordinate": 320,
+      "from_value": -0.04,
+      "to_value": -1.24
+    },
     "right": {
       "type": "minecraft:mul",
-      "left": 0.5,
-      "right": {
-        "type": "minecraft:mul",
-        "left": "sofron_terra_lab:terrain/mountain_region",
-        "right": "sofron_terra_lab:terrain/mountain_profile"
-      }
+      "left": 0.92,
+      "right": "sofron_terra_lab:terrain/mountain_strength"
     }
+  },
+  "right": {
+    "type": "minecraft:gradient",
+    "axis": "y",
+    "tiling": "clamp_to_edge",
+    "from_coordinate": 24,
+    "to_coordinate": 64,
+    "from_value": -0.4,
+    "to_value": 1.4
   }
 }

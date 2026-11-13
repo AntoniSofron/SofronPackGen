@@ -136,24 +136,29 @@ def main():
             ocean_samples = []
             for dx, dz in ((0,0),(8,8),(-8,-8),(16,0),(0,16)):
                 px, pz = x+dx, z+dz
-                biome63, biome_msg = passes(f"execute if biome {px} 63 {pz} minecraft:deep_ocean")
+                biome62, biome_msg = passes(f"execute if biome {px} 62 {pz} minecraft:deep_ocean")
                 water54, msg54 = passes(f"execute if block {px} 54 {pz} minecraft:water")
-                water63, msg63 = passes(f"execute if block {px} 63 {pz} minecraft:water")
-                print(f"sample ({px},{pz}) biome at Y63={biome63}: {biome_msg}; water Y54={water54} ({msg54}); Y63={water63} ({msg63})", flush=True)
-                if biome63:
-                    ocean_samples.append((px, pz, water54, water63))
-            print("First deep-ocean water/solid column:", flush=True)
-            for y in range(49, 67):
+                water62, msg62 = passes(f"execute if block {px} 62 {pz} minecraft:water")
+                air63, msg63 = passes(f"execute if block {px} 63 {pz} minecraft:air")
+                print(f"sample ({px},{pz}) deep-ocean Y62={biome62}; "
+                      f"water Y54={water54}, Y62={water62}; air Y63={air63}; "
+                      f"responses={biome_msg};{msg54};{msg62};{msg63}", flush=True)
+                if biome62:
+                    ocean_samples.append((px, pz, water54, water62, air63))
+            print("First deep-ocean water/solid column (sea_level=63):", flush=True)
+            for y in range(56, 66):
                 found = []
-                for block in ("water", "air", "stone", "grass_block", "dirt", "ice", "snow_block"):
+                for block in ("water", "air", "stone", "grass_block", "dirt", "ice"):
                     yes, _ = passes(f"execute if block {x} {y} {z} minecraft:{block}")
                     if yes: found.append(block)
                 print(f"  Y={y}: {','.join(found) if found else 'other material'}", flush=True)
             if len(ocean_samples) < 2:
-                raise AssertionError(f"Fewer than two verified deep-ocean samples: {ocean_samples}")
-            missing = [(px, pz, w54, w63) for px, pz, w54, w63 in ocean_samples if not (w54 and w63)]
+                raise AssertionError(f"Fewer than two confirmed deep-ocean samples: {ocean_samples}")
+            missing = [(px, pz, w54, w62, a63) for px, pz, w54, w62, a63 in ocean_samples
+                       if not (w54 and w62 and a63)]
             if missing:
-                raise AssertionError(f"Unfilled deep ocean: {missing}; expected water at BOTH Y54 and Y63.")
+                raise AssertionError(f"Sea level mismatch or dry deep ocean: {missing}. "
+                                     "Expected water Y54/Y62 and air Y63 (sea_level=63).")
             # Verify Vanilla depth routing never chooses the Deep Dark high above the surface.
             above_samples = ((0, 160, 0), (256, 160, 256), (-256, 160, -256))
             for lx, ly, lz in above_samples:
@@ -161,7 +166,50 @@ def main():
                 print(f"Deep Dark biome at open-sky Y={ly} ({lx},{lz}): {is_deep} ({answer})", flush=True)
                 if is_deep:
                     raise AssertionError(f"Deep Dark biome mapped to high sky / surface at {(lx,ly,lz)}")
-            print("PASS: server loads Terra Lab worldgen; ocean water + upper-level biome safety verified.", flush=True)
+            # Smoke-test mountain geometry on actual chunks, not on LOD silhouettes.
+            # A single natural arch may have air directly below it; a WHOLE CLUSTER
+            # of high rocky columns with no lower support is an accidental sky island.
+            peaks = rcon("locate biome minecraft:jagged_peaks")
+            print("Locate Vanilla jagged_peaks:", peaks, flush=True)
+            peak_match = re.search(r"\[\s*(-?\d+)\s*,\s*(?:~|-?\d+)\s*,\s*(-?\d+)\s*\]", peaks)
+            if peak_match:
+                px, pz = map(int, peak_match.groups())
+                spots = [(px+dx, pz+dz) for dx, dz in
+                    ((0,0),(16,0),(-16,0),(0,16),(0,-16),(32,32),(-32,-32),(-32,32),(32,-32))]
+                for sx, sz in spots:
+                    rcon(f"forceload add {sx} {sz}")
+                time.sleep(5)
+                def is_solid(sx, y, sz):
+                    yes, _ = passes(
+                        f"execute unless block {sx} {y} {sz} minecraft:air "
+                        f"unless block {sx} {y} {sz} minecraft:cave_air "
+                        f"unless block {sx} {y} {sz} minecraft:void_air")
+                    return yes
+                tall, unsupported, height_profiles = [], [], []
+                for sx, sz in spots:
+                    # Surface height estimate from *actual generated blocks*.
+                    # Unlike Distant Horizons, these are server block queries.
+                    top = next((y for y in range(288, 79, -8)
+                                if is_solid(sx, y, sz)), None)
+                    height_profiles.append((sx, sz, top))
+                    if top is None or top < 208:
+                        continue
+                    supports = [y for y in (112, 144, 176, 192)
+                                if is_solid(sx, y, sz)]
+                    tall.append((sx, sz, top, supports))
+                    if not supports:
+                        unsupported.append((sx, sz, top))
+                print(f"Jagged peaks real-block height samples: {height_profiles}", flush=True)
+                print(f"Mountain columns above Y208: {tall}", flush=True)
+                if len(unsupported) >= 3:
+                    raise AssertionError(
+                        f"Large cluster of unsupported high columns near jagged_peaks: {unsupported}. "
+                        "Likely floating landmass, not a connected mountain.")
+                print(f"Mountain continuity probe: {len(tall)} high columns, "
+                      f"{len(unsupported)} isolated single-column overhangs", flush=True)
+            else:
+                print("No jagged_peaks located within the biome lookup radius; mountain-specific runtime probe skipped.", flush=True)
+            print("PASS: sea Y63 (water through Y62), actual ocean blocks and upper-level biome safety verified.", flush=True)
         finally:
             try:
                 rcon("stop")
