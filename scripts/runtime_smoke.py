@@ -153,7 +153,7 @@ def main():
                     rcon(f"forceload add {tx} {tz}")
                     response = rcon(f"place feature sofron_terra_lab:swamp_willows {tx} 80 {tz}")
                     print(f"Willow placed feature test ({tx},{tz}): {response}", flush=True)
-                    if "placed feature" in response.lower() or "success" in response.lower():
+                    if "placed \"sofron_terra_lab:swamp_willows\"" in response.lower():
                         successes += 1
                 if successes == 0:
                     raise AssertionError(
