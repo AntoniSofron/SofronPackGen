@@ -15,9 +15,9 @@ tasks.register("syncApprovedTerrain") {
             throw new GradleException("Unsupported approved configuration")
         }
         def p = root.parameters
-        if (p.seaLevel != 64 || p.worldHeight != "320"
+        if (p.seaLevel != 63 || p.worldHeight != "320"
                 || p.vanillaBiomesOnly != true || p.vanillaStructuresOnly != true) {
-            throw new GradleException("This implementation requires Vanilla biomes/structures, sea Y64, top Y320")
+            throw new GradleException("This implementation requires Vanilla biomes/structures, sea Y63, top Y320")
         }
         def path = { String key ->
             file("src/main/resources/data/sofron_terra_lab/worldgen/density_function/terrain/${key}.json")
@@ -34,10 +34,20 @@ tasks.register("syncApprovedTerrain") {
         def limit = { Number x, Number lo, Number hi ->
             Math.max(lo.doubleValue(), Math.min(hi.doubleValue(), x.doubleValue()))
         }
-        // World-scale mountains; peakHeight is an *intensity goal*, not a strict Y cutoff.
+        // Build connected mountain mass FROM THE GROUND UP, never a high-altitude
+        // positive density pulse. The zero crossing is approximately peakHeight
+        // at mountain_strength=1 (default: Y256). Gradient is monotone in Y.
         modify("mountain_ranges") { o ->
-            o.right.right.left = limit(0.5 * (p.mountainSteepness / 70.0)
-                * (p.peakHeight / 256.0), 0.0, 0.90)
+            double slope = 0.005 * p.mountainSteepness / 70.0
+            double coefficient = 0.04 + slope * (p.peakHeight - 80.0)
+            o.left.left.from_value = -0.04
+            o.left.left.to_value = -0.04 - 240.0 * slope
+            o.left.right.left = limit(coefficient, 0.04, 2.0)
+        }
+        modify("upland_lift") { o ->
+            // Moderate biome-independent upland relief in addition to tall mountain cores.
+            o.left = limit(0.20 * p.betaInfluence / 80.0
+                * p.erosionStrength / 50.0, 0.0, 0.32)
         }
         modify("mountain_region") { o ->
             o.spline.coordinate.xz_scale = limit(0.14 * 50.0 / Math.max(10, p.rangeWidth), 0.07, 0.45)
@@ -52,8 +62,10 @@ tasks.register("syncApprovedTerrain") {
         }
         modify("beta_overhangs") { o ->
             o.left = limit(0.17 * p.betaInfluence / 80.0 * p.overhangFrequency / 50.0, 0, 0.40)
+            // 3D Beta overhang detail stays LOW: no positive sky-volume near Y256.
+            o.right.right.right.left.right.from_coordinate = 116
             o.right.right.right.left.right.to_coordinate = (int) limit(
-                Math.round(175 + 63 * p.betaCliffHeight / 75.0), 180, 275)
+                Math.round(95 + p.betaCliffHeight), 150, 190)
         }
         modify("beta_region") { o ->
             o.spline.points[2].location = limit(-0.22 + (80 - p.betaCliffFrequency) / 500.0, -0.38, -0.06)
@@ -81,7 +93,7 @@ tasks.register("syncApprovedTerrain") {
             o.right.right.left.spline.points[1].value = limit(
                 0.35 * p.oceanTrenches / 50.0, 0, 0.7)
         }
-        println("[Sofron Terra Lab] Regenerated active mountain, valley, Beta cliff, karst, coastal and ocean density from approved JSON")
+        println("[Sofron Terra Lab] Regenerated connected mountain core (peak Y256 target), uplift, valleys, low Beta details, karst, coast and ocean from approved JSON")
     }
 }
 
