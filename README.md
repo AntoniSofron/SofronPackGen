@@ -9,6 +9,7 @@ This branch contains a **real, active Overworld density-function generator**. It
 - [Exact approved specification (84 settings)](config/approved-worldgen-spec.json).
 - [Original visual configurator](design/Sofron_Terra_Lab_Konfigurator.html) and [analysis of 11 reference mods](docs/ANALIZA_MODOW.md).
 - [Current terrain architecture and feature implementation limits](docs/TERRAIN_ARCHITECTURE.md).
+- [Transparent status of all 84 settings](docs/PARAMETER_COVERAGE.md).
 
 **Fixed requirements:** Minecraft 26.3, Fabric, only original Vanilla biomes and structures, no reused old SofronPackGen generator, sea level Y=64 and normal ceiling Y=320 (generated blocks through Y=319). Vanilla cave-biome routing and the native fluid/aquifer mechanisms remain active.
 
@@ -31,7 +32,7 @@ For testing terrain appearance, temporarily disable Distant Horizons and any oth
 
 ## Verification
 
-Github Actions runs structural validation of the exact 84 settings, verifies the distributable JAR contains the Overworld noise settings, and starts an actual Minecraft 26.3 server with the `sofron_terra_lab` data pack enabled. The test samples real sea-level water blocks and upper-level biome selection on multiple seeds.
+Github Actions runs structural validation of the exact 84 settings, verifies the distributable JAR contains the Overworld noise settings, and starts an actual Minecraft 26.3 server with the `sofron_terra_lab` data pack enabled. **Three seeds have passed**: `3880636525852909587`, `123456789`, `-987654321`. Tests verified water blocks at Y54 and Y63 in sampled deep-ocean biome coordinates and the absence of Deep Dark at selected high-Y positions. This does not establish correct land coverage, island quality, river navigability or village placement.
 
 Do not treat a build-only green check as proof that every worldgen setting is implemented. For results and known issues, see [docs/TERRAIN_ARCHITECTURE.md](docs/TERRAIN_ARCHITECTURE.md).
 
