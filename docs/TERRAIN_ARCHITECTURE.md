@@ -29,3 +29,9 @@ Land fraction 60%, explicit continentScale=20, exact Y256 peak limit, watershed 
 5. Compare fresh world, 4+ seeds, land coverage, ocean depth, height profile, cliffs, karst, and structure integrity.
 
 Runtime tests can reveal codec/geometry problems despite successful JSON parsing. Keep implementation PR as draft until world tests pass.
+
+## Measured CI result (2026-11-13)
+
+The actual Minecraft 26.3 Fabric server started successfully on seeds `3880636525852909587`, `123456789` and `-987654321` with the `sofron_terra_lab` data pack active. All three test jobs found real water blocks at Y54 and Y63 in sampled `minecraft:deep_ocean` positions, and did not find Deep Dark biome high in the air at the sampled coordinates. Compilation and JAR resource tests also passed.
+
+**Important:** this is a limited automated smoke test, not a full visual test or verification of every one of the 84 choices. Images from the configurator remain conceptual illustrations. Hydrology implementation is specifically pending. See `docs/PARAMETER_COVERAGE.md`.
