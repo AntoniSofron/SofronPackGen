@@ -34,6 +34,11 @@ jobs:
               assert m['id']=='sofron_terra_lab',m
               assert 'pl/sofron/terralab/TerraLabMod.class' in z.namelist()
               assert 'data/minecraft/worldgen/noise_settings/overworld.json' in z.namelist()
+              swamp=json.loads(z.read('data/minecraft/worldgen/biome/swamp.json'))
+              assert swamp['effects']['grass_color'] == '#597E38'
+              assert swamp['effects']['foliage_color'] == '#597E38'
+              assert swamp['effects']['water_color'] == '#546242'
+              assert swamp['attributes']['minecraft:visual/sky_color'] == '#A4D4BE'
               assert 'data/sofron_terra_lab/worldgen/density_function/terrain/final_density.json' in z.namelist()
           print('PASS: real worldgen bundled:',jars[0])
           PY
