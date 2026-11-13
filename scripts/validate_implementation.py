@@ -118,12 +118,7 @@ assert placed['placement'] == [
         'type': 'minecraft:would_survive', 'state': 'minecraft:oak_sapling'}},
 ]
 feature = data[ROOT / 'sofron_terra_lab/worldgen/feature/swamp_willows.json']
-assert feature['type'] == 'minecraft:template'
-assert feature['processors'] == {'processors': []}
-assert len(feature['templates']) == 5
-assert {t['data']['id'] for t in feature['templates']} == {
-    f'sofron_terra_lab:swamp_willow_{i}' for i in range(1, 6)
-}
+assert feature['type'] == 'sofron_terra_lab:grounded_willow'
 for i in range(1, 6):
     assert (ROOT / f'sofron_terra_lab/structure/swamp_willow_{i}.nbt').exists()
 
