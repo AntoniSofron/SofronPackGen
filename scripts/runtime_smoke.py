@@ -121,6 +121,24 @@ def main():
             if "sofron_terra_lab" not in packs.lower():
                 raise AssertionError("Sofron Terra Lab data pack is not enabled: the server is testing Vanilla, not our worldgen.")
 
+            # Verify all five user-provided NBT structure templates actually
+            # load in Minecraft 26.3 and place their original oak-wood trunks.
+            # Test above world surface (Y280) to avoid collisions and false positives.
+            if os.environ.get("TERRA_SEED", "3880636525852909587") == "3880636525852909587":
+                root_offsets = [(5, 5, "oak_log"), (4, 3, "oak_wood"),
+                                (5, 6, "oak_log"), (5, 6, "oak_log"),
+                                (5, 5, "oak_log")]
+                for index, (dx, dz, block) in enumerate(root_offsets, start=1):
+                    tx, ty, tz = 32 + index * 32, 280, 32
+                    rcon(f"forceload add {tx} {tz}")
+                    result = rcon(f"place template sofron_terra_lab:swamp_willow_{index} {tx} {ty} {tz}")
+                    probe = rcon(
+                        f"execute if block {tx+dx} {ty} {tz+dz} minecraft:{block}")
+                    print(f"Willow template {index}: {result}; trunk: {probe}", flush=True)
+                    if not ("Test passed" in probe or "count: 1" in probe):
+                        raise AssertionError(
+                            f"Willow variant {index} NBT failed real placement: {result}; {probe}")
+                print("PASS: all five cleaned willow NBT templates place their trunks in Minecraft", flush=True)
             # Locate a real VANILLA deep-ocean biome, not a generated height-map.
             located = rcon("locate biome minecraft:deep_ocean")
             print("Locate deep ocean:", located, flush=True)
