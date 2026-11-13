@@ -19,7 +19,6 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public final class BirchColors implements ClientModInitializer {
     private static final int VANILLA_BIRCH = 0xFF80A755;
-    private static final int VANILLA_SPRUCE = 0xFF619961;
 
     private static boolean isTaiga(Biome biome) {
         var level = Minecraft.getInstance().level;
@@ -42,10 +41,14 @@ public final class BirchColors implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         register(Blocks.BIRCH_LEAVES, VANILLA_BIRCH, BIRCH);
-        register(Blocks.SPRUCE_LEAVES, VANILLA_SPRUCE,
-                (biome, x, z) -> isTaiga(biome) ? biome.getFoliageColor() : VANILLA_SPRUCE);
         register(Blocks.OAK_LEAVES, BlockTintSources.foliage().color(Blocks.OAK_LEAVES.defaultBlockState()),
-                (biome, x, z) -> isTaiga(biome) ? 0xFFBF1C22 : biome.getFoliageColor());
+                (biome, x, z) -> {
+                    var level = Minecraft.getInstance().level;
+                    if (level == null) return biome.getFoliageColor();
+                    var holder = level.registryAccess().lookupOrThrow(Registries.BIOME).wrapAsHolder(biome);
+                    if (holder.is(Biomes.TAIGA)) return 0xFFC34A4E;
+                    return holder.is(SpruceVariants.TAIGAS) ? 0xFFBF1C22 : biome.getFoliageColor();
+                });
     }
 
     private static void register(Block block, int defaultColor, ColorResolver resolver) {
