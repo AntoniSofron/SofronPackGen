@@ -1,0 +1,39 @@
+name: Minecraft 26.3 — Terra Lab ocean and biome runtime
+on:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  world:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '25'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '9.5.0'
+      - name: Build and verify source
+        run: |
+          python3 scripts/validate_implementation.py
+          gradle --no-daemon build
+      - name: Start Minecraft server; confirm datapack and real ocean water at Y54 and Y63
+        timeout-minutes: 8
+        run: python3 scripts/runtime_smoke.py
+      - name: Include game logs on failure
+        if: failure()
+        run: |
+          if [ -f runtime-smoke.log ]; then tail -n 160 runtime-smoke.log; fi
+          if [ -f run/logs/latest.log ]; then tail -n 160 run/logs/latest.log; fi
+      - name: Upload logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: terra-lab-worldgen-runtime-logs
+          path: |
+            runtime-smoke.log
+            run/logs/latest.log
+          if-no-files-found: ignore
+          retention-days: 10
