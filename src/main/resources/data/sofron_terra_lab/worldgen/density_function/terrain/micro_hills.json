@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:mul",
+  "left": 0.065,
+  "right": {
+    "type": "minecraft:mul",
+    "left": "sofron_terra_lab:terrain/land_gate",
+    "right": {
+      "type": "minecraft:mul",
+      "left": "sofron_terra_lab:terrain/surface_envelope",
+      "right": {
+        "type": "minecraft:noise",
+        "noise": "sofron_terra_lab:microrelief",
+        "xz_scale": 0.25,
+        "y_scale": 0
+      }
+    }
+  }
+}

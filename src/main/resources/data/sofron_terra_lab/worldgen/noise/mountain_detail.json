@@ -1,0 +1,13 @@
+{
+  "base_octave": -8,
+  "octave_count": 6,
+  "base_amplitude": 1,
+  "amplitude_modifiers": [
+    1,
+    0.65,
+    0.4225,
+    0.274625,
+    0.178506,
+    0.116029
+  ]
+}

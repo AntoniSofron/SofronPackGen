@@ -1,0 +1,48 @@
+{
+  "type": "minecraft:spline",
+  "spline": {
+    "coordinate": {
+      "type": "minecraft:noise",
+      "noise": "sofron_terra_lab:mountain_region",
+      "xz_scale": 0.14,
+      "y_scale": 0
+    },
+    "points": [
+      {
+        "location": -1,
+        "value": 0,
+        "derivative": 0
+      },
+      {
+        "location": -0.5,
+        "value": 0,
+        "derivative": 0
+      },
+      {
+        "location": -0.26,
+        "value": 0.15,
+        "derivative": 0
+      },
+      {
+        "location": 0,
+        "value": 0.66,
+        "derivative": 0
+      },
+      {
+        "location": 0.2,
+        "value": 1,
+        "derivative": 0
+      },
+      {
+        "location": 0.5,
+        "value": 0.7,
+        "derivative": 0
+      },
+      {
+        "location": 1,
+        "value": 0.25,
+        "derivative": 0
+      }
+    ]
+  }
+}

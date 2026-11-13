@@ -61,19 +61,22 @@ try {
     if ($Install) {
         Write-Host "[4/4] Install to: $ModsDir" -ForegroundColor Cyan
         if (-not (Test-Path $ModsDir)) { New-Item -Path $ModsDir -ItemType Directory -Force | Out-Null }
-        $previous = @(Get-ChildItem -Path $ModsDir -Filter 'Sofron-Terra-Lab-*.jar' -File -ErrorAction SilentlyContinue)
+        # Only our own previous generators are disabled; no unrelated mod is changed.
+        $previous = @(Get-ChildItem -LiteralPath $ModsDir -Filter "*.jar" -File -ErrorAction Stop |
+            Where-Object { $_.Name -match '^(Sofron-Terra-Lab-|Sofron-Pack-Gen|sofron-pack|sofron_pack|26\.3-Sofron-Pack-Gen)' })
         if ($previous.Count -gt 0) {
-            $backup = Join-Path $ModsDir ("sofron_terra_lab_backup_" + (Get-Date -Format "yyyyMMdd_HHmmss"))
+            $backup = Join-Path $ModsDir ("sofron_terra_lab_backup_" + (Get-Date -Format "yyyyMMdd_HHmmss_fff"))
             New-Item -Path $backup -ItemType Directory -Force | Out-Null
-            foreach ($p in $previous) { Move-Item -LiteralPath $p.FullName -Destination $backup -ErrorAction Stop }
+            foreach ($previousJar in $previous) {
+                Write-Host ("Backing up older Sofron generator: " + $previousJar.Name)
+                Move-Item -LiteralPath $previousJar.FullName -Destination $backup -ErrorAction Stop
+            }
         }
-        Copy-Item -LiteralPath $jar.FullName -Destination (Join-Path $ModsDir $jar.Name) -Force
-        $legacy = @(Get-ChildItem -Path $ModsDir -Filter 'Sofron-Pack-Gen*.jar' -File -ErrorAction SilentlyContinue)
-        if ($legacy.Count -gt 0) { Write-Warning "Old SofronPackGen JARs detected. Do not test both worldgen mods together." }
+        Copy-Item -LiteralPath $jar.FullName -Destination (Join-Path $ModsDir $jar.Name) -Force -ErrorAction Stop
         Write-Host "Installed successfully. Fabric API must also be installed in this game profile." -ForegroundColor Green
     }
     else { Write-Host "[4/4] Install skipped (BUILD.bat). Run BUILD_AND_INSTALL.bat if desired." }
-    Write-Warning "This is a DESIGN SCAFFOLD with vanilla world generation; custom generator starts after choices are approved."
+    Write-Host "Active custom 26.3 worldgen is included. Create a NEW world and back up all old saves." -ForegroundColor Yellow
     exit 0
 }
 catch {

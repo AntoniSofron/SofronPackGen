@@ -1,0 +1,63 @@
+{
+  "type": "minecraft:mul",
+  "left": {
+    "type": "minecraft:spline",
+    "spline": {
+      "coordinate": {
+        "type": "minecraft:abs",
+        "input": {
+          "type": "minecraft:noise",
+          "noise": "sofron_terra_lab:karst_pillar",
+          "xz_scale": 0.75,
+          "y_scale": 0
+        }
+      },
+      "points": [
+        {
+          "location": 0,
+          "value": 1,
+          "derivative": 0
+        },
+        {
+          "location": 0.06,
+          "value": 1,
+          "derivative": 0
+        },
+        {
+          "location": 0.14,
+          "value": 0.65,
+          "derivative": 0
+        },
+        {
+          "location": 0.24,
+          "value": 0.12,
+          "derivative": 0
+        },
+        {
+          "location": 0.32,
+          "value": 0,
+          "derivative": 0
+        },
+        {
+          "location": 1,
+          "value": 0,
+          "derivative": 0
+        }
+      ]
+    }
+  },
+  "right": {
+    "type": "minecraft:add",
+    "left": 0.85,
+    "right": {
+      "type": "minecraft:mul",
+      "left": 0.15,
+      "right": {
+        "type": "minecraft:noise",
+        "noise": "sofron_terra_lab:karst_edges",
+        "xz_scale": 1.4,
+        "y_scale": 0.3
+      }
+    }
+  }
+}
