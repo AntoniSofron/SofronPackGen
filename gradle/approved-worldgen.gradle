@@ -44,6 +44,13 @@ tasks.register("syncApprovedTerrain") {
             o.left.left.to_value = -0.04 - 240.0 * slope
             o.left.right.left = limit(coefficient, 0.04, 2.0)
         }
+        modify("mountain_strength") { o ->
+            // The original raw erosion*ridge*region mask was too weak for actual
+            // mountain terrain at ordinary Minecraft biome coordinates.
+            // Normalize by amplifying, then cap at 1 to retain peakHeight as target.
+            o.right.left = limit(3.2 * p.mountainFrequency / 50.0
+                * (100.0 - p.mountainIsolation) / 65.0, 0.5, 4.6)
+        }
         modify("upland_lift") { o ->
             // Moderate biome-independent upland relief in addition to tall mountain cores.
             o.left = limit(0.20 * p.betaInfluence / 80.0
