@@ -1,6 +1,6 @@
 # Sofron Terra Lab — Minecraft Java 26.3 / Fabric
 
-**Clean-room terrain generation, version 0.2.0-alpha.4.** Based on the owner's **approved 84-parameter JSON specification**, not on old SofronPackGen terrain code.
+**Clean-room terrain generation, version 0.2.0-alpha.5.** Based on the owner's **approved 84-parameter JSON specification**, not on old SofronPackGen terrain code.
 
 This branch contains a **real, active Overworld density-function generator**. It is not the earlier vanilla-only design scaffold.
 
@@ -46,7 +46,7 @@ All original code and datapack definitions belong to this project. No third-part
 
 Following an in-game screenshot showing a large floating biome-covered mass above an otherwise too-low landscape, we replaced the old high-altitude *positive density pulse* with a **vertically connected, monotonic mountain solid core**. The mountain strength is based on Vanilla continentalness/erosion/ridges and bounded inland noise. At full strength the mountain core reaches approximately Y256, decreasing continuously toward the ground, with extra inland uplift for broader relief. Beta 3D decorations now fade out by Y170 to prevent independent slabs near Y256. The core can fill some upper-level Vanilla cave volume beneath peaks; deep cave systems remain from Vanilla outside that core. The **sea level is Y63 (water surface blocks through Y62)**. Existing chunks do not change; test a new world without LOD.
 
-## Vanilla swamp recoloring (0.2.0-alpha.4)
+## Vanilla swamp recoloring (0.2.0-alpha.5)
 
 Only the existing `minecraft:swamp` biome is visually adjusted: grass and leaves `#688D46`, water `#68834D`, sky `#98C9D9`. The biome's swamp-specific grass modifier is set to `none` so the requested grass RGB is applied without the original swamp patchwise hue modifier. Natural mob spawns, vegetation features, carvers, rainfall, temperature, dry foliage, music and underwater fog remain from the exact Minecraft 26.3 Vanilla `swamp.json`. `minecraft:mangrove_swamp` is **unchanged**. The mod does not add a custom biome or restructure the terrain.
 
@@ -55,3 +55,14 @@ These biome colors also apply to already-generated swamp chunks when loaded with
 ### November 13, 2026 — softer swamp palette
 
 Per player feedback, the existing Vanilla `minecraft:swamp` now uses grass/foliage `#688D46` (slightly lighter), water `#68834D` (brighter/greener) and sky `#98C9D9` (less mint-green and closer to the blue Vanilla daytime appearance). The swamp grass modifier stays disabled for consistent tint. No biome gameplay, surface generation, spawns or structures were changed.
+
+## Five additional natural swamp willows (alpha.5)
+
+Five **user-authored**, foliage-rich oak-block willow silhouettes are added to the existing Vanilla `minecraft:swamp` flora. They are registered as a **native Minecraft 26.3 `minecraft:template` feature**, not as jigsaw village structures or another biome. Native `minecraft:trees_swamp`, lilies, reeds, mushrooms and firefly vegetation remain untouched.
+
+- File names follow a Vanilla-like ID convention: `sofron_terra_lab:swamp_willow_1` through `_5`. These are five Structure Template NBT resources under `data/sofron_terra_lab/structure/`.
+- During sanitization, **6,307 recorded `minecraft:air` blocks** were omitted from the NBT files; the remaining 1,436 original log/wood/leaf/vine blocks are unchanged. No empty-space blocks are pasted, so original water, lily pads and surrounding flora remain in the gaps.
+- The single `swamp_willows` vegetation placed feature randomly chooses one of the five templates; it attempts five additional trees per chunk. Actual success varies with ground and water conditions, existing trees and biome borders.
+- Vanilla-compatible placement uses `surface_water_depth_filter.max_water_depth=2`, `OCEAN_FLOOR` heightmap, biome filter, and oak-sapling support check. Trees may root on natural dirt/grass near or up to two blocks below water.
+- No generator change applies to `minecraft:mangrove_swamp`. The custom shapes use **existing oak logs and leaves**; no custom tree blocks, custom biome ID or biome terrain change.
+- **New chunks only:** already-generated swamps do not automatically sprout the new willow templates. Restart Minecraft with the updated JAR and explore ungenerated swamp chunks, or create a new world. Shader/resource packs may change foliage tint.
