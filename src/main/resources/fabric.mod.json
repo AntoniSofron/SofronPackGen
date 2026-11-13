@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "sofron_terra_lab",
   "version": "${version}",
-  "name": "Sofron Terra Lab — Minecraft 26.3 world generator",
+  "name": "Sofron Terra Lab \u2014 Minecraft 26.3 world generator",
   "description": "Experimental clean-room terrain generator: Beta/Cascades-style mountain belts, cliffs, coastal islands, karst and valleys; Vanilla biomes and structures.",
   "authors": [
     "SofronPackGen contributors"
@@ -11,6 +11,9 @@
   "entrypoints": {
     "main": [
       "pl.sofron.terralab.TerraLabMod"
+    ],
+    "client": [
+      "pl.sofron.terralab.BirchColors"
     ]
   },
   "license": "All Rights Reserved",

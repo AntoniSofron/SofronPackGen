@@ -11,6 +11,8 @@ public final class TerraLabMod implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        net.minecraft.core.Registry.register(net.minecraft.core.registries.BuiltInRegistries.FEATURE_TYPE,
+                net.minecraft.resources.Identifier.fromNamespaceAndPath(MOD_ID, "birch_variants"), BirchVariants.CODEC);
         System.out.println("[Sofron Terra Lab] Approved 84-parameter worldgen enabled; Vanilla biomes and structures preserved.");
     }
 }

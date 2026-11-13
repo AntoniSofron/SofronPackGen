@@ -94,7 +94,7 @@ for key in ("surface_envelope", "beta_overhangs", "karst_spires", "upland_lift")
 # No new biome IDs or biome-generation definitions may be added.
 biome_files = {p.relative_to(ROOT).as_posix() for p in data
                if p.parts[-3:-1] == ('worldgen', 'biome')}
-assert biome_files == {'minecraft/worldgen/biome/swamp.json'}, biome_files
+assert biome_files == {f'minecraft/worldgen/biome/{name}.json' for name in ('swamp', 'birch_forest', 'old_growth_birch_forest')}, biome_files
 swamp = data[ROOT / 'minecraft/worldgen/biome/swamp.json']
 assert swamp['effects']['grass_color'] == '#688D46'
 assert swamp['effects']['foliage_color'] == '#688D46'
