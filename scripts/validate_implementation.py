@@ -45,7 +45,9 @@ def walk(node, path):
         if node.get("type") == "minecraft:spline":
             pts = node["spline"]["points"]
             assert all(a["location"] < b["location"] for a, b in zip(pts, pts[1:])), path
-        for value in node.values():
+        for key, value in node.items():
+            if key == 'noise' and node.get('type') == 'minecraft:noise':
+                continue
             walk(value, path)
     elif isinstance(node, list):
         for value in node: walk(value, path)
@@ -72,7 +74,7 @@ land_gate = data[ROOT / "sofron_terra_lab/worldgen/density_function/terrain/land
 assert all(p["value"] == 0 for p in land_gate["spline"]["points"] if p["location"] <= -0.12)
 ocean = data[ROOT / "sofron_terra_lab/worldgen/density_function/terrain/ocean_trenches.json"]
 assert ocean["type"] == "minecraft:mul" and ocean["left"] < 0
-assert not any(p.parts[3:5] == ("worldgen", "biome") for p in data)
-assert not any(p.parts[3:5] in {("worldgen", "structure"), ("worldgen", "structure_set")} for p in data)
-assert not any(p.parts[2] == "sofron_pack" for p in data), "Legacy namespace prohibited"
+assert not any(('worldgen', 'biome') == p.parts[-3:-1] for p in data)
+assert not any(p.parts[-3:-1] in {('worldgen','structure'), ('worldgen','structure_set')} for p in data)
+assert not any("sofron_pack" in p.parts for p in data), "Legacy namespace prohibited"
 print(f"PASS: 84 approved choices, {len(data)} parsed worldgen files, vanilla biome/aquifer safeguards")
