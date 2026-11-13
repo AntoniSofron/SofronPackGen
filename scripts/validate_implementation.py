@@ -92,8 +92,8 @@ for key in ("surface_envelope", "beta_overhangs", "karst_spires", "upland_lift")
     assert key in {p.stem for p in data}, key
 # Only these existing vanilla biomes have palette overrides.
 biome_files = {p.relative_to(ROOT).as_posix() for p in data
-               if p.parts[-3:-1] == ('worldgen', 'biome')}
-assert biome_files == {f'minecraft/worldgen/biome/{name}.json' for name in ('swamp', 'birch_forest', 'old_growth_birch_forest')}, biome_files
+               if p.relative_to(ROOT).parts[1:-1] == ('worldgen', 'biome')}
+assert biome_files == {f'minecraft/worldgen/biome/{name}.json' for name in ('swamp', 'birch_forest', 'old_growth_birch_forest', 'taiga', 'old_growth_spruce_taiga', 'old_growth_pine_taiga')}, biome_files
 swamp = data[ROOT / 'minecraft/worldgen/biome/swamp.json']
 assert swamp['effects']['grass_color'] == '#688D46'
 assert swamp['effects']['foliage_color'] == '#688D46'
