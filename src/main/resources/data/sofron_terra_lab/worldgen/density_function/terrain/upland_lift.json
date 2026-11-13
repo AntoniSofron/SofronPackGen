@@ -1,0 +1,58 @@
+{
+  "type": "minecraft:mul",
+  "left": 0.2,
+  "right": {
+    "type": "minecraft:mul",
+    "left": "sofron_terra_lab:terrain/land_gate",
+    "right": {
+      "type": "minecraft:mul",
+      "left": {
+        "type": "minecraft:spline",
+        "spline": {
+          "coordinate": "minecraft:overworld/erosion",
+          "points": [
+            {
+              "location": -1,
+              "value": 1,
+              "derivative": 0
+            },
+            {
+              "location": -0.7,
+              "value": 1,
+              "derivative": 0
+            },
+            {
+              "location": -0.3,
+              "value": 0.82,
+              "derivative": 0
+            },
+            {
+              "location": 0,
+              "value": 0.56,
+              "derivative": 0
+            },
+            {
+              "location": 0.4,
+              "value": 0.28,
+              "derivative": 0
+            },
+            {
+              "location": 1,
+              "value": 0.1,
+              "derivative": 0
+            }
+          ]
+        }
+      },
+      "right": {
+        "type": "minecraft:gradient",
+        "axis": "y",
+        "tiling": "clamp_to_edge",
+        "from_coordinate": 70,
+        "to_coordinate": 224,
+        "from_value": 1,
+        "to_value": 0
+      }
+    }
+  }
+}
