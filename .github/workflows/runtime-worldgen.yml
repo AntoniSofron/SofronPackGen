@@ -26,7 +26,8 @@ jobs:
         run: |
           python3 scripts/validate_implementation.py
           gradle --no-daemon build
-      - name: Start Minecraft server; confirm datapack and real ocean water at Y54 and Y63
+          python3 scripts/check_grounded_mountains.py
+      - name: Start Minecraft server; verify sea Y63 (water Y62) and surface biome safety
         timeout-minutes: 8
         env:
           TERRA_SEED: ${{ matrix.seed }}
