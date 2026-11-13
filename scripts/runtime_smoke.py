@@ -78,10 +78,10 @@ def main():
     RUN.mkdir(exist_ok=True)
     (RUN / "eula.txt").write_text("eula=true\n", encoding="utf-8")
     (RUN / "server.properties").write_text(
-        "level-name=terra-lab-smoke\n"
-        "level-seed=3880636525852909587\n"
+        f"level-name=terra-lab-smoke-{os.environ.get('TERRA_SEED','3880636525852909587')}\n"
+        f"level-seed={os.environ.get('TERRA_SEED','3880636525852909587')}\n"
         "online-mode=false\n"
-        "generate-structures=false\n"
+        "generate-structures=true\n"
         "difficulty=peaceful\n"
         "max-tick-time=-1\n"
         "view-distance=4\n"
@@ -90,7 +90,7 @@ def main():
         "rcon.password=" + PASSWORD + "\n"
         f"rcon.port={PORT}\n"
         "server-port=25566\n"
-        "motd=Gen2 runtime test\n", encoding="utf-8"
+        "motd=Terra Lab runtime worldgen test\n", encoding="utf-8"
     )
     lines = []
     print("Starting Minecraft 26.3 Fabric server...", flush=True)
@@ -154,7 +154,14 @@ def main():
             missing = [(px, pz, w54, w63) for px, pz, w54, w63 in ocean_samples if not (w54 and w63)]
             if missing:
                 raise AssertionError(f"Unfilled deep ocean: {missing}; expected water at BOTH Y54 and Y63.")
-            print("PASS: server world loads and a natural deep ocean contains water blocks.", flush=True)
+            # Verify Vanilla depth routing never chooses the Deep Dark high above the surface.
+            above_samples = ((0, 160, 0), (256, 160, 256), (-256, 160, -256))
+            for lx, ly, lz in above_samples:
+                is_deep, answer = passes(f"execute if biome {lx} {ly} {lz} minecraft:deep_dark")
+                print(f"Deep Dark biome at open-sky Y={ly} ({lx},{lz}): {is_deep} ({answer})", flush=True)
+                if is_deep:
+                    raise AssertionError(f"Deep Dark biome mapped to high sky / surface at {(lx,ly,lz)}")
+            print("PASS: server loads Terra Lab worldgen; ocean water + upper-level biome safety verified.", flush=True)
         finally:
             try:
                 rcon("stop")
