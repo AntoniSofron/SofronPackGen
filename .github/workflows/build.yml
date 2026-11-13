@@ -1,4 +1,4 @@
-name: Sofron Terra Lab — compile and validate (Minecraft 26.3)
+name: Sofron Pack Gen — compile and validate (Minecraft 26.3)
 on:
   push:
   pull_request:
@@ -32,6 +32,11 @@ jobs:
           assert len(jars)==1,jars
           with zipfile.ZipFile(jars[0]) as z:
               m=json.loads(z.read('fabric.mod.json'))
+              assert jars[0].name == '26.3-Sofron-Pack-Gen-v0.1.jar'
+              assert m['name'] == 'Sofron Pack Gen' and m['version'] == '0.1'
+              assert z.read(m['icon']) == pathlib.Path('src/main/resources/pack.png').read_bytes()
+              for i in (1, 2):
+                  assert f'data/sofron_terra_lab/structure/oak_{i}.nbt' in z.namelist()
               assert m['id']=='sofron_terra_lab',m
               assert 'pl/sofron/terralab/TerraLabMod.class' in z.namelist()
               assert 'data/minecraft/worldgen/noise_settings/overworld.json' in z.namelist()
@@ -58,7 +63,7 @@ jobs:
           if [ -f run/logs/latest.log ]; then tail -n 130 run/logs/latest.log; fi
       - uses: actions/upload-artifact@v4
         with:
-          name: Sofron-Terra-Lab-MC26.3-Worldgen
+          name: 26.3-Sofron-Pack-Gen-v0.1
           path: build/libs/*.jar
           if-no-files-found: error
           retention-days: 14

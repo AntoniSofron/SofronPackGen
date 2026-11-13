@@ -1,0 +1,15 @@
+{
+  "feature": {
+    "type": "sofron_terra_lab:oak_variants",
+    "original": "minecraft:fancy_oak_bees"
+  },
+  "placement": [
+    {
+      "type": "minecraft:block_predicate_filter",
+      "predicate": {
+        "type": "minecraft:would_survive",
+        "state": "minecraft:oak_sapling"
+      }
+    }
+  ]
+}

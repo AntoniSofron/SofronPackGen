@@ -1,6 +1,8 @@
-# Sofron Terra Lab — Minecraft Java 26.3 / Fabric
+# Sofron Pack Gen — Minecraft Java 26.3 / Fabric
 
-**Clean-room terrain generation, version 0.2.0-alpha.5.** Based on the owner's **approved 84-parameter JSON specification**, not on old SofronPackGen terrain code.
+Rediscover the charm of old-school Minecraft with wilder terrain, richer landscapes, and a world made for adventure — all while keeping the best of modern Minecraft
+
+**Version 0.1.** Based on the owner's **approved 84-parameter JSON specification**, not on old SofronPackGen terrain code.
 
 This branch contains a **real, active Overworld density-function generator**. It is not the earlier vanilla-only design scaffold.
 

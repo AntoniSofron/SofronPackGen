@@ -42,7 +42,7 @@ jobs:
           Write-Host "Windows build passed: $($jars[0].FullName)"
       - uses: actions/upload-artifact@v4
         with:
-          name: Sofron-Terra-Lab-Windows-JAR
+          name: 26.3-Sofron-Pack-Gen-v0.1-Windows
           path: build/libs/*.jar
           if-no-files-found: error
           retention-days: 7

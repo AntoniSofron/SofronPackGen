@@ -1,27 +1,18 @@
 package pl.sofron.terralab;
 
 import com.mojang.serialization.MapCodec;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
-import net.minecraft.resources.Identifier;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.ShelfMushroomBlock;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.TreeFeature;
-import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
-import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
-import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
-import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate.StructureBlockInfo;
 
 /** The placed feature supplies the local vanilla birch, including its bee and litter decorators. */
 public record BirchVariants(Holder<Feature> original) implements Feature {
@@ -48,45 +39,11 @@ public record BirchVariants(Holder<Feature> original) implements Feature {
             placed = variant.place(level, generator, random, origin);
         } else {
             int index = (ticket - 5) / 2;
-            var id = Identifier.fromNamespaceAndPath(TerraLabMod.MOD_ID, "birch_" + (index + 1));
-            var template = level.getLevel().getServer().getStructureTemplateManager().get(id);
-            placed = template.isPresent() && placeTemplate(level, random, origin, tree, template.get(), index);
+            placed = TreeTemplates.place(level, random, origin, tree, "birch_" + (index + 1),
+                    ROOTS.get(index), Blocks.BIRCH_LOG, Blocks.BIRCH_WOOD, Blocks.BIRCH_LEAVES);
         }
         if (placed && random.nextFloat() < 0.05F) placeMushroom(level, random, origin);
         return placed;
-    }
-
-    private boolean placeTemplate(WorldGenLevel level, RandomSource random, BlockPos origin,
-                                  TreeFeature tree, StructureTemplate template, int index) {
-        var rotation = Rotation.getRandom(random);
-        var settings = new StructurePlaceSettings().setRotation(rotation);
-        var corner = origin.subtract(ROOTS.get(index).rotate(rotation));
-        var wood = template.filterBlocks(corner, settings, Blocks.BIRCH_LOG);
-        wood.addAll(template.filterBlocks(corner, settings, Blocks.BIRCH_WOOD));
-        var canopy = template.filterBlocks(corner, settings, Blocks.BIRCH_LEAVES);
-        if (wood.isEmpty() || canopy.isEmpty() || origin.getY() + template.getSize().getY() - 1 > level.getMaxY()) return false;
-        for (var block : wood) {
-            if (!TreeFeature.validTreePos(level, block.pos())) return false;
-        }
-        var below = origin.below();
-        var soil = tree.belowTrunkProvider().value().getOptionalState(level, random, below);
-        if (soil != null) level.setBlock(below, soil, 19);
-        Set<BlockPos> logs = new HashSet<>();
-        Set<BlockPos> leaves = new HashSet<>();
-        for (StructureBlockInfo block : wood) {
-            level.setBlock(block.pos(), block.state(), 19);
-            logs.add(block.pos());
-        }
-        for (var block : canopy) {
-            if (TreeFeature.validTreePos(level, block.pos())) {
-                level.setBlock(block.pos(), block.state().setValue(BlockStateProperties.PERSISTENT, false), 19);
-                leaves.add(block.pos());
-            }
-        }
-        var context = new TreeDecorator.Context(level, (pos, state) -> level.setBlock(pos, state, 19),
-                random, logs, leaves, Set.of());
-        tree.decorators().forEach(decorator -> decorator.place(context));
-        return true;
     }
 
     private void placeMushroom(WorldGenLevel level, RandomSource random, BlockPos origin) {
