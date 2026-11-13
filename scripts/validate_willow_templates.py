@@ -52,7 +52,8 @@ class NBT:
         if kind == 10:
             result = {}
             while (sub := self.num("B")) != 0:
-                result[self.string()] = self.tag(sub)
+                name = self.string()
+                result[name] = self.tag(sub)
             return result
         if kind == 11:
             return [self.num("i") for _ in range(self.num("i"))]
