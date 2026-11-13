@@ -121,7 +121,7 @@
       },
       "modifier": "overlay"
     },
-    "minecraft:visual/sky_color": "#a4d4be",
+    "minecraft:visual/sky_color": "#A4D4BE",
     "minecraft:visual/water_fog_color": "#232317",
     "minecraft:visual/water_fog_end_distance": {
       "argument": 0.85,
@@ -136,10 +136,10 @@
   "downfall": 0.9,
   "effects": {
     "dry_foliage_color": "#7b5334",
-    "foliage_color": "#597e38",
+    "foliage_color": "#597E38",
     "grass_color_modifier": "none",
     "water_color": "#546242",
-    "grass_color": "#597e38"
+    "grass_color": "#597E38"
   },
   "features": [
     [],
