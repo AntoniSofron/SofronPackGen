@@ -1,0 +1,90 @@
+import groovy.json.JsonOutput
+import groovy.json.JsonSlurper
+
+// A real build-time bridge from the approved JSON to the active density functions.
+// Only the settings listed below are implemented by this task. Other 84-option
+// requirements are tracked in docs/TERRAIN_ARCHITECTURE.md.
+tasks.register("syncApprovedTerrain") {
+    group = "sofron worldgen"
+    description = "Recalculate implemented terrain controls from config/approved-worldgen-spec.json"
+    inputs.file(file("config/approved-worldgen-spec.json"))
+    doLast {
+        def parser = new JsonSlurper()
+        def root = parser.parse(file("config/approved-worldgen-spec.json"))
+        if (root.schema != "sofron-terra-lab-v1" || root.minecraft != "26.3") {
+            throw new GradleException("Unsupported approved configuration")
+        }
+        def p = root.parameters
+        if (p.seaLevel != 64 || p.worldHeight != "320"
+                || p.vanillaBiomesOnly != true || p.vanillaStructuresOnly != true) {
+            throw new GradleException("This implementation requires Vanilla biomes/structures, sea Y64, top Y320")
+        }
+        def path = { String key ->
+            file("src/main/resources/data/sofron_terra_lab/worldgen/density_function/terrain/${key}.json")
+        }
+        def modify = { String key, Closure change ->
+            File f = path(key)
+            Map doc = (Map) parser.parse(f)
+            change(doc)
+            String changed = JsonOutput.prettyPrint(JsonOutput.toJson(doc)) + "\n"
+            if (f.getText("UTF-8") != changed) {
+                f.setText(changed, "UTF-8")
+            }
+        }
+        def limit = { Number x, Number lo, Number hi ->
+            Math.max(lo.doubleValue(), Math.min(hi.doubleValue(), x.doubleValue()))
+        }
+        // World-scale mountains; peakHeight is an *intensity goal*, not a strict Y cutoff.
+        modify("mountain_ranges") { o ->
+            o.right.right.left = limit(0.5 * (p.mountainSteepness / 70.0)
+                * (p.peakHeight / 256.0), 0.0, 0.90)
+        }
+        modify("mountain_region") { o ->
+            o.spline.coordinate.xz_scale = limit(0.14 * 50.0 / Math.max(10, p.rangeWidth), 0.07, 0.45)
+            o.spline.points[2].location = limit(-0.26 + (50 - p.mountainFrequency) / 500.0, -0.40, -0.08)
+            o.spline.points[4].value = limit(1.0 * p.rangeLength / 40.0, 0.15, 1.5)
+        }
+        modify("classic_valleys") { o ->
+            o.left = -limit(0.13 * p.valleyDepth / 75.0 * p.classicValleyAmount / 45.0, 0, 0.28)
+        }
+        modify("micro_hills") { o ->
+            o.left = limit(0.065 * p.microrelief / 75.0, 0, 0.12)
+        }
+        modify("beta_overhangs") { o ->
+            o.left = limit(0.17 * p.betaInfluence / 80.0 * p.overhangFrequency / 50.0, 0, 0.40)
+            o.right.right.right.left.right.to_coordinate = (int) limit(
+                Math.round(175 + 63 * p.betaCliffHeight / 75.0), 180, 275)
+        }
+        modify("beta_region") { o ->
+            o.spline.points[2].location = limit(-0.22 + (80 - p.betaCliffFrequency) / 500.0, -0.38, -0.06)
+        }
+        modify("karst_spires") { o ->
+            o.left = limit(0.33 * p.karstHeight / 75.0, 0, 0.52)
+        }
+        modify("karst_region") { o ->
+            o.right.left.spline.coordinate.xz_scale = limit(0.16 * 75.0 / Math.max(p.karstCluster, 15), 0.07, 0.5)
+            o.right.left.spline.points[2].location = limit(0.13 + (20 - p.karstFrequency) / 500.0, 0.0, 0.30)
+        }
+        modify("karst_pillar_footprint") { o ->
+            double ratio = p.karstWidth / 50.0
+            o.left.spline.points[2].location = limit(0.14 * ratio, 0.04, 0.22)
+            o.left.spline.points[3].location = limit(0.24 * ratio, 0.08, 0.48)
+            o.left.spline.points[4].location = limit(0.32 * ratio, 0.12, 0.62)
+        }
+        modify("alpha_coastal_islets") { o ->
+            o.left = limit(0.16 * p.islandFrequency / 50.0 * p.alphaIslands / 75.0, 0, 0.40)
+            o.right.right.right.right.right.xz_scale = limit(
+                0.45 * p.coastComplexity / 60.0, 0.12, 1.0)
+        }
+        modify("ocean_trenches") { o ->
+            o.left = -limit(0.19 * p.oceanDepth / 100.0, 0.02, 0.26)
+            o.right.right.left.spline.points[1].value = limit(
+                0.35 * p.oceanTrenches / 50.0, 0, 0.7)
+        }
+        println("[Sofron Terra Lab] Regenerated active mountain, valley, Beta cliff, karst, coastal and ocean density from approved JSON")
+    }
+}
+
+tasks.named("processResources") {
+    dependsOn tasks.named("syncApprovedTerrain")
+}
