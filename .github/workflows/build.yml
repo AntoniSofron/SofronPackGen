@@ -19,6 +19,7 @@ jobs:
         run: |
           python3 scripts/validate_design.py
           python3 scripts/validate_implementation.py
+          python3 scripts/validate_willow_templates.py
       - name: Compile real Minecraft 26.3 Fabric worldgen
         run: |
           gradle --no-daemon build --stacktrace
@@ -36,12 +37,25 @@ jobs:
               assert 'data/minecraft/worldgen/noise_settings/overworld.json' in z.namelist()
               swamp=json.loads(z.read('data/minecraft/worldgen/biome/swamp.json'))
               assert swamp['effects']['grass_color'] == '#688D46'
+              assert 'sofron_terra_lab:swamp_willows' in swamp['features'][9]
+              for i in range(1, 6):
+                  assert f'data/sofron_terra_lab/structure/swamp_willow_{i}.nbt' in z.namelist()
+              assert 'data/sofron_terra_lab/worldgen/feature/swamp_willows.json' in z.namelist()
+              assert 'data/sofron_terra_lab/worldgen/placed_feature/swamp_willows.json' in z.namelist()
               assert swamp['effects']['foliage_color'] == '#688D46'
               assert swamp['effects']['water_color'] == '#68834D'
               assert swamp['attributes']['minecraft:visual/sky_color'] == '#98C9D9'
               assert 'data/sofron_terra_lab/worldgen/density_function/terrain/final_density.json' in z.namelist()
           print('PASS: real worldgen bundled:',jars[0])
           PY
+      - name: Boot real Minecraft 26.3 and verify all 5 NBT willow structures
+        timeout-minutes: 9
+        run: python3 scripts/runtime_smoke.py
+      - name: Show Minecraft worldgen diagnostics if the test fails
+        if: failure()
+        run: |
+          if [ -f runtime-smoke.log ]; then tail -n 130 runtime-smoke.log; fi
+          if [ -f run/logs/latest.log ]; then tail -n 130 run/logs/latest.log; fi
       - uses: actions/upload-artifact@v4
         with:
           name: Sofron-Terra-Lab-MC26.3-Worldgen

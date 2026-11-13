@@ -1,0 +1,38 @@
+{
+  "type": "minecraft:template",
+  "templates": [
+    {
+      "data": {
+        "id": "sofron_terra_lab:swamp_willow_1"
+      },
+      "weight": 1
+    },
+    {
+      "data": {
+        "id": "sofron_terra_lab:swamp_willow_2"
+      },
+      "weight": 1
+    },
+    {
+      "data": {
+        "id": "sofron_terra_lab:swamp_willow_3"
+      },
+      "weight": 1
+    },
+    {
+      "data": {
+        "id": "sofron_terra_lab:swamp_willow_4"
+      },
+      "weight": 1
+    },
+    {
+      "data": {
+        "id": "sofron_terra_lab:swamp_willow_5"
+      },
+      "weight": 1
+    }
+  ],
+  "processors": {
+    "processors": []
+  }
+}
