@@ -1,6 +1,6 @@
 # Sofron Terra Lab — Minecraft Java 26.3 / Fabric
 
-**Clean-room terrain generation, version 0.2.0-alpha.2.** Based on the owner's **approved 84-parameter JSON specification**, not on old SofronPackGen terrain code.
+**Clean-room terrain generation, version 0.2.0-alpha.3.** Based on the owner's **approved 84-parameter JSON specification**, not on old SofronPackGen terrain code.
 
 This branch contains a **real, active Overworld density-function generator**. It is not the earlier vanilla-only design scaffold.
 
@@ -45,3 +45,9 @@ All original code and datapack definitions belong to this project. No third-part
 ## November 13 terrain correction
 
 Following an in-game screenshot showing a large floating biome-covered mass above an otherwise too-low landscape, we replaced the old high-altitude *positive density pulse* with a **vertically connected, monotonic mountain solid core**. The mountain strength is based on Vanilla continentalness/erosion/ridges and bounded inland noise. At full strength the mountain core reaches approximately Y256, decreasing continuously toward the ground, with extra inland uplift for broader relief. Beta 3D decorations now fade out by Y170 to prevent independent slabs near Y256. The core can fill some upper-level Vanilla cave volume beneath peaks; deep cave systems remain from Vanilla outside that core. The **sea level is Y63 (water surface blocks through Y62)**. Existing chunks do not change; test a new world without LOD.
+
+## Vanilla swamp recoloring (0.2.0-alpha.3)
+
+Only the existing `minecraft:swamp` biome is visually adjusted: grass and leaves `#597E38`, water `#546242`, sky `#A4D4BE`. The biome's swamp-specific grass modifier is set to `none` so the requested grass RGB is applied without the original swamp patchwise hue modifier. Natural mob spawns, vegetation features, carvers, rainfall, temperature, dry foliage, music and underwater fog remain from the exact Minecraft 26.3 Vanilla `swamp.json`. `minecraft:mangrove_swamp` is **unchanged**. The mod does not add a custom biome or restructure the terrain.
+
+These biome colors also apply to already-generated swamp chunks when loaded with the mod; no new world is required just to see the tint update. Shaders/resource packs can override or recolor the final appearance.
