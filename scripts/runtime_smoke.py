@@ -143,7 +143,7 @@ def main():
                 # selected vanilla swamp, not only the raw template command.
                 located_swamp = rcon("locate biome minecraft:swamp")
                 print("Locate actual vanilla swamp:", located_swamp, flush=True)
-                swamp_match = re.search(r"\\[\\s*(-?\\d+)\\s*,\\s*(?:~|-?\\d+)\\s*,\\s*(-?\\d+)\\s*\\]", located_swamp)
+            swamp_match = re.search(r"\[\s*(-?\d+)\s*,\s*(?:~|-?\d+)\s*,\s*(-?\d+)\s*\]", located_swamp)
                 if not swamp_match:
                     raise AssertionError(f"No vanilla swamp found for willow feature test: {located_swamp}")
                 wx, wz = map(int, swamp_match.groups())
