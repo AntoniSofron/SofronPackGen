@@ -171,7 +171,7 @@ def main():
             # of high rocky columns with no lower support is an accidental sky island.
             peaks = rcon("locate biome minecraft:jagged_peaks")
             print("Locate Vanilla jagged_peaks:", peaks, flush=True)
-            peak_match = re.search(r"\\[\\s*(-?\\d+)\\s*,\\s*(?:~|-?\\d+)\\s*,\\s*(-?\\d+)\\s*\\]", peaks)
+            peak_match = re.search(r"\[\s*(-?\d+)\s*,\s*(?:~|-?\d+)\s*,\s*(-?\d+)\s*\]", peaks)
             if peak_match:
                 px, pz = map(int, peak_match.groups())
                 spots = [(px+dx, pz+dz) for dx, dz in
