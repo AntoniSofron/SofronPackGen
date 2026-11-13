@@ -1,5 +1,6 @@
 param(
     [switch]$Install,
+    [switch]$Preflight,
     [string]$ModsDir = (Join-Path $env:APPDATA ".minecraft\mods")
 )
 $ErrorActionPreference = "Stop"
@@ -8,10 +9,23 @@ $version = "9.5.0"
 $root = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
 Set-Location $root
 $toolDir = Join-Path $root ".build-tools"
-$home = Join-Path $toolDir "gradle-$version"
-$launcher = Join-Path $home "lib\gradle-launcher-$version.jar"
+$gradleInstallDir = Join-Path $toolDir "gradle-$version"
+$launcher = Join-Path $gradleInstallDir "lib\gradle-launcher-$version.jar"
 $zip = Join-Path $toolDir "gradle-$version-bin.zip"
 $shaFile = "$zip.sha256"
+
+# PowerShell variable names are case-insensitive. A separate Gradle install
+# variable avoids assignment to the read-only automatic home-directory variable.
+if ($Preflight) {
+    if (-not $gradleInstallDir -or -not $launcher -or -not $root) {
+        throw "Build paths were not initialized"
+    }
+    if ((Split-Path -Parent $launcher) -ne (Join-Path $gradleInstallDir "lib")) {
+        throw "Gradle launcher path is inconsistent"
+    }
+    Write-Host "PREFLIGHT PASS: PowerShell startup and Gradle paths" -ForegroundColor Green
+    exit 0
+}
 
 try {
     Write-Host "[1/4] Java 25 check" -ForegroundColor Cyan
