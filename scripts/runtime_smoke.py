@@ -186,6 +186,36 @@ def main():
                     if biome == "plains" and remaining:
                         raise AssertionError(f"Missing authored oak shapes: {remaining}")
                 print("PASS: both authored oaks generated; swamp exclusions passed", flush=True)
+                missing_spruces = {7, 12, 16, 21, 25}
+                for biome in ("taiga", "old_growth_spruce_taiga", "old_growth_pine_taiga", "snowy_taiga"):
+                    rcon(f"fillbiome 8 276 8 24 310 24 minecraft:{biome}")
+                    saw_authored = False
+                    for attempt in range(100 if biome == "taiga" else 20):
+                        reset_step()
+                        rcon("fill 8 280 8 24 310 24 minecraft:air")
+                        tree = "pine" if attempt % 2 else "spruce"
+                        placed = rcon(f"place feature minecraft:{tree} 16 280 16")
+                        if "placed" not in placed.lower():
+                            raise AssertionError(f"{tree} placement in {biome}: {placed}")
+                        wood = rcon("fill 8 280 8 24 310 24 minecraft:air replace minecraft:spruce_wood")
+                        if not re.search(r"1 block", wood):
+                            continue
+                        if biome == "snowy_taiga":
+                            raise AssertionError("Authored spruce outside requested biomes")
+                        saw_authored = True
+                        verify_footprint(1)
+                        logs = rcon("fill 8 280 8 24 310 24 minecraft:air replace minecraft:spruce_log")
+                        count = re.search(r"(\d+) block", logs)
+                        if not count or int(count.group(1)) not in {7, 12, 16, 21, 25}:
+                            raise AssertionError(f"Unexpected spruce shape: {logs}")
+                        missing_spruces.discard(int(count.group(1)))
+                        if not missing_spruces:
+                            break
+                    if biome != "snowy_taiga" and not saw_authored:
+                        raise AssertionError(f"No authored spruce generated in {biome}")
+                if missing_spruces:
+                    raise AssertionError(f"Missing spruce shapes: {missing_spruces}")
+                print("PASS: five rooted single-trunk spruce shapes and taiga biome scope", flush=True)
                 root_offsets = [(5, 5, "oak_log"), (4, 3, "oak_wood"),
                                 (5, 6, "oak_log"), (5, 6, "oak_log"),
                                 (5, 5, "oak_log")]
