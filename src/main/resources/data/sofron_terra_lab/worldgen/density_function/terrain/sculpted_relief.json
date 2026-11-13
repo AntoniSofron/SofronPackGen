@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:add",
+  "left": {
+    "type": "minecraft:add",
+    "left": {
+      "type": "minecraft:add",
+      "left": {
+        "type": "minecraft:add",
+        "left": {
+          "type": "minecraft:add",
+          "left": {
+            "type": "minecraft:add",
+            "left": {
+              "type": "minecraft:add",
+              "left": 0,
+              "right": "sofron_terra_lab:terrain/mountain_ranges"
+            },
+            "right": "sofron_terra_lab:terrain/classic_valleys"
+          },
+          "right": "sofron_terra_lab:terrain/micro_hills"
+        },
+        "right": "sofron_terra_lab:terrain/beta_overhangs"
+      },
+      "right": "sofron_terra_lab:terrain/karst_spires"
+    },
+    "right": "sofron_terra_lab:terrain/alpha_coastal_islets"
+  },
+  "right": "sofron_terra_lab:terrain/ocean_trenches"
+}

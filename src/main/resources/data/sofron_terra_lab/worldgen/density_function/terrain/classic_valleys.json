@@ -1,0 +1,52 @@
+{
+  "type": "minecraft:mul",
+  "left": -0.13,
+  "right": {
+    "type": "minecraft:mul",
+    "left": "sofron_terra_lab:terrain/land_gate",
+    "right": {
+      "type": "minecraft:mul",
+      "left": "sofron_terra_lab:terrain/surface_envelope",
+      "right": {
+        "type": "minecraft:mul",
+        "left": "sofron_terra_lab:terrain/valley_regions",
+        "right": {
+          "type": "minecraft:spline",
+          "spline": {
+            "coordinate": {
+              "type": "minecraft:abs",
+              "input": "minecraft:overworld/ridges"
+            },
+            "points": [
+              {
+                "location": 0,
+                "value": 1,
+                "derivative": 0
+              },
+              {
+                "location": 0.2,
+                "value": 0.86,
+                "derivative": 0
+              },
+              {
+                "location": 0.5,
+                "value": 0.32,
+                "derivative": 0
+              },
+              {
+                "location": 0.8,
+                "value": 0,
+                "derivative": 0
+              },
+              {
+                "location": 1,
+                "value": 0,
+                "derivative": 0
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

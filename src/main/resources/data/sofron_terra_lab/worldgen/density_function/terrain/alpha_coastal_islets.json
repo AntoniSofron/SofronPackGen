@@ -1,0 +1,84 @@
+{
+  "type": "minecraft:mul",
+  "left": 0.16,
+  "right": {
+    "type": "minecraft:mul",
+    "left": "sofron_terra_lab:terrain/shore_region",
+    "right": {
+      "type": "minecraft:mul",
+      "left": {
+        "type": "minecraft:spline",
+        "spline": {
+          "coordinate": {
+            "type": "minecraft:noise",
+            "noise": "sofron_terra_lab:coastal_islands",
+            "xz_scale": 0.28,
+            "y_scale": 0
+          },
+          "points": [
+            {
+              "location": -1,
+              "value": 0,
+              "derivative": 0
+            },
+            {
+              "location": -0.3,
+              "value": 0,
+              "derivative": 0
+            },
+            {
+              "location": 0,
+              "value": 0.2,
+              "derivative": 0
+            },
+            {
+              "location": 0.3,
+              "value": 0.9,
+              "derivative": 0
+            },
+            {
+              "location": 0.6,
+              "value": 1,
+              "derivative": 0
+            },
+            {
+              "location": 1,
+              "value": 1,
+              "derivative": 0
+            }
+          ]
+        }
+      },
+      "right": {
+        "type": "minecraft:mul",
+        "left": {
+          "type": "minecraft:mul",
+          "left": {
+            "type": "minecraft:gradient",
+            "axis": "y",
+            "tiling": "clamp_to_edge",
+            "from_coordinate": 40,
+            "to_coordinate": 65,
+            "from_value": 0,
+            "to_value": 1
+          },
+          "right": {
+            "type": "minecraft:gradient",
+            "axis": "y",
+            "tiling": "clamp_to_edge",
+            "from_coordinate": 115,
+            "to_coordinate": 160,
+            "from_value": 1,
+            "to_value": 0
+          }
+        },
+        "right": {
+          "type": "minecraft:noise",
+          "noise": "sofron_terra_lab:coast_detail",
+          "xz_scale": 0.45,
+          "y_scale": 0
+        }
+      }
+    }
+  }
+}
