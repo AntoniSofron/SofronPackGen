@@ -88,7 +88,7 @@
     "biomeSize": 50,
     "vanillaBiomesOnly": true,
     "vanillaStructuresOnly": true,
-    "seaLevel": 64,
+    "seaLevel": 63,
     "worldHeight": "320",
     "performanceProfile": "quality",
     "compatibility": "fabric26.3",
@@ -96,5 +96,5 @@
     "multiSeedTests": true,
     "lodCompatible": true
   },
-  "notes": "Wybrane parametry są wymaganiami do implementacji; podglądy nie są rendererem Minecrafta."
+  "notes": "Wybrane parametry są wymaganiami do implementacji; podglądy nie są rendererem Minecrafta. Zmiana 2026-11-13: morze Y=63, 256 jest docelowa wysokoscia wysokich szczytow, nie polozeniem latajacej wyspy."
 }
