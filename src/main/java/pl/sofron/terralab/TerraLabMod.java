@@ -3,14 +3,14 @@ package pl.sofron.terralab;
 import net.fabricmc.api.ModInitializer;
 
 /**
- * Fresh clean-room entry point. Terrain generation deliberately remains vanilla
- * until the owner approves the full design specification.
+ * Clean-room 26.3 Fabric entry point. Terrain is data-driven from the approved spec;
+ * generated worldgen resources and Vanilla biome/structure data are the only inputs.
  */
 public final class TerraLabMod implements ModInitializer {
     public static final String MOD_ID = "sofron_terra_lab";
 
     @Override
     public void onInitialize() {
-        System.out.println("[Sofron Terra Lab] Design baseline started (vanilla worldgen).");
+        System.out.println("[Sofron Terra Lab] Approved 84-parameter worldgen enabled; Vanilla biomes and structures preserved.");
     }
 }
