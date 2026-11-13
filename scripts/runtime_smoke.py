@@ -139,6 +139,28 @@ def main():
                         raise AssertionError(
                             f"Willow variant {index} NBT failed real placement: {result}; {probe}")
                 print("PASS: all five cleaned willow NBT templates place their trunks in Minecraft", flush=True)
+                # Validate the *placed feature* registration in a naturally
+                # selected vanilla swamp, not only the raw template command.
+                located_swamp = rcon("locate biome minecraft:swamp")
+                print("Locate actual vanilla swamp:", located_swamp, flush=True)
+                swamp_match = re.search(r"\\[\\s*(-?\\d+)\\s*,\\s*(?:~|-?\\d+)\\s*,\\s*(-?\\d+)\\s*\\]", located_swamp)
+                if not swamp_match:
+                    raise AssertionError(f"No vanilla swamp found for willow feature test: {located_swamp}")
+                wx, wz = map(int, swamp_match.groups())
+                successes = 0
+                for dx, dz in ((0,0), (8,8), (-8,-8), (16,0), (0,16)):
+                    tx, tz = wx+dx, wz+dz
+                    rcon(f"forceload add {tx} {tz}")
+                    response = rcon(f"place feature sofron_terra_lab:swamp_willows {tx} 80 {tz}")
+                    print(f"Willow placed feature test ({tx},{tz}): {response}", flush=True)
+                    if "placed feature" in response.lower() or "success" in response.lower():
+                        successes += 1
+                if successes == 0:
+                    raise AssertionError(
+                        "The new willow placed feature exists but cannot grow at any of five "
+                        "sampled natural swamp locations; verify underwater roots / biome placement.")
+                print(f"PASS: native willow feature placed successfully in swamp ({successes}/5)", flush=True)
+
             # Locate a real VANILLA deep-ocean biome, not a generated height-map.
             located = rcon("locate biome minecraft:deep_ocean")
             print("Locate deep ocean:", located, flush=True)
