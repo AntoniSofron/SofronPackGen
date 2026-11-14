@@ -10,6 +10,8 @@ import net.minecraft.client.color.block.BlockTintSources;
 import net.minecraft.client.renderer.block.BlockAndTintGetter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.ColorResolver;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
@@ -20,14 +22,18 @@ import net.minecraft.world.level.block.state.BlockState;
 public final class BirchColors implements ClientModInitializer {
     private static final int VANILLA_BIRCH = 0xFF80A755;
 
-    private static boolean isTaiga(Biome biome) {
+    private static final TagKey<Biome> WINTER = TagKey.create(Registries.BIOME,
+            Identifier.fromNamespaceAndPath(TerraLabMod.MOD_ID, "winter_palette"));
+
+    private static boolean usesTaigaLeaves(Biome biome) {
         var level = Minecraft.getInstance().level;
         if (level == null) return false;
-        return level.registryAccess().lookupOrThrow(Registries.BIOME).wrapAsHolder(biome).is(SpruceVariants.TAIGAS);
+        var holder = level.registryAccess().lookupOrThrow(Registries.BIOME).wrapAsHolder(biome);
+        return holder.is(SpruceVariants.TAIGAS) || holder.is(WINTER);
     }
 
     private static final ColorResolver BIRCH = (biome, x, z) -> {
-        if (isTaiga(biome)) return 0xFFFFCC32;
+        if (usesTaigaLeaves(biome)) return 0xFFFFCC32;
         var level = Minecraft.getInstance().level;
         if (level != null) {
             var key = level.registryAccess().lookupOrThrow(Registries.BIOME).getResourceKey(biome);
@@ -42,7 +48,7 @@ public final class BirchColors implements ClientModInitializer {
     public void onInitializeClient() {
         register(Blocks.BIRCH_LEAVES, VANILLA_BIRCH, BIRCH);
         register(Blocks.OAK_LEAVES, BlockTintSources.foliage().color(Blocks.OAK_LEAVES.defaultBlockState()),
-                (biome, x, z) -> isTaiga(biome) ? 0xFFC13D42 : biome.getFoliageColor());
+                (biome, x, z) -> usesTaigaLeaves(biome) ? 0xFFC13D42 : biome.getFoliageColor());
     }
 
     private static void register(Block block, int defaultColor, ColorResolver resolver) {

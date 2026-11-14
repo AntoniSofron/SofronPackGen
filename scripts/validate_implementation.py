@@ -93,7 +93,16 @@ for key in ("surface_envelope", "beta_overhangs", "karst_spires", "upland_lift")
 # Only these existing vanilla biomes have palette overrides.
 biome_files = {p.relative_to(ROOT).as_posix() for p in data
                if p.relative_to(ROOT).parts[1:-1] == ('worldgen', 'biome')}
-assert biome_files == {f'minecraft/worldgen/biome/{name}.json' for name in ('swamp', 'birch_forest', 'old_growth_birch_forest', 'taiga', 'old_growth_spruce_taiga', 'old_growth_pine_taiga', 'dark_forest')}, biome_files
+winter_biomes = set(data[ROOT / 'sofron_terra_lab/tags/worldgen/biome/winter_palette.json']['values'])
+assert len(winter_biomes) == 11
+winter_files = {f"minecraft/worldgen/biome/{name.split(':')[1]}.json" for name in winter_biomes}
+taiga = data[ROOT / 'minecraft/worldgen/biome/taiga.json']
+for name in winter_files:
+    winter = data[ROOT / name]
+    for color in ('grass_color', 'water_color'):
+        assert winter['effects'][color] == taiga['effects'][color]
+    assert winter['attributes']['minecraft:visual/sky_color'] == taiga['attributes']['minecraft:visual/sky_color']
+assert biome_files == winter_files | {f'minecraft/worldgen/biome/{name}.json' for name in ('swamp', 'birch_forest', 'old_growth_birch_forest', 'taiga', 'old_growth_spruce_taiga', 'old_growth_pine_taiga', 'dark_forest')}, biome_files
 swamp = data[ROOT / 'minecraft/worldgen/biome/swamp.json']
 assert swamp['effects']['grass_color'] == '#688D46'
 assert swamp['effects']['foliage_color'] == '#688D46'
