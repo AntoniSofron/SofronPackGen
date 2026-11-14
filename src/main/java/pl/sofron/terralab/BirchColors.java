@@ -42,13 +42,7 @@ public final class BirchColors implements ClientModInitializer {
     public void onInitializeClient() {
         register(Blocks.BIRCH_LEAVES, VANILLA_BIRCH, BIRCH);
         register(Blocks.OAK_LEAVES, BlockTintSources.foliage().color(Blocks.OAK_LEAVES.defaultBlockState()),
-                (biome, x, z) -> {
-                    var level = Minecraft.getInstance().level;
-                    if (level == null) return biome.getFoliageColor();
-                    var holder = level.registryAccess().lookupOrThrow(Registries.BIOME).wrapAsHolder(biome);
-                    if (holder.is(Biomes.TAIGA)) return 0xFFC34A4E;
-                    return holder.is(SpruceVariants.TAIGAS) ? 0xFFBF1C22 : biome.getFoliageColor();
-                });
+                (biome, x, z) -> isTaiga(biome) ? 0xFFC13D42 : biome.getFoliageColor());
     }
 
     private static void register(Block block, int defaultColor, ColorResolver resolver) {
