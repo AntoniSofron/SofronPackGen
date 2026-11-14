@@ -186,11 +186,16 @@ def main():
                     if biome == "plains" and remaining:
                         raise AssertionError(f"Missing authored oak shapes: {remaining}")
                 print("PASS: both authored oaks generated; swamp exclusions passed", flush=True)
-                missing_spruces = {7, 12, 16, 21, 25}
-                for biome in ("taiga", "old_growth_spruce_taiga", "old_growth_pine_taiga", "snowy_taiga"):
-                    rcon(f"fillbiome 8 276 8 24 310 24 minecraft:{biome}")
-                    saw_authored = False
-                    for attempt in range(100 if biome == "taiga" else 20):
+                single_shapes = {
+                    "old_growth_spruce_taiga": {0, 7, 12, 16, 21, 25},
+                    "old_growth_pine_taiga": {0, 9, 13, 19},
+                    "taiga": {0},
+                    "snowy_taiga": {0},
+                }
+                for biome, expected in single_shapes.items():
+                    rcon(f"fillbiome 4 268 4 28 292 28 minecraft:{biome}")
+                    observed = set()
+                    for attempt in range(140 if len(expected) > 1 else 15):
                         rcon("setblock 16 279 16 minecraft:dirt")
                         rcon("fill 8 280 8 24 310 24 minecraft:air")
                         tree = "pine" if attempt % 2 else "spruce"
@@ -199,10 +204,8 @@ def main():
                             raise AssertionError(f"{tree} placement in {biome}: {placed}")
                         wood = rcon("fill 8 280 8 24 310 24 minecraft:air replace minecraft:spruce_wood")
                         if not re.search(r"1 block", wood):
+                            observed.add(0)
                             continue
-                        if biome == "snowy_taiga":
-                            raise AssertionError("Authored spruce outside requested biomes")
-                        saw_authored = True
                         for y, block in ((280, "spruce_log"), (279, "grass_block")):
                             probe = rcon(f"execute if block 16 {y} 16 minecraft:{block}")
                             if "Test passed" not in probe and "count: 1" not in probe:
@@ -210,23 +213,22 @@ def main():
                         verify_footprint(1)
                         logs = rcon("fill 8 280 8 24 310 24 minecraft:air replace minecraft:spruce_log")
                         count = re.search(r"(\d+) block", logs)
-                        if not count or int(count.group(1)) not in {7, 12, 16, 21, 25}:
-                            raise AssertionError(f"Unexpected spruce shape: {logs}")
-                        missing_spruces.discard(int(count.group(1)))
-                        if not missing_spruces:
+                        if not count or int(count.group(1)) not in expected:
+                            raise AssertionError(f"Unexpected single-trunk shape in {biome}: {logs}")
+                        observed.add(int(count.group(1)))
+                        if observed == expected:
                             break
-                    if biome != "snowy_taiga" and not saw_authored:
-                        raise AssertionError(f"No authored spruce generated in {biome}")
-                if missing_spruces:
-                    raise AssertionError(f"Missing spruce shapes: {missing_spruces}")
-                print("PASS: five rooted single-trunk spruce shapes and taiga biome scope", flush=True)
+                    if observed != expected:
+                        raise AssertionError(f"Single-trunk shapes in {biome}: {observed}, expected {expected}")
+                print("PASS: separate single-trunk pine and spruce pools with grass footings", flush=True)
                 for biome in ("old_growth_pine_taiga", "old_growth_spruce_taiga", "taiga"):
                     rcon(f"fillbiome 4 228 4 28 252 28 minecraft:{biome}")
                     actual = rcon(f"execute if biome 16 240 16 minecraft:{biome}")
                     if "Test passed" not in actual and "count: 1" not in actual:
                         raise AssertionError(f"Biome setup failed for {biome}: {actual}")
                     observed = set()
-                    expected = {0} if biome == "taiga" else {0, 112, 132}
+                    expected = {"taiga": {0}, "old_growth_pine_taiga": {0, 108, 128},
+                                "old_growth_spruce_taiga": {0, 112, 132}}[biome]
                     for attempt in range(10 if biome == "taiga" else 80):
                         rcon("fill 8 240 8 24 277 24 minecraft:air")
                         rcon("fill 8 239 8 24 239 24 minecraft:dirt")

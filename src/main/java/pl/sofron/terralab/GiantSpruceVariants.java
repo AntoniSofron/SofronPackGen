@@ -22,17 +22,19 @@ public record GiantSpruceVariants(Holder<Feature> original) implements Feature {
     @Override
     public boolean place(WorldGenLevel level, ChunkGenerator generator, RandomSource random, BlockPos origin) {
         var biome = level.getBiome(origin);
-        if (!(biome.is(Biomes.OLD_GROWTH_PINE_TAIGA) || biome.is(Biomes.OLD_GROWTH_SPRUCE_TAIGA))
+        boolean pine = biome.is(Biomes.OLD_GROWTH_PINE_TAIGA);
+        if ((!pine && !biome.is(Biomes.OLD_GROWTH_SPRUCE_TAIGA))
                 || random.nextBoolean()) return original.value().place(level, generator, random, origin);
         if (!(original.value() instanceof TreeFeature tree)) return false;
 
         int variant = 1 + random.nextInt(2);
-        int root = variant == 1 ? 4 : 5;
+        int root = !pine && variant == 1 ? 4 : 5;
+        String template = (pine ? "tall_pine_" : "tall_spruce_") + variant;
         var rotation = Rotation.getRandom(random);
         // Keep the four rotated trunk cells on the same 2x2 sapling footprint.
         var diagonal = new BlockPos(1, 0, 1).rotate(rotation);
         var anchor = origin.offset(-Math.min(0, diagonal.getX()), 0, -Math.min(0, diagonal.getZ()));
-        if (!TreeTemplates.place(level, random, anchor, tree, "tall_spruce_" + variant,
+        if (!TreeTemplates.place(level, random, anchor, tree, template,
                 new BlockPos(root, 0, root), Blocks.SPRUCE_LOG, Blocks.SPRUCE_WOOD, Blocks.SPRUCE_LEAVES,
                 rotation)) return false;
 
