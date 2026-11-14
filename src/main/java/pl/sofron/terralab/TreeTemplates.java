@@ -26,6 +26,15 @@ final class TreeTemplates {
         return place(level, random, origin, tree, path, root, log, woodBlock, leavesBlock, Rotation.getRandom(random));
     }
 
+    static boolean placeTwoByTwo(WorldGenLevel level, RandomSource random, BlockPos origin, TreeFeature tree,
+                                 String path, BlockPos root, Block log, Block wood, Block leaves) {
+        var rotation = Rotation.getRandom(random);
+        // Anchor the rotated trunk to the four sapling cells.
+        var diagonal = new BlockPos(1, 0, 1).rotate(rotation);
+        var anchor = origin.offset(-Math.min(0, diagonal.getX()), 0, -Math.min(0, diagonal.getZ()));
+        return place(level, random, anchor, tree, path, root, log, wood, leaves, rotation);
+    }
+
     static boolean place(WorldGenLevel level, RandomSource random, BlockPos origin, TreeFeature tree,
                          String path, BlockPos root, Block log, Block woodBlock, Block leavesBlock, Rotation rotation) {
         var id = Identifier.fromNamespaceAndPath(TerraLabMod.MOD_ID, path);
