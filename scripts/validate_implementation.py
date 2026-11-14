@@ -97,10 +97,13 @@ winter_biomes = set(data[ROOT / 'sofron_terra_lab/tags/worldgen/biome/winter_pal
 assert len(winter_biomes) == 11
 winter_files = {f"minecraft/worldgen/biome/{name.split(':')[1]}.json" for name in winter_biomes}
 taiga = data[ROOT / 'minecraft/worldgen/biome/taiga.json']
+assert taiga['effects']['grass_color'] == '#397F39'
+for old_growth in ('old_growth_spruce_taiga', 'old_growth_pine_taiga'):
+    assert data[ROOT / f'minecraft/worldgen/biome/{old_growth}.json']['effects']['grass_color'] == '#B28035'
 for name in winter_files:
     winter = data[ROOT / name]
-    for color in ('grass_color', 'water_color'):
-        assert winter['effects'][color] == taiga['effects'][color]
+    assert winter['effects']['grass_color'] == '#B28035'
+    assert winter['effects']['water_color'] == taiga['effects']['water_color']
     assert winter['attributes']['minecraft:visual/sky_color'] == taiga['attributes']['minecraft:visual/sky_color']
 assert biome_files == winter_files | {f'minecraft/worldgen/biome/{name}.json' for name in ('swamp', 'birch_forest', 'old_growth_birch_forest', 'taiga', 'old_growth_spruce_taiga', 'old_growth_pine_taiga', 'dark_forest')}, biome_files
 swamp = data[ROOT / 'minecraft/worldgen/biome/swamp.json']
