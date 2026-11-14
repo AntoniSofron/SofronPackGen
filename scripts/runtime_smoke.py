@@ -191,7 +191,7 @@ def main():
                     rcon(f"fillbiome 8 276 8 24 310 24 minecraft:{biome}")
                     saw_authored = False
                     for attempt in range(100 if biome == "taiga" else 20):
-                        reset_step()
+                        rcon("setblock 16 279 16 minecraft:dirt")
                         rcon("fill 8 280 8 24 310 24 minecraft:air")
                         tree = "pine" if attempt % 2 else "spruce"
                         placed = rcon(f"place feature minecraft:{tree} 16 280 16")
@@ -203,6 +203,10 @@ def main():
                         if biome == "snowy_taiga":
                             raise AssertionError("Authored spruce outside requested biomes")
                         saw_authored = True
+                        for y, block in ((280, "spruce_log"), (279, "grass_block")):
+                            probe = rcon(f"execute if block 16 {y} 16 minecraft:{block}")
+                            if "Test passed" not in probe and "count: 1" not in probe:
+                                raise AssertionError(f"Spruce trunk/footing shifted from origin: {probe}")
                         verify_footprint(1)
                         logs = rcon("fill 8 280 8 24 310 24 minecraft:air replace minecraft:spruce_log")
                         count = re.search(r"(\d+) block", logs)
