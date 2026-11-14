@@ -254,6 +254,34 @@ def main():
                     if observed != expected:
                         raise AssertionError(f"Giant spruce shapes in {biome}: {observed}; last wood probe: {wood}")
                 print("PASS: giant spruce variants, four grass footings and old-growth scope", flush=True)
+                for feature in ("dark_oak", "dark_oak_leaf_litter"):
+                    seen = set()
+                    for attempt in range(80):
+                        rcon("fill 6 240 6 26 265 26 minecraft:air")
+                        rcon("fill 6 239 6 26 239 26 minecraft:dirt")
+                        result = rcon(f"place feature minecraft:{feature} 16 240 16")
+                        if "placed" not in result.lower():
+                            raise AssertionError(f"Dark oak placement failed: {result}")
+                        wood = rcon("fill 6 240 6 26 265 26 minecraft:air replace minecraft:dark_oak_wood")
+                        match = re.search(r"(\d+) block", wood)
+                        count = int(match.group(1)) if match else 0
+                        if count:
+                            for x in (16, 17):
+                                for z in (16, 17):
+                                    probe = rcon(f"execute if block {x} 240 {z} minecraft:dark_oak_log "
+                                                 f"if block {x} 239 {z} minecraft:grass_block")
+                                    if "Test passed" not in probe and "count: 1" not in probe:
+                                        raise AssertionError(f"Dark oak footing: {probe}")
+                            grass = rcon("fill 6 239 6 26 239 26 minecraft:air replace minecraft:grass_block")
+                            expected_feet = {18: 9, 32: 12}[count]
+                            if f" {expected_feet} block" not in grass:
+                                raise AssertionError(f"Dark oak outer roots: {grass}")
+                        seen.add(count)
+                        if seen == {0, 18, 32}:
+                            break
+                    else:
+                        raise AssertionError(f"Missing dark oak shapes in {feature}: {seen}")
+                print("PASS: vanilla and both authored dark oaks with grounded roots", flush=True)
                 root_offsets = [(5, 5, "oak_log"), (4, 3, "oak_wood"),
                                 (5, 6, "oak_log"), (5, 6, "oak_log"),
                                 (5, 5, "oak_log")]

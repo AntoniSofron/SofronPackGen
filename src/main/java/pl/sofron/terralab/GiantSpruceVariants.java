@@ -7,7 +7,6 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.TreeFeature;
@@ -30,13 +29,8 @@ public record GiantSpruceVariants(Holder<Feature> original) implements Feature {
         int variant = 1 + random.nextInt(2);
         int root = !pine && variant == 1 ? 4 : 5;
         String template = (pine ? "tall_pine_" : "tall_spruce_") + variant;
-        var rotation = Rotation.getRandom(random);
-        // Keep the four rotated trunk cells on the same 2x2 sapling footprint.
-        var diagonal = new BlockPos(1, 0, 1).rotate(rotation);
-        var anchor = origin.offset(-Math.min(0, diagonal.getX()), 0, -Math.min(0, diagonal.getZ()));
-        if (!TreeTemplates.place(level, random, anchor, tree, template,
-                new BlockPos(root, 0, root), Blocks.SPRUCE_LOG, Blocks.SPRUCE_WOOD, Blocks.SPRUCE_LEAVES,
-                rotation)) return false;
+        if (!TreeTemplates.placeTwoByTwo(level, random, origin, tree, template, new BlockPos(root, 0, root),
+                Blocks.SPRUCE_LOG, Blocks.SPRUCE_WOOD, Blocks.SPRUCE_LEAVES)) return false;
 
         // The vanilla giant-tree decorator spreads podzol. Restore the four grass footings.
         for (int x = 0; x < 2; x++) {
