@@ -1,0 +1,12 @@
+{
+  "values": [
+    "minecraft:taiga",
+    "minecraft:snowy_taiga",
+    "minecraft:grove",
+    "minecraft:snowy_plains",
+    "minecraft:ice_spikes",
+    "minecraft:windswept_forest",
+    "minecraft:windswept_hills",
+    "minecraft:windswept_gravelly_hills"
+  ]
+}

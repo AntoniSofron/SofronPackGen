@@ -186,16 +186,19 @@ def main():
                     if biome == "plains" and remaining:
                         raise AssertionError(f"Missing authored oak shapes: {remaining}")
                 print("PASS: both authored oaks generated; swamp exclusions passed", flush=True)
+                mixed_shapes = {0, 7, 9, 12, 13, 16, 19, 21, 25}
                 single_shapes = {
                     "old_growth_spruce_taiga": {0, 7, 12, 16, 21, 25},
                     "old_growth_pine_taiga": {0, 9, 13, 19},
-                    "taiga": {0, 7, 9, 12, 13, 16, 19, 21, 25},
-                    "snowy_taiga": {0},
+                    "taiga": mixed_shapes,
+                    "snowy_taiga": mixed_shapes,
+                    "windswept_hills": mixed_shapes,
+                    "plains": {0},
                 }
                 for biome, expected in single_shapes.items():
                     rcon(f"fillbiome 4 268 4 28 292 28 minecraft:{biome}")
                     observed = set()
-                    max_attempts = 600 if biome == "taiga" else (240 if len(expected) > 1 else 15)
+                    max_attempts = 600 if expected == mixed_shapes else (240 if len(expected) > 1 else 15)
                     for attempt in range(max_attempts):
                         rcon("setblock 16 279 16 minecraft:dirt")
                         rcon("fill 8 280 8 24 310 24 minecraft:air")
