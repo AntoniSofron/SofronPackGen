@@ -187,11 +187,24 @@ def main():
                         raise AssertionError(f"Missing authored oak shapes: {remaining}")
                 print("PASS: both authored oaks generated; swamp exclusions passed", flush=True)
                 mixed_shapes = {0, 7, 9, 12, 13, 16, 19, 21, 25}
+                # Run the autumn forest selector itself. Its rare conifer entry must
+                # reach an authored spruce (or pine), distinguishable by spruce_wood.
+                rcon("fillbiome 4 268 4 28 292 28 minecraft:dappled_forest")
+                rcon("fill 8 279 8 24 279 24 minecraft:dirt")
+                for attempt in range(500):
+                    rcon("fill 8 280 8 24 310 24 minecraft:air")
+                    rcon("place feature minecraft:trees_dappled_forest 16 280 16")
+                    wood = rcon("fill 8 280 8 24 310 24 minecraft:air replace minecraft:spruce_wood")
+                    if re.search(r"1 block", wood):
+                        break
+                else:
+                    raise AssertionError("Dappled forest selector did not grow an authored conifer")
                 single_shapes = {
                     "old_growth_spruce_taiga": {0, 7, 12, 16, 21, 25},
                     "old_growth_pine_taiga": {0, 9, 13, 19},
                     "taiga": mixed_shapes,
                     "snowy_taiga": mixed_shapes,
+                    "dappled_forest": mixed_shapes,
                     "windswept_hills": mixed_shapes,
                     "plains": {0},
                 }
