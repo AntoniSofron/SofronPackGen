@@ -195,7 +195,8 @@ def main():
                 for biome, expected in single_shapes.items():
                     rcon(f"fillbiome 4 268 4 28 292 28 minecraft:{biome}")
                     observed = set()
-                    for attempt in range(240 if len(expected) > 1 else 15):
+                    max_attempts = 600 if biome == "taiga" else (240 if len(expected) > 1 else 15)
+                    for attempt in range(max_attempts):
                         rcon("setblock 16 279 16 minecraft:dirt")
                         rcon("fill 8 280 8 24 310 24 minecraft:air")
                         tree = "pine" if attempt % 2 else "spruce"
