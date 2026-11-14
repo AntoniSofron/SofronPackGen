@@ -19,7 +19,9 @@ public record SpruceVariants(Holder<Feature> original) implements Feature {
             .xmap(SpruceVariants::new, SpruceVariants::original);
     static final TagKey<Biome> TAIGAS = TagKey.create(Registries.BIOME,
             Identifier.fromNamespaceAndPath(TerraLabMod.MOD_ID, "spruce_variants"));
-    private static final BlockPos ROOT = new BlockPos(2, 0, 2);
+    private static final BlockPos NARROW_ROOT = new BlockPos(2, 0, 2);
+
+    private static final BlockPos WIDE_ROOT = new BlockPos(3, 0, 3);
 
     @Override
     public MapCodec<SpruceVariants> codec() { return CODEC; }
@@ -31,7 +33,8 @@ public record SpruceVariants(Holder<Feature> original) implements Feature {
         }
         if (!(original.value() instanceof TreeFeature tree)) return false;
         int variant = 1 + random.nextInt(5);
-        return TreeTemplates.place(level, random, origin, tree, "spruce_" + variant, ROOT,
+        BlockPos root = variant >= 4 ? WIDE_ROOT : NARROW_ROOT;
+        return TreeTemplates.place(level, random, origin, tree, "spruce_" + variant, root,
                 Blocks.SPRUCE_LOG, Blocks.SPRUCE_WOOD, Blocks.SPRUCE_LEAVES);
     }
 }
