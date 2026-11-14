@@ -220,6 +220,37 @@ def main():
                 if missing_spruces:
                     raise AssertionError(f"Missing spruce shapes: {missing_spruces}")
                 print("PASS: five rooted single-trunk spruce shapes and taiga biome scope", flush=True)
+                for biome in ("old_growth_pine_taiga", "old_growth_spruce_taiga", "taiga"):
+                    rcon(f"fillbiome 4 228 4 28 252 28 minecraft:{biome}")
+                    actual = rcon(f"execute if biome 16 240 16 minecraft:{biome}")
+                    if "Test passed" not in actual and "count: 1" not in actual:
+                        raise AssertionError(f"Biome setup failed for {biome}: {actual}")
+                    observed = set()
+                    expected = {0} if biome == "taiga" else {0, 112, 132}
+                    for attempt in range(10 if biome == "taiga" else 80):
+                        rcon("fill 8 240 8 24 277 24 minecraft:air")
+                        rcon("fill 8 239 8 24 239 24 minecraft:dirt")
+                        feature = "mega_pine" if attempt % 2 else "mega_spruce"
+                        placed = rcon(f"place feature minecraft:{feature} 16 240 16")
+                        if "placed" not in placed.lower():
+                            raise AssertionError(f"Giant spruce placement failed: {placed}")
+                        wood = rcon("fill 8 240 8 24 277 24 minecraft:air replace minecraft:spruce_wood")
+                        if "4 block" in wood:
+                            for x in (16, 17):
+                                for z in (16, 17):
+                                    probe = rcon(f"execute if block {x} 240 {z} minecraft:spruce_log "
+                                                 f"if block {x} 239 {z} minecraft:grass_block")
+                                    if "Test passed" not in probe and "count: 1" not in probe:
+                                        raise AssertionError(f"Giant spruce footing at {x},{z}: {probe}")
+                            logs = rcon("fill 8 240 8 24 277 24 minecraft:air replace minecraft:spruce_log")
+                            observed.add(int(re.search(r"(\d+) block", logs).group(1)))
+                        else:
+                            observed.add(0)
+                        if biome != "taiga" and observed == expected:
+                            break
+                    if observed != expected:
+                        raise AssertionError(f"Giant spruce shapes in {biome}: {observed}; last wood probe: {wood}")
+                print("PASS: giant spruce variants, four grass footings and old-growth scope", flush=True)
                 root_offsets = [(5, 5, "oak_log"), (4, 3, "oak_wood"),
                                 (5, 6, "oak_log"), (5, 6, "oak_log"),
                                 (5, 5, "oak_log")]
