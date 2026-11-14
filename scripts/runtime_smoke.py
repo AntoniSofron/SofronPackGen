@@ -189,13 +189,13 @@ def main():
                 single_shapes = {
                     "old_growth_spruce_taiga": {0, 7, 12, 16, 21, 25},
                     "old_growth_pine_taiga": {0, 9, 13, 19},
-                    "taiga": {0},
+                    "taiga": {0, 7, 9, 12, 13, 16, 19, 21, 25},
                     "snowy_taiga": {0},
                 }
                 for biome, expected in single_shapes.items():
                     rcon(f"fillbiome 4 268 4 28 292 28 minecraft:{biome}")
                     observed = set()
-                    for attempt in range(140 if len(expected) > 1 else 15):
+                    for attempt in range(240 if len(expected) > 1 else 15):
                         rcon("setblock 16 279 16 minecraft:dirt")
                         rcon("fill 8 280 8 24 310 24 minecraft:air")
                         tree = "pine" if attempt % 2 else "spruce"

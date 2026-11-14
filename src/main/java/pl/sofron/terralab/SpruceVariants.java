@@ -30,11 +30,13 @@ public record SpruceVariants(Holder<Feature> original) implements Feature {
     @Override
     public boolean place(WorldGenLevel level, ChunkGenerator generator, RandomSource random, BlockPos origin) {
         var biome = level.getBiome(origin);
-        boolean pine = biome.is(Biomes.OLD_GROWTH_PINE_TAIGA);
-        if ((!pine && !biome.is(Biomes.OLD_GROWTH_SPRUCE_TAIGA)) || random.nextInt(5) >= 3) {
+        if (!biome.is(TAIGAS) || random.nextInt(5) >= 3) {
             return original.value().place(level, generator, random, origin);
         }
         if (!(original.value() instanceof TreeFeature tree)) return false;
+        // In ordinary taiga each of the eight templates gets one equal share.
+        boolean pine = biome.is(Biomes.OLD_GROWTH_PINE_TAIGA)
+                || (biome.is(Biomes.TAIGA) && random.nextInt(8) < 3);
         int variant = 1 + random.nextInt(pine ? 3 : 5);
         BlockPos root = variant >= (pine ? 3 : 4) ? WIDE_ROOT : NARROW_ROOT;
         String template = (pine ? "pine_" : "spruce_") + variant;
