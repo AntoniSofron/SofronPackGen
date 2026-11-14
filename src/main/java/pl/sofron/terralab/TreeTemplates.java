@@ -23,10 +23,14 @@ final class TreeTemplates {
 
     static boolean place(WorldGenLevel level, RandomSource random, BlockPos origin,
                                   TreeFeature tree, String path, BlockPos root, Block log, Block woodBlock, Block leavesBlock) {
+        return place(level, random, origin, tree, path, root, log, woodBlock, leavesBlock, Rotation.getRandom(random));
+    }
+
+    static boolean place(WorldGenLevel level, RandomSource random, BlockPos origin, TreeFeature tree,
+                         String path, BlockPos root, Block log, Block woodBlock, Block leavesBlock, Rotation rotation) {
         var id = Identifier.fromNamespaceAndPath(TerraLabMod.MOD_ID, path);
         var template = level.getLevel().getServer().getStructureTemplateManager().get(id).orElse(null);
         if (template == null) return false;
-        var rotation = Rotation.getRandom(random);
         var settings = new StructurePlaceSettings().setRotation(rotation);
         var corner = origin.subtract(root.rotate(rotation));
         var wood = template.filterBlocks(corner, settings, log);
