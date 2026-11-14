@@ -221,7 +221,10 @@ def main():
                     raise AssertionError(f"Missing spruce shapes: {missing_spruces}")
                 print("PASS: five rooted single-trunk spruce shapes and taiga biome scope", flush=True)
                 for biome in ("old_growth_pine_taiga", "old_growth_spruce_taiga", "taiga"):
-                    rcon(f"fillbiome 8 240 8 24 248 24 minecraft:{biome}")
+                    rcon(f"fillbiome 4 228 4 28 252 28 minecraft:{biome}")
+                    actual = rcon(f"execute if biome 16 240 16 minecraft:{biome}")
+                    if "Test passed" not in actual and "count: 1" not in actual:
+                        raise AssertionError(f"Biome setup failed for {biome}: {actual}")
                     observed = set()
                     expected = {0} if biome == "taiga" else {0, 112, 132}
                     for attempt in range(10 if biome == "taiga" else 80):
@@ -246,7 +249,7 @@ def main():
                         if biome != "taiga" and observed == expected:
                             break
                     if observed != expected:
-                        raise AssertionError(f"Giant spruce shapes in {biome}: {observed}")
+                        raise AssertionError(f"Giant spruce shapes in {biome}: {observed}; last wood probe: {wood}")
                 print("PASS: giant spruce variants, four grass footings and old-growth scope", flush=True)
                 root_offsets = [(5, 5, "oak_log"), (4, 3, "oak_wood"),
                                 (5, 6, "oak_log"), (5, 6, "oak_log"),
