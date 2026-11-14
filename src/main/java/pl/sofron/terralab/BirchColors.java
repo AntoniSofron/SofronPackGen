@@ -31,7 +31,7 @@ public final class BirchColors implements ClientModInitializer {
         var level = Minecraft.getInstance().level;
         if (level != null) {
             var key = level.registryAccess().lookupOrThrow(Registries.BIOME).getResourceKey(biome);
-            if (key.isPresent() && key.get().equals(Biomes.FOREST)) return 0xFF92BF00;
+            if (key.isPresent() && (key.get().equals(Biomes.FOREST) || key.get().equals(Biomes.DARK_FOREST))) return 0xFF92BF00;
             if (key.isPresent() && (key.get().equals(Biomes.BIRCH_FOREST)
                     || key.get().equals(Biomes.OLD_GROWTH_BIRCH_FOREST))) return biome.getFoliageColor();
         }
