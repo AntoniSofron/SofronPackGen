@@ -64,6 +64,18 @@ final class TreeTemplates {
                 if (decorate) leaves.add(block.pos());
             }
         }
+        if (log == Blocks.JUNGLE_LOG) {
+            // Place the authored fruit and hanging vines after their supports, before random decorators.
+            for (Block attachment : List.of(Blocks.COCOA, Blocks.VINE)) {
+                var blocks = template.filterBlocks(corner, settings, attachment);
+                blocks.sort(java.util.Comparator.comparingInt((StructureBlockInfo b) -> b.pos().getY()).reversed());
+                for (var b : blocks) {
+                    if (level.isEmptyBlock(b.pos()) && b.state().canSurvive(level, b.pos())) {
+                        level.setBlock(b.pos(), b.state(), 19);
+                    }
+                }
+            }
+        }
         if (!decorate) return true;
         var context = new TreeDecorator.Context(level, (pos, state) -> level.setBlock(pos, state, 19),
                 random, logs, leaves, Set.of());
