@@ -317,6 +317,29 @@ def main():
                         break
                 else:
                     raise AssertionError(f"Missing acacia shapes: {seen}")
+                for feature in ("jungle_tree", "jungle_tree_no_vine", "mega_jungle_tree"):
+                    giant = feature == "mega_jungle_tree"
+                    expected = {0, 62, 69} if giant else {0, 9, 13, 33}
+                    seen = set()
+                    for _ in range(100):
+                        rcon("fill 4 240 4 28 284 28 minecraft:air")
+                        rcon("fill 4 239 4 28 239 28 minecraft:dirt")
+                        result = rcon(f"place feature minecraft:{feature} 16 240 16")
+                        assert "placed" in result.lower(), result
+                        wood = rcon("fill 4 240 4 28 284 28 minecraft:air replace minecraft:jungle_wood")
+                        match = re.search(r"(\d+) block", wood)
+                        count = int(match.group(1)) if match else 0
+                        if count:
+                            for dx in range(2 if giant else 1):
+                                for dz in range(2 if giant else 1):
+                                    x, z = 16 + dx, 16 + dz
+                                    footing = rcon(f"execute if block {x} 240 {z} minecraft:jungle_log "
+                                                   f"if block {x} 239 {z} minecraft:grass_block")
+                                    assert "Test passed" in footing or "count: 1" in footing, footing
+                        seen.add(count)
+                        if seen == expected:
+                            break
+                    assert seen == expected, (feature, seen)
                 root_offsets = [(5, 5, "oak_log"), (4, 3, "oak_wood"),
                                 (5, 6, "oak_log"), (5, 6, "oak_log"),
                                 (5, 5, "oak_log")]
