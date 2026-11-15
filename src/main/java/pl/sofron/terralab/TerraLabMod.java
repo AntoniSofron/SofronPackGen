@@ -22,6 +22,8 @@ public final class TerraLabMod implements ModInitializer {
         net.minecraft.core.Registry.register(net.minecraft.core.registries.BuiltInRegistries.FEATURE_TYPE,
                 net.minecraft.resources.Identifier.fromNamespaceAndPath(MOD_ID, "giant_spruce_variants"), GiantSpruceVariants.CODEC);
         net.minecraft.core.Registry.register(net.minecraft.core.registries.BuiltInRegistries.FEATURE_TYPE,
+                net.minecraft.resources.Identifier.fromNamespaceAndPath(MOD_ID, "acacia_variants"), AcaciaVariants.CODEC);
+        net.minecraft.core.Registry.register(net.minecraft.core.registries.BuiltInRegistries.FEATURE_TYPE,
                 net.minecraft.resources.Identifier.fromNamespaceAndPath(MOD_ID, "dark_oak_variants"), DarkOakVariants.CODEC);
         System.out.println("[Sofron Pack Gen] Approved 84-parameter worldgen enabled; Vanilla biomes and structures preserved.");
     }

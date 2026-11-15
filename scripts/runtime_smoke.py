@@ -298,6 +298,25 @@ def main():
                     else:
                         raise AssertionError(f"Missing dark oak shapes in {feature}: {seen}")
                 print("PASS: vanilla and both authored dark oaks with grounded roots", flush=True)
+                seen = set()
+                for attempt in range(80):
+                    rcon("fill 6 240 6 26 265 26 minecraft:air")
+                    rcon("fill 6 239 6 26 239 26 minecraft:dirt")
+                    result = rcon("place feature minecraft:acacia 16 240 16")
+                    if "placed" not in result.lower():
+                        raise AssertionError(f"Acacia placement failed: {result}")
+                    wood = rcon("fill 6 240 6 26 265 26 minecraft:air replace minecraft:acacia_wood")
+                    match = re.search(r"(\d+) block", wood)
+                    if match:
+                        footing = rcon("execute if block 16 240 16 minecraft:acacia_log "
+                                       "if block 16 239 16 minecraft:grass_block")
+                        if "Test passed" not in footing and "count: 1" not in footing:
+                            raise AssertionError(f"Acacia footing: {footing}")
+                    seen.add(int(match.group(1)) if match else 0)
+                    if seen == {0, 13, 21, 25}:
+                        break
+                else:
+                    raise AssertionError(f"Missing acacia shapes: {seen}")
                 root_offsets = [(5, 5, "oak_log"), (4, 3, "oak_wood"),
                                 (5, 6, "oak_log"), (5, 6, "oak_log"),
                                 (5, 5, "oak_log")]
