@@ -77,7 +77,7 @@ assert final["left"]["left"] == "minecraft:overworld/final_density"
 assert final["left"]["right"] == "sofron_terra_lab:terrain/sculpted_relief"
 assert final["right"] == "sofron_terra_lab:terrain/mountain_ranges"
 land_gate = data[ROOT / "sofron_terra_lab/worldgen/density_function/terrain/land_gate.json"]
-assert all(p["value"] == 0 for p in land_gate["spline"]["points"] if p["location"] <= -0.12)
+assert all(p["value"] == 0 for p in land_gate["input"]["spline"]["points"] if p["location"] <= -0.12)
 ocean = data[ROOT / "sofron_terra_lab/worldgen/density_function/terrain/ocean_trenches.json"]
 assert ocean["type"] == "minecraft:mul" and ocean["left"] < 0
 core = data[ROOT / "sofron_terra_lab/worldgen/density_function/terrain/mountain_ranges.json"]

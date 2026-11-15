@@ -33,3 +33,9 @@ tasks.withType(JavaCompile).configureEach {
 }
 
 apply from: 'gradle/approved-worldgen.gradle'
+
+def distJar = tasks.register('distJar', Copy) {
+    from(tasks.named('jar').flatMap { it.archiveFile })
+    into(layout.projectDirectory.dir('dist'))
+}
+tasks.named('assemble') { dependsOn(distJar) }
