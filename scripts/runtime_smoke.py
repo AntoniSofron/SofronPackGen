@@ -422,7 +422,7 @@ def main():
                 for sx, sz in spots:
                     # Surface height estimate from *actual generated blocks*.
                     # Unlike Distant Horizons, these are server block queries.
-                    top = next((y for y in range(288, 79, -8)
+                    top = next((y for y in range(312, 79, -8)
                                 if is_solid(sx, y, sz)), None)
                     height_profiles.append((sx, sz, top))
                     if top is None or top < 208:

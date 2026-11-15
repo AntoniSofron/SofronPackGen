@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:cache",
+  "input": {
+    "type": "minecraft:noise",
+    "noise": "sofron_terra_lab:microrelief",
+    "xz_scale": 0.25,
+    "y_scale": 0
+  }
+}

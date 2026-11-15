@@ -19,7 +19,7 @@
 | Góry i grzbiety | `mountainFrequency` | 50 | **Steruje generatorem** |
 | Góry i grzbiety | `rangeLength` | 40 | **Steruje generatorem** |
 | Góry i grzbiety | `rangeWidth` | 50 | **Steruje generatorem** |
-| Góry i grzbiety | `peakHeight` | 256 | **Steruje generatorem** |
+| Góry i grzbiety | `peakHeight` | 290 | **Steruje generatorem** |
 | Góry i grzbiety | `mountainSteepness` | 70 | **Steruje generatorem** |
 | Góry i grzbiety | `erosionStrength` | 50 | Do implementacji lub kalibracji |
 | Góry i grzbiety | `mountainIsolation` | 35 | Do implementacji lub kalibracji |

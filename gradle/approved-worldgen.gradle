@@ -35,11 +35,11 @@ tasks.register("syncApprovedTerrain") {
             Math.max(lo.doubleValue(), Math.min(hi.doubleValue(), x.doubleValue()))
         }
         // Build connected mountain mass FROM THE GROUND UP, never a high-altitude
-        // positive density pulse. The zero crossing is approximately peakHeight
-        // at mountain_strength=1 (default: Y256). Gradient is monotone in Y.
+        // positive density pulse. Preserve the original lower slopes and lift only clipped summits.
+        double slope = 0.005 * p.mountainSteepness / 70.0
+        double shoulder = Math.min(256, p.peakHeight)
+        double coefficient = 0.04 + slope * (shoulder - 80.0)
         modify("mountain_ranges") { o ->
-            double slope = 0.005 * p.mountainSteepness / 70.0
-            double coefficient = 0.04 + slope * (p.peakHeight - 80.0)
             o.left.left.from_value = -0.04
             o.left.left.to_value = -0.04 - 240.0 * slope
             o.left.right.left = limit(coefficient, 0.04, 2.0)
@@ -47,8 +47,9 @@ tasks.register("syncApprovedTerrain") {
         modify("mountain_strength") { o ->
             // The original raw erosion*ridge*region mask was too weak for actual
             // mountain terrain at ordinary Minecraft biome coordinates.
-            // Normalize by amplifying, then cap at 1 to retain peakHeight as target.
-            o.right.left = limit(3.2 * p.mountainFrequency / 50.0
+            // Vary the former flat ceiling with the existing horizontal relief field.
+            o.input.right.right.left = slope * (p.peakHeight - shoulder) / coefficient
+            o.input.left.left = limit(3.2 * p.mountainFrequency / 50.0
                 * (100.0 - p.mountainIsolation) / 65.0, 0.5, 4.6)
         }
         modify("upland_lift") { o ->
@@ -100,7 +101,7 @@ tasks.register("syncApprovedTerrain") {
             o.right.right.left.spline.points[1].value = limit(
                 0.35 * p.oceanTrenches / 50.0, 0, 0.7)
         }
-        println("[Sofron Terra Lab] Regenerated connected mountain core (peak Y256 target), uplift, valleys, low Beta details, karst, coast and ocean from approved JSON")
+        println("[Sofron Terra Lab] Regenerated connected mountain core (peak Y${p.peakHeight} target), uplift, valleys, low Beta details, karst, coast and ocean from approved JSON")
     }
 }
 

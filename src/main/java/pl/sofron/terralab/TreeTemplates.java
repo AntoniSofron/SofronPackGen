@@ -39,29 +39,32 @@ final class TreeTemplates {
                          String path, BlockPos root, Block log, Block woodBlock, Block leavesBlock, Rotation rotation) {
         var id = Identifier.fromNamespaceAndPath(TerraLabMod.MOD_ID, path);
         var template = level.getLevel().getServer().getStructureTemplateManager().get(id).orElse(null);
-        if (template == null) return false;
+        if (template == null || origin.getY() + template.getSize().getY() - 1 > level.getMaxY()) return false;
         var settings = new StructurePlaceSettings().setRotation(rotation);
         var corner = origin.subtract(root.rotate(rotation));
         var wood = template.filterBlocks(corner, settings, log);
         wood.addAll(template.filterBlocks(corner, settings, woodBlock));
-        var canopy = template.filterBlocks(corner, settings, leavesBlock);
-        if (wood.isEmpty() || canopy.isEmpty() || origin.getY() + template.getSize().getY() - 1 > level.getMaxY()) return false;
+        if (wood.isEmpty()) return false;
         for (var block : wood) {
             if (!TreeFeature.validTreePos(level, block.pos())) return false;
         }
+        var canopy = template.filterBlocks(corner, settings, leavesBlock);
+        if (canopy.isEmpty()) return false;
         if (!supportRoots(level, origin, wood)) return false;
-        Set<BlockPos> logs = new HashSet<>();
-        Set<BlockPos> leaves = new HashSet<>();
+        boolean decorate = !tree.decorators().isEmpty();
+        Set<BlockPos> logs = decorate ? new HashSet<>() : Set.of();
+        Set<BlockPos> leaves = decorate ? new HashSet<>() : Set.of();
         for (StructureBlockInfo block : wood) {
             level.setBlock(block.pos(), block.state(), 19);
-            logs.add(block.pos());
+            if (decorate) logs.add(block.pos());
         }
         for (var block : canopy) {
             if (TreeFeature.validTreePos(level, block.pos())) {
                 level.setBlock(block.pos(), block.state().setValue(BlockStateProperties.PERSISTENT, false), 19);
-                leaves.add(block.pos());
+                if (decorate) leaves.add(block.pos());
             }
         }
+        if (!decorate) return true;
         var context = new TreeDecorator.Context(level, (pos, state) -> level.setBlock(pos, state, 19),
                 random, logs, leaves, Set.of());
         tree.decorators().forEach(decorator -> decorator.place(context));

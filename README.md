@@ -17,9 +17,9 @@ This branch contains a **real, active Overworld density-function generator**. It
 
 ## Active terrain features
 
-New, original density functions build connected high mountain massifs with a Y256 summit target (not floating islands), stronger upland elevation, inland mountain belts, erosion-aware ridges, old Beta-style cliff and overhang variation, softer Classic valleys, smaller rough hills, scarce clustered karst-like columns, irregular shallow coastal islets, and somewhat deeper offshore trenches. Vanilla surface materials, biomes, caves, rivers and structure definitions remain intact.
+New, original density functions build connected high mountain massifs with a Y290 summit target (not floating islands), stronger upland elevation, inland mountain belts, erosion-aware ridges, old Beta-style cliff and overhang variation, softer Classic valleys, smaller rough hills, scarce clustered karst-like columns, irregular shallow coastal islets, and somewhat deeper offshore trenches. Vanilla surface materials, biomes, caves, rivers and structure definitions remain intact.
 
-**This is an experimental alpha, not completion of all 84 settings.** The real drainage-basin solver, navigable downhill river network, tributary connections, underground flowing rivers, independent inland lakes and waterfalls, measured 60% land ratio, strict per-seed enforcement of summit Y256 and extensive multi-seed terrain calibration are still outstanding. The JSON is a requirements document, not a claim that all sliders are implemented.
+**This is an experimental alpha, not completion of all 84 settings.** The real drainage-basin solver, navigable downhill river network, tributary connections, underground flowing rivers, independent inland lakes and waterfalls, measured 60% land ratio, strict per-seed enforcement of summit Y290 and extensive multi-seed terrain calibration are still outstanding. The JSON is a requirements document, not a claim that all sliders are implemented.
 
 ## Windows: one-click build and installation
 
@@ -46,7 +46,7 @@ All original code and datapack definitions belong to this project. No third-part
 
 ## November 13 terrain correction
 
-Following an in-game screenshot showing a large floating biome-covered mass above an otherwise too-low landscape, we replaced the old high-altitude *positive density pulse* with a **vertically connected, monotonic mountain solid core**. The mountain strength is based on Vanilla continentalness/erosion/ridges and bounded inland noise. At full strength the mountain core reaches approximately Y256, decreasing continuously toward the ground, with extra inland uplift for broader relief. Beta 3D decorations now fade out by Y170 to prevent independent slabs near Y256. The core can fill some upper-level Vanilla cave volume beneath peaks; deep cave systems remain from Vanilla outside that core. The **sea level is Y63 (water surface blocks through Y62)**. Existing chunks do not change; test a new world without LOD.
+Following an in-game screenshot showing a large floating biome-covered mass above an otherwise too-low landscape, we replaced the old high-altitude *positive density pulse* with a **vertically connected, monotonic mountain solid core**. The mountain strength is based on Vanilla continentalness/erosion/ridges and bounded inland noise. The former Y256 summit plateau now follows local relief up to Y290. Lower ridges retain their original height formula. Beta 3D decorations now fade out by Y170 to prevent independent slabs near Y256. The core can fill some upper-level Vanilla cave volume beneath peaks; deep cave systems remain from Vanilla outside that core. The **sea level is Y63 (water surface blocks through Y62)**. Existing chunks do not change; test a new world without LOD.
 
 ## Vanilla swamp recoloring (0.2.0-alpha.5)
 
