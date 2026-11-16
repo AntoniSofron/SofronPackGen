@@ -8,67 +8,133 @@
   "elements": [
     {
       "from": [
-        0,
+        4,
         -9,
-        8
+        0
       ],
       "to": [
-        16,
+        4,
         0,
-        8
+        16
       ],
-      "shade": false,
+      "shade_direction_override": "up",
       "faces": {
-        "north": {
-          "texture": "#stem",
+        "west": {
           "uv": [
             0,
             0,
             16,
             9
-          ]
+          ],
+          "texture": "#stem"
         },
-        "south": {
-          "texture": "#stem",
+        "east": {
           "uv": [
-            0,
-            0,
             16,
+            0,
+            0,
             9
-          ]
+          ],
+          "texture": "#stem"
         }
       }
     },
     {
       "from": [
-        8,
+        12,
         -9,
         0
       ],
       "to": [
-        8,
+        12,
         0,
         16
       ],
-      "shade": false,
+      "shade_direction_override": "up",
       "faces": {
-        "east": {
-          "texture": "#stem",
-          "uv": [
-            0,
-            0,
-            16,
-            9
-          ]
-        },
         "west": {
-          "texture": "#stem",
+          "uv": [
+            16,
+            0,
+            0,
+            9
+          ],
+          "texture": "#stem"
+        },
+        "east": {
           "uv": [
             0,
             0,
             16,
             9
-          ]
+          ],
+          "texture": "#stem"
+        }
+      }
+    },
+    {
+      "from": [
+        0,
+        -9,
+        4
+      ],
+      "to": [
+        16,
+        0,
+        4
+      ],
+      "shade_direction_override": "up",
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            16,
+            9
+          ],
+          "texture": "#stem"
+        },
+        "south": {
+          "uv": [
+            16,
+            0,
+            0,
+            9
+          ],
+          "texture": "#stem"
+        }
+      }
+    },
+    {
+      "from": [
+        0,
+        -9,
+        12
+      ],
+      "to": [
+        16,
+        0,
+        12
+      ],
+      "shade_direction_override": "up",
+      "faces": {
+        "north": {
+          "uv": [
+            16,
+            0,
+            0,
+            9
+          ],
+          "texture": "#stem"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            16,
+            9
+          ],
+          "texture": "#stem"
         }
       }
     }
