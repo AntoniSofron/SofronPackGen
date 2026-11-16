@@ -6,6 +6,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.*;
 import pl.sofron.terralab.soil.SoilShape;
+import pl.sofron.terralab.soil.SoilCropRules;
 
 @Mixin(HarvestFarmland.class)
 abstract class FarmerMixin {
@@ -13,6 +14,9 @@ abstract class FarmerMixin {
             at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/BlockState;getBlock()Lnet/minecraft/world/level/block/Block;"))
     private Block recognizeField(BlockState state) {
         Block block = state.getBlock();
-        return block instanceof SoilShape soil && soil.soilBase() == Blocks.FARMLAND ? Blocks.FARMLAND : block;
+        // Villagers must not plant on the dry (non-waterlogged) slab/stairs either.
+        if (block instanceof SoilShape soil && soil.soilBase() == Blocks.FARMLAND)
+            return SoilCropRules.hasInternalWater(state) ? Blocks.FARMLAND : Blocks.AIR;
+        return block;
     }
 }
