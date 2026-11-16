@@ -1,0 +1,20 @@
+{
+  "values": [
+    "sofron_terra_lab:grass_block_slab",
+    "sofron_terra_lab:grass_block_stairs",
+    "sofron_terra_lab:dirt_slab",
+    "sofron_terra_lab:dirt_stairs",
+    "sofron_terra_lab:coarse_dirt_slab",
+    "sofron_terra_lab:coarse_dirt_stairs",
+    "sofron_terra_lab:rooted_dirt_slab",
+    "sofron_terra_lab:rooted_dirt_stairs",
+    "sofron_terra_lab:mycelium_slab",
+    "sofron_terra_lab:mycelium_stairs",
+    "sofron_terra_lab:podzol_slab",
+    "sofron_terra_lab:podzol_stairs",
+    "sofron_terra_lab:mud_slab",
+    "sofron_terra_lab:mud_stairs",
+    "sofron_terra_lab:farmland_slab",
+    "sofron_terra_lab:farmland_stairs"
+  ]
+}

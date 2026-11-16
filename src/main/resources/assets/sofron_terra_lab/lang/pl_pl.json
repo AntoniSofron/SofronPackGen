@@ -1,0 +1,22 @@
+{
+  "block.sofron_terra_lab.grass_block_slab": "Trawiasty półblok",
+  "block.sofron_terra_lab.grass_block_stairs": "Trawiaste schody",
+  "block.sofron_terra_lab.dirt_slab": "Półblok ziemi",
+  "block.sofron_terra_lab.dirt_stairs": "Schody z ziemi",
+  "block.sofron_terra_lab.coarse_dirt_slab": "Półblok twardej ziemi",
+  "block.sofron_terra_lab.coarse_dirt_stairs": "Schody z twardej ziemi",
+  "block.sofron_terra_lab.rooted_dirt_slab": "Półblok ziemi z korzeniami",
+  "block.sofron_terra_lab.rooted_dirt_stairs": "Schody z ziemi z korzeniami",
+  "block.sofron_terra_lab.dirt_path_slab": "Półblok ścieżki",
+  "block.sofron_terra_lab.dirt_path_stairs": "Schody z ścieżki",
+  "block.sofron_terra_lab.mycelium_slab": "Półblok grzybni",
+  "block.sofron_terra_lab.mycelium_stairs": "Schody z grzybni",
+  "block.sofron_terra_lab.podzol_slab": "Półblok bielicy",
+  "block.sofron_terra_lab.podzol_stairs": "Schody z bielicy",
+  "block.sofron_terra_lab.mud_slab": "Półblok błota",
+  "block.sofron_terra_lab.mud_stairs": "Schody z błota",
+  "block.sofron_terra_lab.clay_slab": "Półblok gliny",
+  "block.sofron_terra_lab.clay_stairs": "Schody z gliny",
+  "block.sofron_terra_lab.farmland_slab": "Półblok pola uprawnego",
+  "block.sofron_terra_lab.farmland_stairs": "Schody z pola uprawnego"
+}

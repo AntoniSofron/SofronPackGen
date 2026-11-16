@@ -1,0 +1,21 @@
+{
+  "required": true,
+  "package": "pl.sofron.terralab.soil.mixin",
+  "compatibilityLevel": "JAVA_25",
+  "mixins": [
+    "SoilTickAccess",
+    "SpreadingSoilMixin",
+    "FarmlandSoilMixin",
+    "CropOutlineMixin",
+    "DripstoneSoilMixin",
+    "FarmerMixin",
+    "GrazingMixin",
+    "GrassBonemealMixin"
+  ],
+  "client": [
+    "CropRenderMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

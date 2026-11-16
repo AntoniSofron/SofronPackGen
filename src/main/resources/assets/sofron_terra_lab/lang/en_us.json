@@ -1,0 +1,22 @@
+{
+  "block.sofron_terra_lab.grass_block_slab": "Grass Slab",
+  "block.sofron_terra_lab.grass_block_stairs": "Grass Stairs",
+  "block.sofron_terra_lab.dirt_slab": "Dirt Slab",
+  "block.sofron_terra_lab.dirt_stairs": "Dirt Stairs",
+  "block.sofron_terra_lab.coarse_dirt_slab": "Coarse Dirt Slab",
+  "block.sofron_terra_lab.coarse_dirt_stairs": "Coarse Dirt Stairs",
+  "block.sofron_terra_lab.rooted_dirt_slab": "Rooted Dirt Slab",
+  "block.sofron_terra_lab.rooted_dirt_stairs": "Rooted Dirt Stairs",
+  "block.sofron_terra_lab.dirt_path_slab": "Dirt Path Slab",
+  "block.sofron_terra_lab.dirt_path_stairs": "Dirt Path Stairs",
+  "block.sofron_terra_lab.mycelium_slab": "Mycelium Slab",
+  "block.sofron_terra_lab.mycelium_stairs": "Mycelium Stairs",
+  "block.sofron_terra_lab.podzol_slab": "Podzol Slab",
+  "block.sofron_terra_lab.podzol_stairs": "Podzol Stairs",
+  "block.sofron_terra_lab.mud_slab": "Mud Slab",
+  "block.sofron_terra_lab.mud_stairs": "Mud Stairs",
+  "block.sofron_terra_lab.clay_slab": "Clay Slab",
+  "block.sofron_terra_lab.clay_stairs": "Clay Stairs",
+  "block.sofron_terra_lab.farmland_slab": "Farmland Slab",
+  "block.sofron_terra_lab.farmland_stairs": "Farmland Stairs"
+}

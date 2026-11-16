@@ -46,6 +46,9 @@ public final class BirchColors implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
+        BlockColorRegistry.register(List.of(BlockTintSources.grass()),
+                pl.sofron.terralab.soil.SoilBlocks.slab(Blocks.GRASS_BLOCK),
+                pl.sofron.terralab.soil.SoilBlocks.stairs(Blocks.GRASS_BLOCK));
         register(Blocks.BIRCH_LEAVES, VANILLA_BIRCH, BIRCH);
         register(Blocks.OAK_LEAVES, BlockTintSources.foliage().color(Blocks.OAK_LEAVES.defaultBlockState()),
                 (biome, x, z) -> usesTaigaLeaves(biome) ? 0xFFC13D42 : biome.getFoliageColor());

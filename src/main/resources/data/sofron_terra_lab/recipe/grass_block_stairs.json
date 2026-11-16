@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "soil_stairs",
+  "key": {
+    "#": "minecraft:grass_block"
+  },
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "result": {
+    "count": 4,
+    "id": "sofron_terra_lab:grass_block_stairs"
+  }
+}

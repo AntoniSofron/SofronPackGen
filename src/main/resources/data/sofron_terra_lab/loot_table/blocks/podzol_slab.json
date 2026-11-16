@@ -1,0 +1,54 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "entries": [
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:item",
+              "condition": "minecraft:tool/can_silk_touch",
+              "name": "sofron_terra_lab:podzol_slab",
+              "modifier": [
+                {
+                  "type": "minecraft:set_count",
+                  "count": 2,
+                  "condition": {
+                    "type": "minecraft:match_block",
+                    "blocks": "sofron_terra_lab:podzol_slab",
+                    "state": {
+                      "type": "double"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "minecraft:item",
+              "condition": {
+                "type": "minecraft:survives_explosion"
+              },
+              "name": "sofron_terra_lab:dirt_slab",
+              "modifier": [
+                {
+                  "type": "minecraft:set_count",
+                  "count": 2,
+                  "condition": {
+                    "type": "minecraft:match_block",
+                    "blocks": "sofron_terra_lab:podzol_slab",
+                    "state": {
+                      "type": "double"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "rolls": 1
+    }
+  ],
+  "random_sequence": "sofron_terra_lab:blocks/podzol_slab"
+}
