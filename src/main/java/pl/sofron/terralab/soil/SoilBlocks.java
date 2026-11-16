@@ -49,8 +49,9 @@ public final class SoilBlocks {
         Identifier id = Identifier.fromNamespaceAndPath(TerraLabMod.MOD_ID, name);
         var key = ResourceKey.create(Registries.BLOCK, id);
         var props = BlockBehaviour.Properties.ofFullCopy(base).noOcclusion().setId(key);
-        // The full path opts into suffocation, which triggers client push-out on partial steps.
-        if (base == Blocks.DIRT_PATH) props.isSuffocating((state, level, pos) -> false);
+        // Full paths and farmland opt into suffocation, which pushes players off recessed steps.
+        if (base == Blocks.DIRT_PATH || base == Blocks.FARMLAND)
+            props.isSuffocating((state, level, pos) -> false);
         Block block;
         if (base == Blocks.FARMLAND) block = stairs ? new FarmStairs(base, props) : new FarmSlab(base, props);
         else if (base.defaultBlockState().hasProperty(SnowyBlock.SNOWY))
