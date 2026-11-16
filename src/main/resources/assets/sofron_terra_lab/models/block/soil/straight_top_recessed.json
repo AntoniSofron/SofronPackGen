@@ -52,9 +52,9 @@
           "texture": "#side",
           "uv": [
             8,
-            0,
+            1,
             16,
-            7
+            8
           ],
           "cullface": "north"
         }
@@ -76,9 +76,9 @@
           "texture": "#side",
           "uv": [
             0,
-            0,
+            1,
             8,
-            7
+            8
           ],
           "cullface": "west"
         }
@@ -132,9 +132,9 @@
           "texture": "#side",
           "uv": [
             0,
-            0,
+            1,
             8,
-            7
+            8
           ],
           "cullface": "south"
         }
@@ -156,9 +156,9 @@
           "texture": "#side",
           "uv": [
             8,
-            0,
+            1,
             16,
-            7
+            8
           ],
           "cullface": "west"
         }
@@ -213,9 +213,9 @@
           "texture": "#side",
           "uv": [
             0,
-            0,
+            1,
             8,
-            15
+            16
           ],
           "cullface": "north"
         }
@@ -237,9 +237,9 @@
           "texture": "#side",
           "uv": [
             0,
-            7,
             8,
-            15
+            8,
+            16
           ]
         }
       }
@@ -260,9 +260,9 @@
           "texture": "#side",
           "uv": [
             8,
-            0,
+            1,
             16,
-            15
+            16
           ],
           "cullface": "east"
         }
@@ -317,9 +317,9 @@
           "texture": "#side",
           "uv": [
             8,
-            0,
+            1,
             16,
-            15
+            16
           ],
           "cullface": "south"
         }
@@ -341,9 +341,9 @@
           "texture": "#side",
           "uv": [
             8,
-            7,
+            8,
             16,
-            15
+            16
           ]
         }
       }
@@ -364,9 +364,9 @@
           "texture": "#side",
           "uv": [
             0,
-            0,
+            1,
             8,
-            15
+            16
           ],
           "cullface": "east"
         }
