@@ -128,6 +128,19 @@ def main():
                 # Exercise the natural meadow birch placement. Each authored canopy
                 # has a unique number of branch-wood blocks in an empty plot.
                 rcon("forceload add 0 0 47 47")
+                # Cover a tilled stair, then verify the scheduled vanilla-style reversion
+                # keeps the upside-down orientation. A seed crop must survive on a bottom slab.
+                rcon("fill 20 298 20 23 301 20 minecraft:air")
+                rcon("setblock 20 299 20 sofron_terra_lab:farmland_stairs[half=top,facing=west,moisture=7]")
+                rcon("setblock 20 300 20 minecraft:stone")
+                rcon("setblock 22 299 20 sofron_terra_lab:farmland_slab[type=bottom,moisture=7]")
+                rcon("setblock 22 300 20 minecraft:wheat")
+                time.sleep(0.5)
+                for condition in ("20 299 20 sofron_terra_lab:dirt_stairs[half=top,facing=west]",
+                                  "22 300 20 minecraft:wheat"):
+                    result = rcon("execute if block " + condition)
+                    assert "Test passed" in result or "count: 1" in result, (condition, result)
+                rcon("fill 20 298 20 23 301 20 minecraft:air")
                 rcon("fill 8 278 8 24 278 24 minecraft:dirt")
                 rcon("setblock 16 279 16 minecraft:grass_block")
                 def reset_step():

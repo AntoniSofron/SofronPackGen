@@ -1,0 +1,9 @@
+{
+  "parent": "sofron_terra_lab:block/soil/inner_top_grass",
+  "textures": {
+    "top": "minecraft:block/grass_block_top",
+    "bottom": "minecraft:block/dirt",
+    "side": "minecraft:block/grass_block_side",
+    "overlay": "minecraft:block/grass_block_side_overlay"
+  }
+}

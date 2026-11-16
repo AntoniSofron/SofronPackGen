@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "soil_slab",
+  "key": {
+    "#": "minecraft:mycelium"
+  },
+  "pattern": [
+    "###"
+  ],
+  "result": {
+    "count": 6,
+    "id": "sofron_terra_lab:mycelium_slab"
+  }
+}

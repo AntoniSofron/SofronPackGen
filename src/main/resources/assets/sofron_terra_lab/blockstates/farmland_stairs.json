@@ -1,0 +1,1444 @@
+{
+  "variants": {
+    "moisture=0,facing=east,half=bottom,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_bottom_dry"
+    },
+    "moisture=0,facing=east,half=bottom,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_dry"
+    },
+    "moisture=0,facing=east,half=bottom,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_dry"
+    },
+    "moisture=0,facing=east,half=bottom,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_dry",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=0,facing=east,half=bottom,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_dry",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=0,facing=south,half=bottom,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_bottom_dry",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=0,facing=south,half=bottom,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_dry",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=0,facing=south,half=bottom,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_dry",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=0,facing=south,half=bottom,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_dry"
+    },
+    "moisture=0,facing=south,half=bottom,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_dry"
+    },
+    "moisture=0,facing=west,half=bottom,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_bottom_dry",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=0,facing=west,half=bottom,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_dry",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=0,facing=west,half=bottom,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_dry",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=0,facing=west,half=bottom,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_dry",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=0,facing=west,half=bottom,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_dry",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=0,facing=north,half=bottom,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_bottom_dry",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=0,facing=north,half=bottom,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_dry",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=0,facing=north,half=bottom,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_dry",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=0,facing=north,half=bottom,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_dry",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=0,facing=north,half=bottom,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_dry",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=0,facing=east,half=top,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_top_dry"
+    },
+    "moisture=0,facing=east,half=top,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_dry"
+    },
+    "moisture=0,facing=east,half=top,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_dry"
+    },
+    "moisture=0,facing=east,half=top,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_dry",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=0,facing=east,half=top,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_dry",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=0,facing=south,half=top,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_top_dry",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=0,facing=south,half=top,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_dry",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=0,facing=south,half=top,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_dry",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=0,facing=south,half=top,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_dry"
+    },
+    "moisture=0,facing=south,half=top,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_dry"
+    },
+    "moisture=0,facing=west,half=top,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_top_dry",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=0,facing=west,half=top,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_dry",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=0,facing=west,half=top,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_dry",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=0,facing=west,half=top,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_dry",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=0,facing=west,half=top,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_dry",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=0,facing=north,half=top,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_top_dry",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=0,facing=north,half=top,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_dry",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=0,facing=north,half=top,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_dry",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=0,facing=north,half=top,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_dry",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=0,facing=north,half=top,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_dry",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=1,facing=east,half=bottom,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_bottom_wet"
+    },
+    "moisture=2,facing=east,half=bottom,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_bottom_wet"
+    },
+    "moisture=3,facing=east,half=bottom,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_bottom_wet"
+    },
+    "moisture=4,facing=east,half=bottom,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_bottom_wet"
+    },
+    "moisture=5,facing=east,half=bottom,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_bottom_wet"
+    },
+    "moisture=6,facing=east,half=bottom,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_bottom_wet"
+    },
+    "moisture=7,facing=east,half=bottom,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_bottom_wet"
+    },
+    "moisture=1,facing=east,half=bottom,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet"
+    },
+    "moisture=2,facing=east,half=bottom,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet"
+    },
+    "moisture=3,facing=east,half=bottom,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet"
+    },
+    "moisture=4,facing=east,half=bottom,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet"
+    },
+    "moisture=5,facing=east,half=bottom,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet"
+    },
+    "moisture=6,facing=east,half=bottom,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet"
+    },
+    "moisture=7,facing=east,half=bottom,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet"
+    },
+    "moisture=1,facing=east,half=bottom,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet"
+    },
+    "moisture=2,facing=east,half=bottom,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet"
+    },
+    "moisture=3,facing=east,half=bottom,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet"
+    },
+    "moisture=4,facing=east,half=bottom,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet"
+    },
+    "moisture=5,facing=east,half=bottom,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet"
+    },
+    "moisture=6,facing=east,half=bottom,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet"
+    },
+    "moisture=7,facing=east,half=bottom,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet"
+    },
+    "moisture=1,facing=east,half=bottom,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=2,facing=east,half=bottom,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=3,facing=east,half=bottom,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=4,facing=east,half=bottom,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=5,facing=east,half=bottom,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=6,facing=east,half=bottom,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=7,facing=east,half=bottom,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=1,facing=east,half=bottom,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=2,facing=east,half=bottom,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=3,facing=east,half=bottom,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=4,facing=east,half=bottom,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=5,facing=east,half=bottom,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=6,facing=east,half=bottom,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=7,facing=east,half=bottom,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=1,facing=south,half=bottom,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_bottom_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=2,facing=south,half=bottom,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_bottom_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=3,facing=south,half=bottom,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_bottom_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=4,facing=south,half=bottom,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_bottom_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=5,facing=south,half=bottom,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_bottom_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=6,facing=south,half=bottom,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_bottom_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=7,facing=south,half=bottom,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_bottom_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=1,facing=south,half=bottom,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=2,facing=south,half=bottom,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=3,facing=south,half=bottom,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=4,facing=south,half=bottom,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=5,facing=south,half=bottom,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=6,facing=south,half=bottom,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=7,facing=south,half=bottom,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=1,facing=south,half=bottom,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=2,facing=south,half=bottom,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=3,facing=south,half=bottom,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=4,facing=south,half=bottom,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=5,facing=south,half=bottom,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=6,facing=south,half=bottom,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=7,facing=south,half=bottom,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=1,facing=south,half=bottom,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet"
+    },
+    "moisture=2,facing=south,half=bottom,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet"
+    },
+    "moisture=3,facing=south,half=bottom,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet"
+    },
+    "moisture=4,facing=south,half=bottom,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet"
+    },
+    "moisture=5,facing=south,half=bottom,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet"
+    },
+    "moisture=6,facing=south,half=bottom,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet"
+    },
+    "moisture=7,facing=south,half=bottom,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet"
+    },
+    "moisture=1,facing=south,half=bottom,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet"
+    },
+    "moisture=2,facing=south,half=bottom,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet"
+    },
+    "moisture=3,facing=south,half=bottom,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet"
+    },
+    "moisture=4,facing=south,half=bottom,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet"
+    },
+    "moisture=5,facing=south,half=bottom,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet"
+    },
+    "moisture=6,facing=south,half=bottom,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet"
+    },
+    "moisture=7,facing=south,half=bottom,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet"
+    },
+    "moisture=1,facing=west,half=bottom,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_bottom_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=2,facing=west,half=bottom,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_bottom_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=3,facing=west,half=bottom,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_bottom_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=4,facing=west,half=bottom,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_bottom_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=5,facing=west,half=bottom,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_bottom_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=6,facing=west,half=bottom,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_bottom_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=7,facing=west,half=bottom,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_bottom_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=1,facing=west,half=bottom,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=2,facing=west,half=bottom,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=3,facing=west,half=bottom,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=4,facing=west,half=bottom,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=5,facing=west,half=bottom,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=6,facing=west,half=bottom,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=7,facing=west,half=bottom,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=1,facing=west,half=bottom,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=2,facing=west,half=bottom,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=3,facing=west,half=bottom,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=4,facing=west,half=bottom,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=5,facing=west,half=bottom,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=6,facing=west,half=bottom,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=7,facing=west,half=bottom,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=1,facing=west,half=bottom,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=2,facing=west,half=bottom,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=3,facing=west,half=bottom,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=4,facing=west,half=bottom,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=5,facing=west,half=bottom,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=6,facing=west,half=bottom,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=7,facing=west,half=bottom,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=1,facing=west,half=bottom,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=2,facing=west,half=bottom,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=3,facing=west,half=bottom,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=4,facing=west,half=bottom,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=5,facing=west,half=bottom,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=6,facing=west,half=bottom,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=7,facing=west,half=bottom,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=1,facing=north,half=bottom,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_bottom_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=2,facing=north,half=bottom,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_bottom_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=3,facing=north,half=bottom,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_bottom_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=4,facing=north,half=bottom,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_bottom_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=5,facing=north,half=bottom,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_bottom_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=6,facing=north,half=bottom,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_bottom_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=7,facing=north,half=bottom,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_bottom_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=1,facing=north,half=bottom,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=2,facing=north,half=bottom,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=3,facing=north,half=bottom,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=4,facing=north,half=bottom,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=5,facing=north,half=bottom,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=6,facing=north,half=bottom,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=7,facing=north,half=bottom,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=1,facing=north,half=bottom,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=2,facing=north,half=bottom,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=3,facing=north,half=bottom,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=4,facing=north,half=bottom,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=5,facing=north,half=bottom,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=6,facing=north,half=bottom,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=7,facing=north,half=bottom,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=1,facing=north,half=bottom,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=2,facing=north,half=bottom,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=3,facing=north,half=bottom,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=4,facing=north,half=bottom,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=5,facing=north,half=bottom,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=6,facing=north,half=bottom,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=7,facing=north,half=bottom,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_bottom_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=1,facing=north,half=bottom,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=2,facing=north,half=bottom,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=3,facing=north,half=bottom,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=4,facing=north,half=bottom,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=5,facing=north,half=bottom,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=6,facing=north,half=bottom,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=7,facing=north,half=bottom,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_bottom_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=1,facing=east,half=top,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_top_wet"
+    },
+    "moisture=2,facing=east,half=top,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_top_wet"
+    },
+    "moisture=3,facing=east,half=top,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_top_wet"
+    },
+    "moisture=4,facing=east,half=top,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_top_wet"
+    },
+    "moisture=5,facing=east,half=top,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_top_wet"
+    },
+    "moisture=6,facing=east,half=top,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_top_wet"
+    },
+    "moisture=7,facing=east,half=top,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_top_wet"
+    },
+    "moisture=1,facing=east,half=top,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet"
+    },
+    "moisture=2,facing=east,half=top,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet"
+    },
+    "moisture=3,facing=east,half=top,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet"
+    },
+    "moisture=4,facing=east,half=top,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet"
+    },
+    "moisture=5,facing=east,half=top,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet"
+    },
+    "moisture=6,facing=east,half=top,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet"
+    },
+    "moisture=7,facing=east,half=top,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet"
+    },
+    "moisture=1,facing=east,half=top,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet"
+    },
+    "moisture=2,facing=east,half=top,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet"
+    },
+    "moisture=3,facing=east,half=top,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet"
+    },
+    "moisture=4,facing=east,half=top,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet"
+    },
+    "moisture=5,facing=east,half=top,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet"
+    },
+    "moisture=6,facing=east,half=top,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet"
+    },
+    "moisture=7,facing=east,half=top,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet"
+    },
+    "moisture=1,facing=east,half=top,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=2,facing=east,half=top,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=3,facing=east,half=top,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=4,facing=east,half=top,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=5,facing=east,half=top,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=6,facing=east,half=top,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=7,facing=east,half=top,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=1,facing=east,half=top,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=2,facing=east,half=top,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=3,facing=east,half=top,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=4,facing=east,half=top,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=5,facing=east,half=top,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=6,facing=east,half=top,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=7,facing=east,half=top,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=1,facing=south,half=top,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_top_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=2,facing=south,half=top,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_top_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=3,facing=south,half=top,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_top_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=4,facing=south,half=top,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_top_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=5,facing=south,half=top,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_top_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=6,facing=south,half=top,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_top_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=7,facing=south,half=top,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_top_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=1,facing=south,half=top,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=2,facing=south,half=top,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=3,facing=south,half=top,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=4,facing=south,half=top,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=5,facing=south,half=top,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=6,facing=south,half=top,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=7,facing=south,half=top,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=1,facing=south,half=top,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=2,facing=south,half=top,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=3,facing=south,half=top,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=4,facing=south,half=top,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=5,facing=south,half=top,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=6,facing=south,half=top,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=7,facing=south,half=top,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=1,facing=south,half=top,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet"
+    },
+    "moisture=2,facing=south,half=top,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet"
+    },
+    "moisture=3,facing=south,half=top,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet"
+    },
+    "moisture=4,facing=south,half=top,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet"
+    },
+    "moisture=5,facing=south,half=top,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet"
+    },
+    "moisture=6,facing=south,half=top,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet"
+    },
+    "moisture=7,facing=south,half=top,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet"
+    },
+    "moisture=1,facing=south,half=top,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet"
+    },
+    "moisture=2,facing=south,half=top,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet"
+    },
+    "moisture=3,facing=south,half=top,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet"
+    },
+    "moisture=4,facing=south,half=top,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet"
+    },
+    "moisture=5,facing=south,half=top,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet"
+    },
+    "moisture=6,facing=south,half=top,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet"
+    },
+    "moisture=7,facing=south,half=top,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet"
+    },
+    "moisture=1,facing=west,half=top,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_top_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=2,facing=west,half=top,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_top_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=3,facing=west,half=top,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_top_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=4,facing=west,half=top,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_top_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=5,facing=west,half=top,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_top_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=6,facing=west,half=top,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_top_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=7,facing=west,half=top,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_top_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=1,facing=west,half=top,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=2,facing=west,half=top,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=3,facing=west,half=top,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=4,facing=west,half=top,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=5,facing=west,half=top,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=6,facing=west,half=top,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=7,facing=west,half=top,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=1,facing=west,half=top,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=2,facing=west,half=top,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=3,facing=west,half=top,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=4,facing=west,half=top,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=5,facing=west,half=top,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=6,facing=west,half=top,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=7,facing=west,half=top,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=1,facing=west,half=top,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=2,facing=west,half=top,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=3,facing=west,half=top,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=4,facing=west,half=top,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=5,facing=west,half=top,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=6,facing=west,half=top,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=7,facing=west,half=top,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=1,facing=west,half=top,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=2,facing=west,half=top,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=3,facing=west,half=top,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=4,facing=west,half=top,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=5,facing=west,half=top,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=6,facing=west,half=top,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=7,facing=west,half=top,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet",
+      "y": 90,
+      "uvlock": true
+    },
+    "moisture=1,facing=north,half=top,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_top_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=2,facing=north,half=top,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_top_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=3,facing=north,half=top,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_top_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=4,facing=north,half=top,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_top_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=5,facing=north,half=top,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_top_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=6,facing=north,half=top,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_top_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=7,facing=north,half=top,shape=straight": {
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_top_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=1,facing=north,half=top,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=2,facing=north,half=top,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=3,facing=north,half=top,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=4,facing=north,half=top,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=5,facing=north,half=top,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=6,facing=north,half=top,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=7,facing=north,half=top,shape=inner_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=1,facing=north,half=top,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=2,facing=north,half=top,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=3,facing=north,half=top,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=4,facing=north,half=top,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=5,facing=north,half=top,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=6,facing=north,half=top,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=7,facing=north,half=top,shape=outer_right": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet",
+      "y": 270,
+      "uvlock": true
+    },
+    "moisture=1,facing=north,half=top,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=2,facing=north,half=top,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=3,facing=north,half=top,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=4,facing=north,half=top,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=5,facing=north,half=top,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=6,facing=north,half=top,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=7,facing=north,half=top,shape=inner_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_inner_top_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=1,facing=north,half=top,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=2,facing=north,half=top,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=3,facing=north,half=top,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=4,facing=north,half=top,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=5,facing=north,half=top,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=6,facing=north,half=top,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet",
+      "y": 180,
+      "uvlock": true
+    },
+    "moisture=7,facing=north,half=top,shape=outer_left": {
+      "model": "sofron_terra_lab:block/farmland_stairs_outer_top_wet",
+      "y": 180,
+      "uvlock": true
+    }
+  }
+}

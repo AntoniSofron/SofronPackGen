@@ -1,0 +1,28 @@
+{
+  "model": {
+    "type": "minecraft:select",
+    "property": "minecraft:block_state",
+    "block_state_property": "moisture",
+    "fallback": {
+      "type": "minecraft:model",
+      "model": "sofron_terra_lab:block/farmland_stairs_straight_bottom_dry"
+    },
+    "cases": [
+      {
+        "when": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7"
+        ],
+        "model": {
+          "type": "minecraft:model",
+          "model": "sofron_terra_lab:block/farmland_stairs_straight_bottom_wet"
+        }
+      }
+    ]
+  }
+}

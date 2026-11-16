@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "snowy=false,type=bottom": {
+      "model": "sofron_terra_lab:block/grass_block_slab_slab_bottom_normal"
+    },
+    "snowy=false,type=double": {
+      "model": "sofron_terra_lab:block/grass_block_slab_double_bottom_normal"
+    },
+    "snowy=false,type=top": {
+      "model": "sofron_terra_lab:block/grass_block_slab_slab_top_normal"
+    },
+    "snowy=true,type=bottom": {
+      "model": "sofron_terra_lab:block/grass_block_slab_slab_bottom_snowy"
+    },
+    "snowy=true,type=double": {
+      "model": "sofron_terra_lab:block/grass_block_slab_double_bottom_snowy"
+    },
+    "snowy=true,type=top": {
+      "model": "sofron_terra_lab:block/grass_block_slab_slab_top_snowy"
+    }
+  }
+}

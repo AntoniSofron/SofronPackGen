@@ -1,0 +1,184 @@
+{
+  "variants": {
+    "facing=east,half=bottom,shape=straight": {
+      "model": "sofron_terra_lab:block/mud_stairs_straight_bottom_normal"
+    },
+    "facing=east,half=bottom,shape=inner_right": {
+      "model": "sofron_terra_lab:block/mud_stairs_inner_bottom_normal"
+    },
+    "facing=east,half=bottom,shape=outer_right": {
+      "model": "sofron_terra_lab:block/mud_stairs_outer_bottom_normal"
+    },
+    "facing=east,half=bottom,shape=inner_left": {
+      "model": "sofron_terra_lab:block/mud_stairs_inner_bottom_normal",
+      "y": 270,
+      "uvlock": true
+    },
+    "facing=east,half=bottom,shape=outer_left": {
+      "model": "sofron_terra_lab:block/mud_stairs_outer_bottom_normal",
+      "y": 270,
+      "uvlock": true
+    },
+    "facing=south,half=bottom,shape=straight": {
+      "model": "sofron_terra_lab:block/mud_stairs_straight_bottom_normal",
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=south,half=bottom,shape=inner_right": {
+      "model": "sofron_terra_lab:block/mud_stairs_inner_bottom_normal",
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=south,half=bottom,shape=outer_right": {
+      "model": "sofron_terra_lab:block/mud_stairs_outer_bottom_normal",
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=south,half=bottom,shape=inner_left": {
+      "model": "sofron_terra_lab:block/mud_stairs_inner_bottom_normal"
+    },
+    "facing=south,half=bottom,shape=outer_left": {
+      "model": "sofron_terra_lab:block/mud_stairs_outer_bottom_normal"
+    },
+    "facing=west,half=bottom,shape=straight": {
+      "model": "sofron_terra_lab:block/mud_stairs_straight_bottom_normal",
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=west,half=bottom,shape=inner_right": {
+      "model": "sofron_terra_lab:block/mud_stairs_inner_bottom_normal",
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=west,half=bottom,shape=outer_right": {
+      "model": "sofron_terra_lab:block/mud_stairs_outer_bottom_normal",
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=west,half=bottom,shape=inner_left": {
+      "model": "sofron_terra_lab:block/mud_stairs_inner_bottom_normal",
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=west,half=bottom,shape=outer_left": {
+      "model": "sofron_terra_lab:block/mud_stairs_outer_bottom_normal",
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=north,half=bottom,shape=straight": {
+      "model": "sofron_terra_lab:block/mud_stairs_straight_bottom_normal",
+      "y": 270,
+      "uvlock": true
+    },
+    "facing=north,half=bottom,shape=inner_right": {
+      "model": "sofron_terra_lab:block/mud_stairs_inner_bottom_normal",
+      "y": 270,
+      "uvlock": true
+    },
+    "facing=north,half=bottom,shape=outer_right": {
+      "model": "sofron_terra_lab:block/mud_stairs_outer_bottom_normal",
+      "y": 270,
+      "uvlock": true
+    },
+    "facing=north,half=bottom,shape=inner_left": {
+      "model": "sofron_terra_lab:block/mud_stairs_inner_bottom_normal",
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=north,half=bottom,shape=outer_left": {
+      "model": "sofron_terra_lab:block/mud_stairs_outer_bottom_normal",
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=east,half=top,shape=straight": {
+      "model": "sofron_terra_lab:block/mud_stairs_straight_top_normal"
+    },
+    "facing=east,half=top,shape=inner_right": {
+      "model": "sofron_terra_lab:block/mud_stairs_inner_top_normal"
+    },
+    "facing=east,half=top,shape=outer_right": {
+      "model": "sofron_terra_lab:block/mud_stairs_outer_top_normal"
+    },
+    "facing=east,half=top,shape=inner_left": {
+      "model": "sofron_terra_lab:block/mud_stairs_inner_top_normal",
+      "y": 270,
+      "uvlock": true
+    },
+    "facing=east,half=top,shape=outer_left": {
+      "model": "sofron_terra_lab:block/mud_stairs_outer_top_normal",
+      "y": 270,
+      "uvlock": true
+    },
+    "facing=south,half=top,shape=straight": {
+      "model": "sofron_terra_lab:block/mud_stairs_straight_top_normal",
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=south,half=top,shape=inner_right": {
+      "model": "sofron_terra_lab:block/mud_stairs_inner_top_normal",
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=south,half=top,shape=outer_right": {
+      "model": "sofron_terra_lab:block/mud_stairs_outer_top_normal",
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=south,half=top,shape=inner_left": {
+      "model": "sofron_terra_lab:block/mud_stairs_inner_top_normal"
+    },
+    "facing=south,half=top,shape=outer_left": {
+      "model": "sofron_terra_lab:block/mud_stairs_outer_top_normal"
+    },
+    "facing=west,half=top,shape=straight": {
+      "model": "sofron_terra_lab:block/mud_stairs_straight_top_normal",
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=west,half=top,shape=inner_right": {
+      "model": "sofron_terra_lab:block/mud_stairs_inner_top_normal",
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=west,half=top,shape=outer_right": {
+      "model": "sofron_terra_lab:block/mud_stairs_outer_top_normal",
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=west,half=top,shape=inner_left": {
+      "model": "sofron_terra_lab:block/mud_stairs_inner_top_normal",
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=west,half=top,shape=outer_left": {
+      "model": "sofron_terra_lab:block/mud_stairs_outer_top_normal",
+      "y": 90,
+      "uvlock": true
+    },
+    "facing=north,half=top,shape=straight": {
+      "model": "sofron_terra_lab:block/mud_stairs_straight_top_normal",
+      "y": 270,
+      "uvlock": true
+    },
+    "facing=north,half=top,shape=inner_right": {
+      "model": "sofron_terra_lab:block/mud_stairs_inner_top_normal",
+      "y": 270,
+      "uvlock": true
+    },
+    "facing=north,half=top,shape=outer_right": {
+      "model": "sofron_terra_lab:block/mud_stairs_outer_top_normal",
+      "y": 270,
+      "uvlock": true
+    },
+    "facing=north,half=top,shape=inner_left": {
+      "model": "sofron_terra_lab:block/mud_stairs_inner_top_normal",
+      "y": 180,
+      "uvlock": true
+    },
+    "facing=north,half=top,shape=outer_left": {
+      "model": "sofron_terra_lab:block/mud_stairs_outer_top_normal",
+      "y": 180,
+      "uvlock": true
+    }
+  }
+}

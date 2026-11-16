@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "soil_stairs",
+  "key": {
+    "#": "minecraft:coarse_dirt"
+  },
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "result": {
+    "count": 4,
+    "id": "sofron_terra_lab:coarse_dirt_stairs"
+  }
+}

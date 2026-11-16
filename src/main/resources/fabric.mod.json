@@ -23,5 +23,8 @@
     "java": ">=25",
     "fabric-api": ">=0.166.2+26.3"
   },
-  "icon": "pack.png"
+  "icon": "pack.png",
+  "mixins": [
+    "sofron-soil.mixins.json"
+  ]
 }

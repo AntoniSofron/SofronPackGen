@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "soil_slab",
+  "key": {
+    "#": "minecraft:mud"
+  },
+  "pattern": [
+    "###"
+  ],
+  "result": {
+    "count": 6,
+    "id": "sofron_terra_lab:mud_slab"
+  }
+}

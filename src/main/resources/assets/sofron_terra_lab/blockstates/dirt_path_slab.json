@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "sofron_terra_lab:block/dirt_path_slab_slab_bottom_normal"
+    },
+    "type=double": {
+      "model": "sofron_terra_lab:block/dirt_path_slab_double_bottom_normal"
+    },
+    "type=top": {
+      "model": "sofron_terra_lab:block/dirt_path_slab_slab_top_normal"
+    }
+  }
+}
