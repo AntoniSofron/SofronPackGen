@@ -51,12 +51,16 @@ class SoilStairs extends StairBlock implements SoilShape {
         if (side != Direction.UP) return state;
         if ((base == Blocks.FARMLAND || base == Blocks.DIRT_PATH) && !base.defaultBlockState().canSurvive(level, pos))
             ticks.scheduleTick(pos, this, 1);
+        if (base == Blocks.FARMLAND)
+            SoilCropRules.onTopChanged(state, level, ticks, pos, adjacent);
         return SoilBlocks.surface(state, level, pos);
     }
 
     @Override
     protected void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         SoilBlocks.checkCover(base, state, level, pos);
+        if (base == Blocks.FARMLAND && level.getBlockState(pos).getBlock() == this)
+            SoilCropRules.onFieldTick(level, pos, level.getBlockState(pos));
     }
 
     @Override
