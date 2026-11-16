@@ -1,0 +1,76 @@
+{
+  "parent": "minecraft:block/block",
+  "ambientocclusion": false,
+  "textures": {
+    "particle": "sofron_terra_lab:block/rice_bottom",
+    "stem": "sofron_terra_lab:block/rice_bottom"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        -9,
+        8
+      ],
+      "to": [
+        16,
+        0,
+        8
+      ],
+      "shade": false,
+      "faces": {
+        "north": {
+          "texture": "#stem",
+          "uv": [
+            0,
+            0,
+            16,
+            9
+          ]
+        },
+        "south": {
+          "texture": "#stem",
+          "uv": [
+            0,
+            0,
+            16,
+            9
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        8,
+        -9,
+        0
+      ],
+      "to": [
+        8,
+        0,
+        16
+      ],
+      "shade": false,
+      "faces": {
+        "east": {
+          "texture": "#stem",
+          "uv": [
+            0,
+            0,
+            16,
+            9
+          ]
+        },
+        "west": {
+          "texture": "#stem",
+          "uv": [
+            0,
+            0,
+            16,
+            9
+          ]
+        }
+      }
+    }
+  ]
+}

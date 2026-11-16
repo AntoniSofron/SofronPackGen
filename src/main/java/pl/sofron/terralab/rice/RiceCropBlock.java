@@ -1,14 +1,23 @@
 package pl.sofron.terralab.rice;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.BonemealSource;
 import net.minecraft.world.level.block.FarmlandBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import pl.sofron.terralab.soil.SoilCropRules;
 import pl.sofron.terralab.soil.SoilShape;
 
@@ -21,8 +30,65 @@ import pl.sofron.terralab.soil.SoilShape;
  * Non-waterlogged shaped farmland: planting is forbidden.
  */
 public final class RiceCropBlock extends CropBlock {
+    // The rice above waterlogged shaped farmland carries additional visual
+    // geometry extending BELOW the crop block into the half-height water gap.
+    // This is a render-only blockstate property, not a separate collision block.
+    public static final BooleanProperty WATER_ROOTS = BooleanProperty.create("water_roots");
+
     public RiceCropBlock(Properties properties) {
         super(properties);
+        registerDefaultState(defaultBlockState().setValue(WATER_ROOTS, false));
+    }
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        super.createBlockStateDefinition(builder);
+        builder.add(WATER_ROOTS);
+    }
+
+    private static boolean needsWaterRoots(BlockState soil) {
+        return soil.getBlock() instanceof SoilShape shaped
+                && shaped.soilBase() == Blocks.FARMLAND
+                && SoilCropRules.hasInternalWater(soil);
+    }
+
+    @Override
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        BlockState state = super.getStateForPlacement(context);
+        return state == null ? null : state.setValue(WATER_ROOTS,
+                needsWaterRoots(context.getLevel().getBlockState(context.getClickedPos().below())));
+    }
+
+    @Override
+    protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess ticks,
+                                     BlockPos pos, Direction side, BlockPos neighbor,
+                                     BlockState adjacent, RandomSource random) {
+        BlockState next = super.updateShape(state, level, ticks, pos, side, neighbor, adjacent, random);
+        if (side == Direction.DOWN && next.is(this))
+            return next.setValue(WATER_ROOTS, needsWaterRoots(adjacent));
+        return next;
+    }
+
+    @Override
+    protected void onPlace(BlockState state, Level level, BlockPos pos,
+                           BlockState oldState, boolean moved) {
+        super.onPlace(state, level, pos, oldState, moved);
+        // Also covers farmer-villager planting, which can bypass BlockItem.
+        if (!level.isClientSide() && !oldState.is(this)) {
+            boolean expected = needsWaterRoots(level.getBlockState(pos.below()));
+            if (state.getValue(WATER_ROOTS) != expected)
+                level.setBlockAndUpdate(pos, state.setValue(WATER_ROOTS, expected));
+        }
+    }
+
+    @Override
+    public void performBonemeal(ServerLevel level, RandomSource random,
+                                BlockPos pos, BlockState state, BonemealSource source) {
+        super.performBonemeal(level, random, pos, state, source);
+        // Vanilla bonemeal creates a fresh age state; keep the visual roots.
+        BlockState grown = level.getBlockState(pos);
+        if (grown.is(this) && grown.getValue(WATER_ROOTS) != state.getValue(WATER_ROOTS))
+            level.setBlockAndUpdate(pos, grown.setValue(WATER_ROOTS, state.getValue(WATER_ROOTS)));
     }
 
     @Override
@@ -83,6 +149,7 @@ public final class RiceCropBlock extends CropBlock {
         if (!waterField && random.nextBoolean()) return;
         float fertility = wheatEquivalentFertility(level, pos, state);
         if (random.nextInt((int)(25.0F / fertility) + 1) == 0)
-            level.setBlockAndUpdate(pos, getStateForAge(getAge(state) + 1));
+            level.setBlockAndUpdate(pos, getStateForAge(getAge(state) + 1)
+                    .setValue(WATER_ROOTS, state.getValue(WATER_ROOTS)));
     }
 }

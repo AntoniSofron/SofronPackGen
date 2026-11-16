@@ -1,6 +1,7 @@
 package pl.sofron.terralab.soil;
 
 import java.util.Map;
+import pl.sofron.terralab.rice.RiceCropBlock;
 import java.util.concurrent.ConcurrentHashMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.BlockTags;
@@ -35,6 +36,9 @@ public final class SoilGeometry {
     }
 
     public static boolean lowerCrop(BlockState crop, BlockGetter level, BlockPos pos) {
+        // Rice stays in the upper cell: WATER_ROOTS extends the stem down to
+        // the true soil surface. Lowering the whole plant would double-shift it.
+        if (crop.getBlock() instanceof RiceCropBlock) return false;
         if (!(crop.getBlock() instanceof VegetationBlock)) return false;
         if (crop.getValueOrElse(DoublePlantBlock.HALF, net.minecraft.world.level.block.state.properties.DoubleBlockHalf.LOWER)
                 == net.minecraft.world.level.block.state.properties.DoubleBlockHalf.UPPER) pos = pos.below();
