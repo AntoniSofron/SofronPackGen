@@ -121,6 +121,30 @@ def main():
             if "sofron_terra_lab" not in packs.lower():
                 raise AssertionError("Sofron Terra Lab data pack is not enabled: the server is testing Vanilla, not our worldgen.")
 
+            # Rice crop regression: place a mature plant on ordinary farmland,
+            # and young plants on both waterlogged soil shapes. They must remain
+            # after the ordinary crop's four-second waterlogged ejection window.
+            print("Testing rice registration and waterlogged farmland persistence...", flush=True)
+            rcon("forceload add 32 32 47 47")
+            rcon("fill 40 298 40 43 303 40 minecraft:air")
+            rcon("setblock 40 299 40 minecraft:farmland[moisture=7]")
+            rcon("setblock 40 300 40 sofron_terra_lab:rice_crop[age=7]")
+            rcon("setblock 41 299 40 sofron_terra_lab:farmland_slab[type=bottom,waterlogged=true,moisture=0]")
+            rcon("setblock 41 300 40 sofron_terra_lab:rice_crop[age=0]")
+            rcon("setblock 42 299 40 sofron_terra_lab:farmland_stairs[half=bottom,facing=north,waterlogged=true,moisture=0]")
+            rcon("setblock 42 300 40 sofron_terra_lab:rice_crop[age=0]")
+            for x in (40, 41, 42):
+                result = rcon(f"execute if block {x} 300 40 sofron_terra_lab:rice_crop")
+                if "Test passed" not in result and "count: 1" not in result:
+                    raise AssertionError(f"Rice crop not placed at x={x}: {result}")
+            time.sleep(5)
+            for x in (41, 42):
+                result = rcon(f"execute if block {x} 300 40 sofron_terra_lab:rice_crop")
+                if "Test passed" not in result and "count: 1" not in result:
+                    raise AssertionError(f"Waterlogged rice was incorrectly ejected at x={x}: {result}")
+            print("PASS: rice on ordinary farmland and wet slab/stairs survives the crop ejection window", flush=True)
+            rcon("fill 40 298 40 43 303 40 minecraft:air")
+
             # Verify all five user-provided NBT structure templates actually
             # load in Minecraft 26.3 and place their original oak-wood trunks.
             # Test above world surface (Y280) to avoid collisions and false positives.
