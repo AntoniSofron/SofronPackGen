@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:block/crop",
+  "parent": "sofron_terra_lab:block/rice_crop_raised",
   "textures": {
     "crop": "sofron_terra_lab:block/rice_stage_1"
   }
