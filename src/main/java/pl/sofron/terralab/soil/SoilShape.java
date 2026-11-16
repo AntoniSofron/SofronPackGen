@@ -6,9 +6,18 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
 public interface SoilShape extends BonemealableBlock {
     Block soilBase();
+
+    static boolean isFarmland(BlockState state) {
+        return state.getBlock() instanceof SoilShape soil && soil.soilBase() == Blocks.FARMLAND;
+    }
+
+    static boolean hasPlantingWater(BlockState state) {
+        return state.getValue(BlockStateProperties.WATERLOGGED);
+    }
 
     default boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state, BonemealSource source) {
         return soilBase() instanceof BonemealableBlock b && b.isValidBonemealTarget(level, pos, soilBase().defaultBlockState(), source);

@@ -12,7 +12,7 @@ abstract class FarmerMixin {
     @Redirect(method = {"validPos", "tick(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/npc/villager/Villager;J)V"},
             at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/BlockState;getBlock()Lnet/minecraft/world/level/block/Block;"))
     private Block recognizeField(BlockState state) {
-        Block block = state.getBlock();
-        return block instanceof SoilShape soil && soil.soilBase() == Blocks.FARMLAND ? Blocks.FARMLAND : block;
+        if (SoilShape.isFarmland(state) && SoilShape.hasPlantingWater(state)) return Blocks.FARMLAND;
+        return state.getBlock();
     }
 }
