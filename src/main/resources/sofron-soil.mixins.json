@@ -6,7 +6,11 @@
     "SoilTickAccess",
     "SpreadingSoilMixin",
     "FarmlandSoilMixin",
-    "CropOutlineMixin"
+    "CropOutlineMixin",
+    "DripstoneSoilMixin",
+    "FarmerMixin",
+    "GrazingMixin",
+    "GrassBonemealMixin"
   ],
   "client": [
     "CropRenderMixin"

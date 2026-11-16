@@ -65,6 +65,11 @@ class SoilStairs extends StairBlock implements SoilShape {
     }
 
     @Override
+    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
+        if (base == Blocks.MYCELIUM) base.animateTick(state, level, pos, random);
+    }
+
+    @Override
     public void fallOn(Level level, BlockState state, BlockPos pos, Entity entity, double distance) {
         if (base == Blocks.FARMLAND) base.fallOn(level, state, pos, entity, distance);
         else super.fallOn(level, state, pos, entity, distance);

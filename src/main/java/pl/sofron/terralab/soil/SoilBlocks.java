@@ -26,7 +26,7 @@ public final class SoilBlocks {
 
     public static void register() {
         for (Block base : new Block[]{Blocks.GRASS_BLOCK, Blocks.DIRT, Blocks.DIRT_PATH, Blocks.MYCELIUM,
-                Blocks.PODZOL, Blocks.MUD, Blocks.COARSE_DIRT, Blocks.ROOTED_DIRT, Blocks.FARMLAND}) {
+                Blocks.PODZOL, Blocks.MUD, Blocks.COARSE_DIRT, Blocks.ROOTED_DIRT, Blocks.FARMLAND, Blocks.CLAY}) {
             SHAPES.put(base, new Shapes(registerShape(base, false), registerShape(base, true)));
         }
         CreativeModeTabEvents.modifyOutputEvent(ResourceKey.create(Registries.CREATIVE_MODE_TAB,

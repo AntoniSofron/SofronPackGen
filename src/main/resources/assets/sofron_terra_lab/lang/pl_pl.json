@@ -15,6 +15,8 @@
   "block.sofron_terra_lab.podzol_stairs": "Schody z bielicy",
   "block.sofron_terra_lab.mud_slab": "Półblok błota",
   "block.sofron_terra_lab.mud_stairs": "Schody z błota",
+  "block.sofron_terra_lab.clay_slab": "Półblok gliny",
+  "block.sofron_terra_lab.clay_stairs": "Schody z gliny",
   "block.sofron_terra_lab.farmland_slab": "Półblok pola uprawnego",
   "block.sofron_terra_lab.farmland_stairs": "Schody z pola uprawnego"
 }

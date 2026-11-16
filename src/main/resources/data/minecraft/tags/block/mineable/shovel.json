@@ -16,6 +16,8 @@
     "sofron_terra_lab:podzol_stairs",
     "sofron_terra_lab:mud_slab",
     "sofron_terra_lab:mud_stairs",
+    "sofron_terra_lab:clay_slab",
+    "sofron_terra_lab:clay_stairs",
     "sofron_terra_lab:farmland_slab",
     "sofron_terra_lab:farmland_stairs"
   ]

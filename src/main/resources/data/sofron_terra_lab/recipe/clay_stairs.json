@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "soil_stairs",
+  "key": {
+    "#": "minecraft:clay"
+  },
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "result": {
+    "count": 4,
+    "id": "sofron_terra_lab:clay_stairs"
+  }
+}

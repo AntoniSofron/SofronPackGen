@@ -8,6 +8,7 @@
     "sofron_terra_lab:mycelium_slab",
     "sofron_terra_lab:podzol_slab",
     "sofron_terra_lab:mud_slab",
+    "sofron_terra_lab:clay_slab",
     "sofron_terra_lab:farmland_slab"
   ]
 }
