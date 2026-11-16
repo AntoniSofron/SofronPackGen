@@ -18,5 +18,7 @@
   "block.sofron_terra_lab.clay_slab": "Półblok gliny",
   "block.sofron_terra_lab.clay_stairs": "Schody z gliny",
   "block.sofron_terra_lab.farmland_slab": "Półblok pola uprawnego",
-  "block.sofron_terra_lab.farmland_stairs": "Schody z pola uprawnego"
+  "block.sofron_terra_lab.farmland_stairs": "Schody z pola uprawnego",
+  "item.sofron_terra_lab.rice": "Ryż",
+  "block.sofron_terra_lab.rice_crop": "Ryż"
 }
