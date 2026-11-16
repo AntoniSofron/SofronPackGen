@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/crop",
+  "textures": {
+    "crop": "sofron_terra_lab:block/rice_stage_3"
+  }
+}

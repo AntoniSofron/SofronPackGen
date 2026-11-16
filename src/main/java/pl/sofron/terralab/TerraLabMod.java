@@ -12,6 +12,7 @@ public final class TerraLabMod implements ModInitializer {
     @Override
     public void onInitialize() {
         pl.sofron.terralab.soil.SoilBlocks.register();
+        pl.sofron.terralab.rice.RiceContent.register();
         net.minecraft.core.Registry.register(net.minecraft.core.registries.BuiltInRegistries.FEATURE_TYPE,
                 net.minecraft.resources.Identifier.fromNamespaceAndPath(MOD_ID, "birch_variants"), BirchVariants.CODEC);
         net.minecraft.core.Registry.register(net.minecraft.core.registries.BuiltInRegistries.FEATURE_TYPE,

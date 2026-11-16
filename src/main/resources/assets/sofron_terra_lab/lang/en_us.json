@@ -18,5 +18,7 @@
   "block.sofron_terra_lab.clay_slab": "Clay Slab",
   "block.sofron_terra_lab.clay_stairs": "Clay Stairs",
   "block.sofron_terra_lab.farmland_slab": "Farmland Slab",
-  "block.sofron_terra_lab.farmland_stairs": "Farmland Stairs"
+  "block.sofron_terra_lab.farmland_stairs": "Farmland Stairs",
+  "item.sofron_terra_lab.rice": "Rice",
+  "block.sofron_terra_lab.rice_crop": "Rice Crop"
 }
