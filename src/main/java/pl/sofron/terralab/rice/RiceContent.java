@@ -7,7 +7,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemNameBlockItem;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import pl.sofron.terralab.TerraLabMod;
@@ -28,7 +28,7 @@ public final class RiceContent {
                             .setId(ResourceKey.create(Registries.BLOCK, CROP_ID))));
 
     public static final Item RICE = Registry.register(
-            BuiltInRegistries.ITEM, RICE_ID, new ItemNameBlockItem(CROP,
+            BuiltInRegistries.ITEM, RICE_ID, new BlockItem(CROP,
                     new Item.Properties().setId(ResourceKey.create(Registries.ITEM, RICE_ID))));
 
     private RiceContent() {}
